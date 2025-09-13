@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assist Me - Get Support | Elpis Initiative Uganda</title>
+    <meta name="description" content="Request assistance from Elpis Initiative Uganda. Our partnership program provides financial assistance for medical emergencies.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo">
+                    <span>Elpis Initiative Uganda</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="programs.html" class="nav-link">What We Do</a></li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="careers.html" class="nav-link">Careers</a></li>
+                    <li><a href="assist.html" class="nav-link active">Assist Me</a></li>
+                    <li><a href="donate.html" class="nav-link btn-primary">Donate</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Request Assistance</h1>
+                <p>Our partnership program provides support for medical emergencies and urgent needs</p>
+            </div>
+        </section>
+
+        <section class="assist-content">
+            <div class="container">
+                <div class="assist-grid">
+                    <div class="assist-info">
+                        <h2>How We Can Help</h2>
+                        <p>Through our partnership program, we provide financial assistance for medical emergencies and other urgent needs. Our support network is designed to help young people in crisis situations.</p>
+                        
+                        <h3>Eligibility</h3>
+                        <ul class="eligibility-list">
+                            <li>Ages 15-40</li>
+                            <li>Located in our service regions</li>
+                            <li>Genuine medical or emergency need</li>
+                            <li>Preference given to Elpis Partners</li>
+                        </ul>
+
+                        <div class="partner-note">
+                            <h3>Elpis Partners</h3>
+                            <p>If you're an Elpis Partner (donor), please include your partner number for priority consideration. Not a partner yet? <a href="donate.html">Become one today</a>.</p>
+                        </div>
+                    </div>
+
+                    <div class="assist-form">
+                        <form id="assistForm" class="form">
+                            <h3>Support Request Form</h3>
+                            
+                            <div class="form-group">
+                                <label for="requestName">Full Name *</label>
+                                <input type="text" id="requestName" name="requestName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Location *</label>
+                                <select id="location" name="location" required>
+                                    <option value="">Select your location</option>
+                                    <option value="arua">Arua</option>
+                                    <option value="kampala">Kampala</option>
+                                    <option value="kotido">Kotido</option>
+                                    <option value="luuka">Luuka</option>
+                                    <option value="mbarara">Mbarara</option>
+                                    <option value="gulu">Gulu</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="partnerNumber">Elpis Partner Number (if applicable)</label>
+                                <input type="text" id="partnerNumber" name="partnerNumber" placeholder="Enter your partner number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="needDescription">What's your need? *</label>
+                                <textarea id="needDescription" name="needDescription" rows="6" required placeholder="Please describe your situation and the type of assistance you need..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="urgency">Urgency Level *</label>
+                                <select id="urgency" name="urgency" required>
+                                    <option value="">Select urgency level</option>
+                                    <option value="immediate">Immediate (within 24 hours)</option>
+                                    <option value="urgent">Urgent (within 1 week)</option>
+                                    <option value="moderate">Moderate (within 1 month)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: officialeu@elpisuganda.org</p>
+                    <p>Serving: Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">Facebook</a>
+                        <a href="#" aria-label="Twitter">Twitter</a>
+                        <a href="#" aria-label="Instagram">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
