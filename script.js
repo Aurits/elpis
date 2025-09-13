@@ -654,7 +654,11 @@ class ElpisWebsite {
     const duration = 2000
     const step = target / (duration / 16)
     let current = 0
-
+    
+    // Store the original suffix (like '+' in "1,200+")
+    const originalText = element.textContent
+    const suffix = originalText.match(/[^\d,]+$/)?.[0] || ''
+    
     const timer = setInterval(() => {
       current += step
       if (current >= target) {
@@ -662,7 +666,8 @@ class ElpisWebsite {
         clearInterval(timer)
       }
       
-      element.textContent = element.textContent.replace(/\d+/, Math.floor(current).toLocaleString())
+      // Reapply the suffix (like '+') when replacing the number
+      element.textContent = Math.floor(current).toLocaleString() + suffix
     }, 16)
   }
 
