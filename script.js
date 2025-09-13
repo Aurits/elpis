@@ -791,6 +791,15 @@ class ElpisWebsite {
       })
     }
   }
+
+  // Dynamic copyright year
+  initCopyrightYear() {
+    const copyrightYear = document.getElementById('copyright-year')
+    if (copyrightYear) {
+      const currentYear = new Date().getFullYear()
+      copyrightYear.textContent = currentYear
+    }
+  }
 }
 
 // Enhanced CSS animations
