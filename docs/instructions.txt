@@ -1,0 +1,136 @@
+# **Complete Elpis Initiative Uganda Website - Comprehensive Build Prompt**
+Create a modern, minimalistic nonprofit website for **Elpis Initiative Uganda** using HTML, CSS, and JavaScript with the following detailed specifications:
+## **Organization Overview**
+Elpis Initiative Uganda is a youth-led nonprofit founded in 2022 by Nkuutu Brian Moses and Feni Desmond. They empower Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality across six regions: Kampala, Gulu, Kotido, Luuka, Arua, and Mbarara.
+## **Brand Identity & Color Palette**
+- **Primary Colors:**
+- Pink: `#ec008c` (C=1% M=99% Y=0% K=0%)
+- Blue: `#00aeef` (C=69% M=14% Y=0% K=0%)
+- **Neutrals:**
+- White: `#ffffff`
+- Charcoal Grey: `#191919` (text color)
+- **Design Philosophy:** Clean, professional, NO gradients - use solid colors only
+- **Typography:** Modern sans-serif fonts, clean hierarchy
+## **Required Pages & Content**
+### **1. Homepage (index.html)**
+**Hero Section:**
+- "Empowering Ugandan Youth Through Art, Advocacy & Action"
+- Subtitle: "A Uganda where every young person thrives in good health, free from stigma"
+- CTA buttons: "Donate Now" and "Join Our Movement"
+**Key Sections:**
+- Mission: Empower youth through arts-based HIV/AIDS, mental health, and gender equality solutions
+- Impact stats: 1,200+ youth engaged, 6 regions served, 2 years of impact
+- Programs overview: Creative advocacy, community outreach, strategic partnerships
+- "1 Million Hearts, One Cause" campaign highlight
+### **2. Donate Page (donate.html)**
+**"1 Million Hearts, One Cause" Campaign:**
+- Goal: Target 1 million individuals to contribute
+- Minimum donation: UGX 20,000
+- Fund focuses on:
+1. HIV and Mental health awareness through art
+2. Supporting similar organizations
+3. Medical emergency assistance (ages 15-40)
+**Payment Options:**
+- MTN Mobile Money
+- Airtel Money
+- Amount selection: 20,000 | 50,000 | 100,000 | Custom
+- Donor becomes "Elpis Partner"
+### **3. Assist Me Page (assist.html)**
+**Support Request Form:**
+- Name field
+- Location dropdown: Arua, Kampala, Kotido, Luuka, Mbarara
+- Message field: "What's your need?"
+- Phone number
+- Elpis Partner Number (optional)
+- Description: Partnership program providing financial assistance for emergencies
+### **4. Careers Page (careers.html)**
+**Current Openings: 21 positions total**
+- 18 positions reserved for Elpis Uganda partners
+- 3 positions open to all candidates
+- Age preference: 25-35, persons with special needs encouraged
+**Partner-Reserved Positions:**
+- Regional Manager for M&E
+- Data Analyst, M&E Assistant, Data Entry Clerk
+- Finance Officer, Accountant, Procurement Officer
+- HR Assistant, Logistics Officer, Office Manager
+- Programs Officer, Project Coordinator
+- Community Development Officer
+- Training & Capacity Building Officer
+- Public Relations Officer, Digital Content Manager
+- Media and Outreach Coordinator
+- Publications & Graphics Designers (2)
+**Open Positions:**
+- Front Desk Managers (6)
+- Office Admins (5)
+- Social Media Assistants (5)
+**Application:** Send CV to [officialeu@elpisuganda.org](mailto:officialeu@elpisuganda.org), Deadline: August 30, 2025
+### **5. About Page (about.html)**
+**Leadership Message from Executive Director Feni Desmond:**
+- Call to action for youth ownership of HIV/mental health solutions
+- Emphasis on local funding vs foreign aid dependency
+- Innovation over traditional methods
+**Organization History:**
+- Founded 2022 by passionate advocates
+- Rapid evolution from local to nationwide movement
+- Geographic presence across six strategic locations
+- Recognition and validation of youth-centered approaches
+### **6. What We Do Page (programs.html)**
+**Core Initiatives:**
+1. **Advocacy Through Artistry**
+1. Training youth advocates using creative mediums
+2. Award-winning short films challenging misconceptions
+3. Nationwide exhibitions turning stories into dialogue
+4. Viral X-Space discussions
+2. **Community Outreach**
+1. Kampala: Urban youth through digital/performing arts
+2. Gulu: Post-conflict mental health via creative therapies
+3. Kotido: Culturally-sensitive pastoral community programs
+4. Luuka: Rural SRHR education through murals/theater
+5. Arua: Border community health initiatives
+6. Mbarara: University-focused creative health education
+3. **Strategic Partnerships**
+1. 10 Million Hearts Campaign
+2. School collaborations
+3. Corporate partnerships
+4. Government alliances
+**Vision:** A Uganda where every young person thrives in good health, free from stigma
+**Mission:** Empower youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality
+### **7. Gallery Page (gallery.html)**
+- Photo categories: Events, Programs, Community Impact
+- Filter functionality
+- Modal image viewing
+- Showcase of art installations, workshops, community events
+## **Technical Requirements**
+- **Structure:** Pure HTML5, CSS3, JavaScript (no frameworks)
+- **Responsive:** Mobile-first design
+- **Accessibility:** WCAG compliant, semantic HTML, proper ARIA labels
+- **Performance:** Optimized images, clean code structure
+## **JavaScript Functionality**
+- Mobile navigation toggle
+- Form validation for all forms
+- Image gallery with modal and filtering
+- Smooth scrolling navigation
+- Interactive donation amount selection
+- Location-based form handling
+- Partner ID validation simulation
+## **Design Specifications**
+- **Layout:** Clean grid systems, generous white space
+- **Typography:** Clear hierarchy, readable fonts
+- **Colors:** Strategic use of brand colors, high contrast
+- **Components:** Cards, buttons, forms with consistent styling
+- **Navigation:** Sticky header, clear menu structure
+- **Footer:** Contact info, social links, quick navigation
+## **Content Guidelines**
+- Authentic, hope-focused messaging
+- Ugandan cultural context and sensitivity
+- Transparency in funding and impact
+- Professional yet approachable tone
+- Youth empowerment emphasis
+- Arts and creativity integration
+## **Key Features**
+- Partner verification system
+- Multi-region support
+- Mobile money integration
+- Campaign tracking
+- Application management
+- Impact storytelling

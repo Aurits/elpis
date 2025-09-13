@@ -4,147 +4,385 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elpis Initiative Uganda - Empowering Youth Through Art & Advocacy</title>
-    <meta name="description" content="Youth-led nonprofit empowering Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality.">
+    <meta name="description" content="Youth-led nonprofit empowering Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality across six regions.">
+    <meta name="keywords" content="Uganda, youth empowerment, HIV/AIDS awareness, mental health, gender equality, arts advocacy, nonprofit">
+    <meta name="author" content="Elpis Initiative Uganda">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Elpis Initiative Uganda - Empowering Youth Through Art & Advocacy">
+    <meta property="og:description" content="Youth-led nonprofit empowering Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elpisuganda.org">
+    <meta property="og:image" content="https://elpisuganda.org/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Elpis Initiative Uganda - Empowering Youth Through Art & Advocacy">
+    <meta name="twitter:description" content="Youth-led nonprofit empowering Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Elpis Initiative Uganda",
+        "description": "Youth-led nonprofit empowering Ugandan youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality.",
+        "url": "https://elpisuganda.org",
+        "logo": "https://elpisuganda.org/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "officialeu@elpisuganda.org",
+            "contactType": "General Inquiries"
+        },
+        "areaServed": ["Kampala", "Gulu", "Kotido", "Luuka", "Arua", "Mbarara"],
+        "foundingDate": "2022",
+        "founders": [
+            {
+                "@type": "Person",
+                "name": "Nkuutu Brian Moses"
+            },
+            {
+                "@type": "Person", 
+                "name": "Feni Desmond"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo">
-                    <span>Elpis Initiative Uganda</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="programs.html" class="nav-link">What We Do</a></li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
-                    <li><a href="assist.html" class="nav-link">Assist Me</a></li>
-                    <li><a href="donate.html" class="nav-link btn-primary">Donate</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="nav-logo" aria-label="Elpis Initiative Uganda Homepage">
+                        <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo" width="40" height="40">
+                        <span>Elpis Initiative Uganda</span>
+                    </a>
+                    
+                    <ul class="nav-menu" role="menubar">
+                        <li role="none"><a href="index.html" class="nav-link active" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+                        <li role="none"><a href="programs.html" class="nav-link" role="menuitem">What We Do</a></li>
+                        <li role="none"><a href="gallery.html" class="nav-link" role="menuitem">Gallery</a></li>
+                        <li role="none"><a href="careers.html" class="nav-link" role="menuitem">Careers</a></li>
+                        <li role="none"><a href="assist.html" class="nav-link" role="menuitem">Assist Me</a></li>
+                        <li role="none"><a href="donate.html" class="nav-link btn-primary" role="menuitem">Donate</a></li>
+                    </ul>
+                    
+                    <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
+    <!-- Main Content -->
+    <main id="main-content" role="main">
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Empowering Ugandan Youth Through Art, Advocacy & Action</h1>
-                    <p class="hero-subtitle">A Uganda where every young person thrives in good health, free from stigma</p>
+                    <h1 id="hero-title" class="hero-title">
+                        Empowering Ugandan Youth Through Art, Advocacy & Action
+                    </h1>
+                    <p class="hero-subtitle">
+                        A Uganda where every young person thrives in good health, free from stigma
+                    </p>
                     <div class="hero-buttons">
-                        <a href="donate.html" class="btn btn-primary">Donate Now</a>
-                        <a href="about.html" class="btn btn-secondary">Join Our Movement</a>
+                        <a href="donate.html" class="btn btn-primary btn-lg" aria-describedby="donate-description">
+                            Donate Now
+                        </a>
+                        <a href="about.html" class="btn btn-secondary btn-lg" aria-describedby="join-description">
+                            Join Our Movement
+                        </a>
                     </div>
+                    <!-- Hidden descriptions for screen readers -->
+                    <div id="donate-description" class="sr-only">Support our mission with a donation to empower Ugandan youth</div>
+                    <div id="join-description" class="sr-only">Learn more about our organization and how to get involved</div>
                 </div>
             </div>
         </section>
 
         <!-- Mission Section -->
-        <section class="mission">
+        <section class="section" id="mission" aria-labelledby="mission-title">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Mission</h2>
-                    <p>Empower youth through arts-based HIV/AIDS, mental health, and gender equality solutions</p>
+                    <h2 id="mission-title">Our Mission</h2>
+                    <p>Empower youth through arts-based HIV/AIDS, mental health, and gender equality solutions that create lasting change in Uganda's communities.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Impact Stats -->
-        <section class="stats">
+        <!-- Impact Stats Section -->
+        <section class="stats section-sm" id="impact" aria-labelledby="impact-title">
             <div class="container">
+                <h2 id="impact-title" class="sr-only">Our Impact Statistics</h2>
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <h3 class="stat-number">1,200+</h3>
-                        <p class="stat-label">Youth Engaged</p>
+                    <div class="stat-card" role="img" aria-labelledby="stat-youth">
+                        <h3 class="stat-number" id="stat-youth-number">1,200+</h3>
+                        <p class="stat-label" id="stat-youth">Youth Engaged</p>
+                        <div class="sr-only">Over 1,200 young people have been engaged through our programs</div>
                     </div>
-                    <div class="stat-card">
-                        <h3 class="stat-number">6</h3>
-                        <p class="stat-label">Regions Served</p>
+                    <div class="stat-card" role="img" aria-labelledby="stat-regions">
+                        <h3 class="stat-number" id="stat-regions-number">6</h3>
+                        <p class="stat-label" id="stat-regions">Regions Served</p>
+                        <div class="sr-only">We operate across 6 regions in Uganda: Kampala, Gulu, Kotido, Luuka, Arua, and Mbarara</div>
                     </div>
-                    <div class="stat-card">
-                        <h3 class="stat-number">2</h3>
-                        <p class="stat-label">Years of Impact</p>
+                    <div class="stat-card" role="img" aria-labelledby="stat-years">
+                        <h3 class="stat-number" id="stat-years-number">2</h3>
+                        <p class="stat-label" id="stat-years">Years of Impact</p>
+                        <div class="sr-only">We have been making a difference for 2 years since our founding in 2022</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Programs Overview -->
-        <section class="programs-overview">
+        <!-- Programs Overview Section -->
+        <section class="section" id="programs" aria-labelledby="programs-title">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Programs</h2>
+                    <h2 id="programs-title">Our Programs</h2>
+                    <p>Innovative approaches to youth empowerment through creative expression and community engagement.</p>
                 </div>
                 <div class="programs-grid">
-                    <div class="program-card">
+                    <article class="program-card">
                         <h3>Creative Advocacy</h3>
-                        <p>Training youth advocates using creative mediums to challenge misconceptions and create dialogue.</p>
-                    </div>
-                    <div class="program-card">
+                        <p>Training youth advocates using creative mediums to challenge misconceptions and create meaningful dialogue. Our award-winning short films and viral social media campaigns transform personal stories into powerful tools for change.</p>
+                        <a href="programs.html#creative-advocacy" class="btn btn-outline btn-sm mt-4">Learn More</a>
+                    </article>
+                    
+                    <article class="program-card">
                         <h3>Community Outreach</h3>
-                        <p>Reaching communities across six regions with culturally-sensitive health education programs.</p>
-                    </div>
-                    <div class="program-card">
+                        <p>Reaching communities across six regions with culturally-sensitive health education programs. From urban Kampala to pastoral Kotido, we adapt our approach to meet each community's unique needs and cultural context.</p>
+                        <a href="programs.html#community-outreach" class="btn btn-outline btn-sm mt-4">Learn More</a>
+                    </article>
+                    
+                    <article class="program-card">
                         <h3>Strategic Partnerships</h3>
-                        <p>Building alliances with schools, corporations, and government to amplify our impact.</p>
+                        <p>Building alliances with schools, corporations, and government entities to amplify our impact. Our collaborative approach ensures sustainable change through shared resources and expertise.</p>
+                        <a href="programs.html#strategic-partnerships" class="btn btn-outline btn-sm mt-4">Learn More</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Spotlight -->
+        <section class="section" style="background-color: var(--light-gray);" id="leadership" aria-labelledby="leadership-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="leadership-title">Leadership Message</h2>
+                </div>
+                <div class="grid grid-2 gap-8">
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Nkuutu Brian Moses</h3>
+                            <p class="text-sm text-primary">Co-Founder</p>
+                        </div>
+                        <div class="card-content">
+                            <p>"Youth ownership of HIV and mental health solutions isn't just our goal—it's our reality. We're proving that local innovation surpasses traditional approaches when young people lead the way."</p>
+                        </div>
+                    </article>
+                    
+                    <article class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Feni Desmond</h3>
+                            <p class="text-sm text-secondary">Executive Director</p>
+                        </div>
+                        <div class="card-content">
+                            <p>"Every young person in Uganda deserves to thrive free from stigma. Through art and advocacy, we're not just changing minds—we're transforming communities and saving lives."</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campaign Highlight Section -->
+        <section class="campaign-highlight" id="campaign" aria-labelledby="campaign-title">
+            <div class="container">
+                <div class="campaign-content">
+                    <h2 id="campaign-title">1 Million Hearts, One Cause</h2>
+                    <p>Join our ambitious campaign to reach 1 million individuals across Uganda with life-saving health education and create lasting change in our nation's youth health landscape. Every contribution brings us closer to a stigma-free Uganda.</p>
+                    <div class="flex gap-4 justify-center mt-8">
+                        <a href="donate.html" class="btn btn-primary btn-lg" style="background-color: var(--white); color: var(--primary-pink);">
+                            Join the Campaign
+                        </a>
+                        <a href="about.html" class="btn btn-secondary btn-lg" style="border-color: var(--white); color: var(--white);">
+                            Learn Our Story
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Campaign Highlight -->
-        <section class="campaign-highlight">
-            <div class="container">
-                <div class="campaign-content">
-                    <h2>1 Million Hearts, One Cause</h2>
-                    <p>Join our movement to reach 1 million individuals and create lasting change in Uganda's youth health landscape.</p>
-                    <a href="donate.html" class="btn btn-primary">Join the Campaign</a>
+        <!-- Call to Action Section -->
+        <section class="section" id="get-involved" aria-labelledby="cta-title">
+            <div class="container text-center">
+                <div class="section-header">
+                    <h2 id="cta-title">Get Involved Today</h2>
+                    <p>Whether you're looking to support our mission, join our team, or access our services, there are many ways to be part of the Elpis family.</p>
+                </div>
+                <div class="grid grid-3 gap-6">
+                    <div class="card text-center">
+                        <h3 class="text-primary mb-4">💖</h3>
+                        <h4>Make a Donation</h4>
+                        <p class="mb-4">Support our programs with a contribution starting from UGX 20,000 and become an Elpis Partner.</p>
+                        <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <h3 class="text-secondary mb-4">🤝</h3>
+                        <h4>Join Our Team</h4>
+                        <p class="mb-4">Explore 21 open positions across our six regions and help us expand our impact.</p>
+                        <a href="careers.html" class="btn btn-secondary">View Careers</a>
+                    </div>
+                    
+                    <div class="card text-center">
+                        <h3 class="text-primary mb-4">🆘</h3>
+                        <h4>Need Assistance?</h4>
+                        <p class="mb-4">Access our emergency support services for health-related needs across Uganda.</p>
+                        <a href="assist.html" class="btn btn-outline">Get Help</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Email: officialeu@elpisuganda.org</p>
-                    <p>Serving: Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                    <h4>Contact Information</h4>
+                    <p>
+                        <strong>Email:</strong> 
+                        <a href="mailto:officialeu@elpisuganda.org" class="text-white">officialeu@elpisuganda.org</a>
+                    </p>
+                    <p><strong>Regions Served:</strong></p>
+                    <p>Kampala • Gulu • Kotido • Luuka • Arua • Mbarara</p>
+                    <p class="text-sm mt-4">
+                        <strong>Founded:</strong> 2022<br>
+                        <strong>Co-Founders:</strong> Nkuutu Brian Moses & Feni Desmond
+                    </p>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Quick Links</h4>
+                    <nav aria-label="Footer navigation">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="programs.html">Our Programs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="careers.html">Career Opportunities</a></li>
+                            <li><a href="assist.html">Request Assistance</a></li>
+                            <li><a href="donate.html">Make a Donation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Our Impact Areas</h4>
                     <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="donate.html">Donate</a></li>
+                        <li>HIV/AIDS Awareness & Prevention</li>
+                        <li>Mental Health Support</li>
+                        <li>Gender Equality Advocacy</li>
+                        <li>Arts-Based Education</li>
+                        <li>Youth Leadership Development</li>
+                        <li>Community Health Initiatives</li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Follow Us</h4>
+                    <h4>Stay Connected</h4>
+                    <p class="mb-4">Follow our journey and stay updated on our latest initiatives.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
-                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Follow us on Facebook" class="social-link">Facebook</a>
+                        <a href="#" aria-label="Follow us on Twitter" class="social-link">Twitter</a>
+                        <a href="#" aria-label="Follow us on Instagram" class="social-link">Instagram</a>
+                        <a href="#" aria-label="Connect with us on LinkedIn" class="social-link">LinkedIn</a>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="mt-6">
+                        <h5 class="text-sm font-semibold mb-2">Newsletter</h5>
+                        <form class="flex gap-2" aria-label="Newsletter signup">
+                            <input 
+                                type="email" 
+                                placeholder="Your email" 
+                                class="form-input text-sm"
+                                style="min-height: 40px; background: var(--white); color: var(--charcoal);"
+                                aria-label="Email address for newsletter"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                <div class="flex justify-between items-center gap-4" style="flex-wrap: wrap;">
+                    <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-white">Privacy Policy</a>
+                        <a href="#" class="text-white">Terms of Service</a>
+                        <a href="#" class="text-white">Accessibility</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button 
+        id="back-to-top" 
+        class="btn btn-primary" 
+        style="position: fixed; bottom: 20px; right: 20px; border-radius: 50%; width: 50px; height: 50px; display: none; z-index: 1000;"
+        aria-label="Back to top"
+        title="Back to top"
+    >
+        ↑
+    </button>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
+    
+    <!-- Back to top functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

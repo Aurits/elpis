@@ -1,472 +1,891 @@
-// Elpis Initiative Uganda - Main JavaScript File
+// Elpis Initiative Uganda - Enhanced JavaScript Functionality
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Mobile Navigation Toggle
-  const hamburger = document.querySelector(".hamburger")
-  const navMenu = document.querySelector(".nav-menu")
+class ElpisWebsite {
+  constructor() {
+    this.init()
+  }
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active")
-      hamburger.classList.toggle("active")
+  init() {
+    this.initNavigation()
+    this.initSmoothScrolling()
+    this.initActiveNavHighlighting()
+    this.initFormValidation()
+    this.initDonationFunctionality()
+    this.initGalleryFunctionality()
+    this.initAnimations()
+    this.initAccessibility()
+  }
+
+  // Navigation functionality
+  initNavigation() {
+    const hamburger = document.querySelector('.hamburger')
+    const navMenu = document.querySelector('.nav-menu')
+
+    if (hamburger && navMenu) {
+      // Toggle mobile menu
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation()
+        this.toggleMobileMenu()
+      })
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          this.closeMobileMenu()
+        })
+      })
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+          this.closeMobileMenu()
+        }
+      })
+
+      // Close mobile menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closeMobileMenu()
+        }
+      })
+    }
+
+    // Header scroll behavior
+    this.initHeaderScroll()
+  }
+
+  toggleMobileMenu() {
+    const hamburger = document.querySelector('.hamburger')
+    const navMenu = document.querySelector('.nav-menu')
+    
+    hamburger.classList.toggle('active')
+    navMenu.classList.toggle('active')
+    
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : ''
+    
+    // Update ARIA attributes
+    const isOpen = navMenu.classList.contains('active')
+    hamburger.setAttribute('aria-expanded', isOpen)
+    navMenu.setAttribute('aria-hidden', !isOpen)
+  }
+
+  closeMobileMenu() {
+    const hamburger = document.querySelector('.hamburger')
+    const navMenu = document.querySelector('.nav-menu')
+    
+    if (hamburger && navMenu) {
+      hamburger.classList.remove('active')
+      navMenu.classList.remove('active')
+      document.body.style.overflow = ''
+      
+      // Update ARIA attributes
+      hamburger.setAttribute('aria-expanded', 'false')
+      navMenu.setAttribute('aria-hidden', 'true')
+    }
+  }
+
+  initHeaderScroll() {
+    const header = document.querySelector('.header')
+    let lastScrollY = window.scrollY
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY
+      
+      if (header) {
+        if (currentScrollY > 100) {
+          header.style.background = 'rgba(255, 255, 255, 0.95)'
+          header.style.backdropFilter = 'blur(10px)'
+        } else {
+          header.style.background = 'var(--white)'
+          header.style.backdropFilter = 'none'
+        }
+      }
+      
+      lastScrollY = currentScrollY
     })
+  }
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll(".nav-menu a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("active")
-        hamburger.classList.remove("active")
+  // Smooth scrolling for anchor links
+  initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault()
+        const target = document.querySelector(anchor.getAttribute('href'))
+        
+        if (target) {
+          const headerHeight = document.querySelector('.header')?.offsetHeight || 0
+          const targetPosition = target.offsetTop - headerHeight - 20
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          })
+        }
       })
     })
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove("active")
-        hamburger.classList.remove("active")
-      }
-    })
   }
 
-  // Smooth Scrolling for Anchor Links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+  // Active navigation link highlighting
+  initActiveNavHighlighting() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html'
+    
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.classList.remove('active')
+      
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('active')
+      }
+    })
+
+    // Intersection Observer for section highlighting
+    const sections = document.querySelectorAll('section[id]')
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]')
+
+    if (sections.length > 0 && navLinks.length > 0) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.remove('active')
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active')
+              }
+            })
+          }
         })
-      }
-    })
-  })
+      }, { threshold: 0.3 })
 
-  // Active Navigation Link Highlighting
-  const currentPage = window.location.pathname.split("/").pop() || "index.html"
-  document.querySelectorAll(".nav-menu a").forEach((link) => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active")
+      sections.forEach(section => observer.observe(section))
     }
-  })
+  }
 
-  // Donation Amount Selection
-  const amountOptions = document.querySelectorAll(".amount-option")
-  const customAmountInput = document.getElementById("customAmount")
-  let selectedAmount = null
+  // Form validation
+  initFormValidation() {
+    const forms = document.querySelectorAll('form')
+    
+    forms.forEach(form => {
+      form.addEventListener('submit', (e) => {
+        if (!this.validateForm(form)) {
+          e.preventDefault()
+        }
+      })
 
-  amountOptions.forEach((option) => {
-    option.addEventListener("click", function () {
-      // Remove active class from all options
-      amountOptions.forEach((opt) => opt.classList.remove("selected"))
-
-      // Add active class to clicked option
-      this.classList.add("selected")
-
-      // Get the amount value
-      selectedAmount = this.dataset.amount
-
-      // Clear custom amount if preset amount is selected
-      if (customAmountInput && selectedAmount !== "custom") {
-        customAmountInput.value = ""
-      }
-    })
-  })
-
-  // Custom Amount Input Handler
-  if (customAmountInput) {
-    customAmountInput.addEventListener("input", function () {
-      if (this.value) {
-        // Remove selection from preset amounts
-        amountOptions.forEach((opt) => opt.classList.remove("selected"))
-        selectedAmount = this.value
-      }
+      // Real-time validation
+      const inputs = form.querySelectorAll('input, select, textarea')
+      inputs.forEach(input => {
+        input.addEventListener('blur', () => this.validateField(input))
+        input.addEventListener('input', () => this.clearFieldError(input))
+      })
     })
   }
 
-  // Payment Method Selection
-  const paymentOptions = document.querySelectorAll(".payment-option")
-  let selectedPaymentMethod = null
-
-  paymentOptions.forEach((option) => {
-    option.addEventListener("click", function () {
-      // Remove active class from all options
-      paymentOptions.forEach((opt) => opt.classList.remove("selected"))
-
-      // Add active class to clicked option
-      this.classList.add("selected")
-
-      // Get the payment method
-      selectedPaymentMethod = this.dataset.method
-    })
-  })
-
-  // Form Validation
-  function validateForm(form) {
+  validateForm(form) {
     let isValid = true
-    const requiredFields = form.querySelectorAll("[required]")
-
-    requiredFields.forEach((field) => {
-      const errorElement = field.parentNode.querySelector(".error-message")
-
-      // Remove existing error styling
-      field.classList.remove("error")
-      if (errorElement) {
-        errorElement.remove()
-      }
-
-      // Check if field is empty
-      if (!field.value.trim()) {
-        showFieldError(field, "This field is required")
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]')
+    
+    inputs.forEach(input => {
+      if (!this.validateField(input)) {
         isValid = false
-      } else {
-        // Specific validation based on field type
-        if (field.type === "email" && !isValidEmail(field.value)) {
-          showFieldError(field, "Please enter a valid email address")
-          isValid = false
-        }
-
-        if (field.type === "tel" && !isValidPhone(field.value)) {
-          showFieldError(field, "Please enter a valid phone number")
-          isValid = false
-        }
       }
     })
+
+    // Specific validation for different forms
+    const formType = form.dataset.formType
+    
+    if (formType === 'donation') {
+      isValid = this.validateDonationForm(form) && isValid
+    } else if (formType === 'assist') {
+      isValid = this.validateAssistForm(form) && isValid
+    }
 
     return isValid
   }
 
-  function showFieldError(field, message) {
-    field.classList.add("error")
-    const errorElement = document.createElement("div")
-    errorElement.className = "error-message"
+  validateField(field) {
+    const value = field.value.trim()
+    const fieldType = field.type
+    const fieldName = field.name
+    let isValid = true
+    let errorMessage = ''
+
+    // Clear previous errors
+    this.clearFieldError(field)
+
+    // Required field validation
+    if (field.hasAttribute('required') && !value) {
+      errorMessage = `${this.getFieldLabel(field)} is required`
+      isValid = false
+    }
+
+    // Type-specific validation
+    if (value && isValid) {
+      switch (fieldType) {
+        case 'email':
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+          if (!emailRegex.test(value)) {
+            errorMessage = 'Please enter a valid email address'
+            isValid = false
+          }
+          break
+        
+        case 'tel':
+          const phoneRegex = /^[\d\s\-\+\(\)]+$/
+          if (!phoneRegex.test(value) || value.length < 10) {
+            errorMessage = 'Please enter a valid phone number'
+            isValid = false
+          }
+          break
+        
+        case 'number':
+          if (fieldName === 'custom-amount' && parseFloat(value) < 20000) {
+            errorMessage = 'Minimum donation amount is UGX 20,000'
+            isValid = false
+          }
+          break
+      }
+    }
+
+    // Partner ID validation
+    if (fieldName === 'partner-id' && value) {
+      if (!/^EP\d{6}$/.test(value)) {
+        errorMessage = 'Partner ID must be in format EP123456'
+        isValid = false
+      }
+    }
+
+    if (!isValid) {
+      this.showFieldError(field, errorMessage)
+    }
+
+    return isValid
+  }
+
+  validateDonationForm(form) {
+    const selectedAmount = form.querySelector('.amount-option.selected')
+    const customAmount = form.querySelector('input[name="custom-amount"]')
+    
+    if (!selectedAmount && (!customAmount || !customAmount.value)) {
+      this.showFormError(form, 'Please select or enter a donation amount')
+      return false
+    }
+
+    const selectedPayment = form.querySelector('.payment-method.selected')
+    if (!selectedPayment) {
+      this.showFormError(form, 'Please select a payment method')
+      return false
+    }
+
+    return true
+  }
+
+  validateAssistForm(form) {
+    const message = form.querySelector('textarea[name="message"]')
+    if (message && message.value.trim().length < 20) {
+      this.showFieldError(message, 'Please provide more details about your need (minimum 20 characters)')
+      return false
+    }
+    return true
+  }
+
+  getFieldLabel(field) {
+    const label = document.querySelector(`label[for="${field.id}"]`)
+    return label ? label.textContent.replace('*', '').trim() : field.name
+  }
+
+  showFieldError(field, message) {
+    const errorElement = document.createElement('div')
+    errorElement.className = 'form-error'
     errorElement.textContent = message
+    errorElement.setAttribute('role', 'alert')
+    
     field.parentNode.appendChild(errorElement)
+    field.classList.add('error')
+    field.setAttribute('aria-invalid', 'true')
+    field.setAttribute('aria-describedby', errorElement.id = `error-${field.name}`)
   }
 
-  function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
+  clearFieldError(field) {
+    const existingError = field.parentNode.querySelector('.form-error')
+    if (existingError) {
+      existingError.remove()
+    }
+    field.classList.remove('error')
+    field.removeAttribute('aria-invalid')
+    field.removeAttribute('aria-describedby')
   }
 
-  function isValidPhone(phone) {
-    const phoneRegex = /^[+]?[0-9\s\-$$$$]{10,}$/
-    return phoneRegex.test(phone)
+  showFormError(form, message) {
+    const existingError = form.querySelector('.form-error')
+    if (existingError) existingError.remove()
+
+    const errorElement = document.createElement('div')
+    errorElement.className = 'form-error'
+    errorElement.textContent = message
+    errorElement.setAttribute('role', 'alert')
+    
+    form.insertBefore(errorElement, form.firstChild)
   }
 
-  // Donation Form Handler
-  const donationForm = document.getElementById("donationForm")
-  if (donationForm) {
-    donationForm.addEventListener("submit", function (e) {
-      e.preventDefault()
+  // Donation functionality
+  initDonationFunctionality() {
+    this.initAmountSelection()
+    this.initPaymentMethodSelection()
+    this.initDonationSubmission()
+  }
 
-      if (!selectedAmount) {
-        alert("Please select a donation amount")
-        return
+  initAmountSelection() {
+    const amountOptions = document.querySelectorAll('.amount-option')
+    const customAmountInput = document.querySelector('input[name="custom-amount"]')
+
+    amountOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        // Clear other selections
+        amountOptions.forEach(opt => opt.classList.remove('selected'))
+        option.classList.add('selected')
+        
+        // Clear custom amount
+        if (customAmountInput) {
+          customAmountInput.value = ''
+        }
+
+        // Update form data
+        this.updateDonationAmount(option.dataset.amount)
+      })
+    })
+
+    if (customAmountInput) {
+      customAmountInput.addEventListener('input', () => {
+        // Clear preset selections
+        amountOptions.forEach(opt => opt.classList.remove('selected'))
+        
+        // Update form data
+        this.updateDonationAmount(customAmountInput.value)
+      })
+    }
+  }
+
+  initPaymentMethodSelection() {
+    const paymentMethods = document.querySelectorAll('.payment-method')
+    
+    paymentMethods.forEach(method => {
+      method.addEventListener('click', () => {
+        paymentMethods.forEach(m => m.classList.remove('selected'))
+        method.classList.add('selected')
+        
+        // Update payment form fields
+        this.updatePaymentMethod(method.dataset.method)
+      })
+    })
+  }
+
+  updateDonationAmount(amount) {
+    const form = document.querySelector('form[data-form-type="donation"]')
+    if (!form) return
+
+    // Store amount in hidden input or data attribute
+    let amountInput = form.querySelector('input[name="amount"]')
+    if (!amountInput) {
+      amountInput = document.createElement('input')
+      amountInput.type = 'hidden'
+      amountInput.name = 'amount'
+      form.appendChild(amountInput)
+    }
+    amountInput.value = amount
+  }
+
+  updatePaymentMethod(method) {
+    const form = document.querySelector('form[data-form-type="donation"]')
+    if (!form) return
+
+    // Store payment method
+    let methodInput = form.querySelector('input[name="payment-method"]')
+    if (!methodInput) {
+      methodInput = document.createElement('input')
+      methodInput.type = 'hidden'
+      methodInput.name = 'payment-method'
+      form.appendChild(methodInput)
+    }
+    methodInput.value = method
+
+    // Show/hide payment-specific fields
+    this.togglePaymentFields(method)
+  }
+
+  togglePaymentFields(method) {
+    const mtnFields = document.querySelectorAll('.mtn-fields')
+    const airtelFields = document.querySelectorAll('.airtel-fields')
+    
+    mtnFields.forEach(field => {
+      field.style.display = method === 'mtn' ? 'block' : 'none'
+    })
+    
+    airtelFields.forEach(field => {
+      field.style.display = method === 'airtel' ? 'block' : 'none'
+    })
+  }
+
+  initDonationSubmission() {
+    const donationForm = document.querySelector('form[data-form-type="donation"]')
+    
+    if (donationForm) {
+      donationForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        this.processDonation(donationForm)
+      })
+    }
+  }
+
+  processDonation(form) {
+    const formData = new FormData(form)
+    const donationData = {
+      amount: formData.get('amount') || form.querySelector('.amount-option.selected')?.dataset.amount,
+      paymentMethod: formData.get('payment-method'),
+      donorName: formData.get('donor-name'),
+      email: formData.get('email'),
+      phone: formData.get('phone')
+    }
+
+    // Show loading state
+    this.showLoadingState(form)
+
+    // Simulate API call
+    setTimeout(() => {
+      this.showDonationSuccess(donationData)
+      this.hideLoadingState(form)
+    }, 2000)
+  }
+
+  showLoadingState(form) {
+    const submitBtn = form.querySelector('button[type="submit"]')
+    if (submitBtn) {
+      submitBtn.disabled = true
+      submitBtn.innerHTML = '<span>Processing...</span>'
+      submitBtn.classList.add('loading')
+    }
+  }
+
+  hideLoadingState(form) {
+    const submitBtn = form.querySelector('button[type="submit"]')
+    if (submitBtn) {
+      submitBtn.disabled = false
+      submitBtn.innerHTML = 'Complete Donation'
+      submitBtn.classList.remove('loading')
+    }
+  }
+
+  showDonationSuccess(data) {
+    const modal = this.createModal(`
+      <div class="text-center p-8">
+        <div class="mb-4">
+          <div class="success-icon">✓</div>
+        </div>
+        <h3 class="mb-4">Thank You for Your Donation!</h3>
+        <p class="mb-6">Your contribution of UGX ${Number(data.amount).toLocaleString()} will help us empower more youth across Uganda.</p>
+        <p class="mb-6 text-sm">You are now an <strong>Elpis Partner</strong>! Your partner ID will be sent to your email.</p>
+        <button class="btn btn-primary" onclick="this.closest('.modal').remove()">Continue</button>
+      </div>
+    `)
+    document.body.appendChild(modal)
+    
+    // Reset form
+    setTimeout(() => {
+      location.reload()
+    }, 5000)
+  }
+
+  // Gallery functionality
+  initGalleryFunctionality() {
+    this.initGalleryFilters()
+    this.initGalleryModal()
+    this.initGalleryLazyLoading()
+  }
+
+  initGalleryFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn')
+    const galleryItems = document.querySelectorAll('.gallery-item')
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter
+
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'))
+        button.classList.add('active')
+
+        // Filter items
+        galleryItems.forEach(item => {
+          const itemCategory = item.dataset.category
+          
+          if (filter === 'all' || itemCategory === filter) {
+            item.style.display = 'block'
+            item.style.animation = 'fadeIn 0.5s ease-in-out'
+          } else {
+            item.style.display = 'none'
+          }
+        })
+      })
+    })
+  }
+
+  initGalleryModal() {
+    const galleryItems = document.querySelectorAll('.gallery-item')
+    
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src
+        const imgAlt = item.querySelector('img').alt
+        const caption = item.querySelector('.gallery-overlay')?.textContent || imgAlt
+        
+        this.showImageModal(imgSrc, caption)
+      })
+    })
+  }
+
+  showImageModal(src, caption) {
+    const modal = this.createModal(`
+      <div class="modal-content">
+        <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+        <img src="${src}" alt="${caption}">
+        <div class="p-4">
+          <p class="text-center">${caption}</p>
+        </div>
+      </div>
+    `)
+    
+    document.body.appendChild(modal)
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove()
       }
-
-      if (!selectedPaymentMethod) {
-        alert("Please select a payment method")
-        return
-      }
-
-      if (validateForm(this)) {
-        // Simulate donation processing
-        const submitBtn = this.querySelector('button[type="submit"]')
-        const originalText = submitBtn.textContent
-
-        submitBtn.textContent = "Processing..."
-        submitBtn.disabled = true
-
-        setTimeout(() => {
-          alert(
-            `Thank you for your donation of UGX ${selectedAmount}! You are now an Elpis Partner. You will receive a confirmation shortly.`,
-          )
-          this.reset()
-          amountOptions.forEach((opt) => opt.classList.remove("selected"))
-          paymentOptions.forEach((opt) => opt.classList.remove("selected"))
-          selectedAmount = null
-          selectedPaymentMethod = null
-          submitBtn.textContent = originalText
-          submitBtn.disabled = false
-        }, 2000)
+    })
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.remove()
       }
     })
   }
 
-  // Assist Me Form Handler
-  const assistForm = document.getElementById("assistForm")
-  if (assistForm) {
-    assistForm.addEventListener("submit", function (e) {
-      e.preventDefault()
+  initGalleryLazyLoading() {
+    const images = document.querySelectorAll('.gallery-item img')
+    
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target
+            img.src = img.dataset.src || img.src
+            img.classList.remove('lazy')
+            imageObserver.unobserve(img)
+          }
+        })
+      })
 
-      if (validateForm(this)) {
-        const submitBtn = this.querySelector('button[type="submit"]')
-        const originalText = submitBtn.textContent
-
-        submitBtn.textContent = "Submitting..."
-        submitBtn.disabled = true
-
-        setTimeout(() => {
-          alert(
-            "Your request has been submitted successfully! Our team will review your request and contact you within 48 hours.",
-          )
-          this.reset()
-          submitBtn.textContent = originalText
-          submitBtn.disabled = false
-        }, 1500)
-      }
-    })
+      images.forEach(img => imageObserver.observe(img))
+    }
   }
 
-  // Gallery Functionality
-  const galleryFilters = document.querySelectorAll(".filter-btn")
-  const galleryItems = document.querySelectorAll(".gallery-item")
-  const modal = document.querySelector(".modal")
-  const modalImg = document.querySelector(".modal-content img")
-  const modalClose = document.querySelector(".modal-close")
+  // Animations
+  initAnimations() {
+    this.initScrollAnimations()
+    this.initCounterAnimations()
+  }
 
-  // Gallery Filter Functionality
-  galleryFilters.forEach((filter) => {
-    filter.addEventListener("click", function () {
-      // Remove active class from all filters
-      galleryFilters.forEach((f) => f.classList.remove("active"))
+  initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.card, .stat-card, .program-card')
+    
+    if ('IntersectionObserver' in window) {
+      const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease-out'
+            animationObserver.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.1 })
 
-      // Add active class to clicked filter
-      this.classList.add("active")
+      animatedElements.forEach(el => {
+        el.style.opacity = '0'
+        el.style.transform = 'translateY(20px)'
+        animationObserver.observe(el)
+      })
+    }
+  }
 
-      const filterValue = this.dataset.filter
+  initCounterAnimations() {
+    const counters = document.querySelectorAll('.stat-number')
+    
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.animateCounter(entry.target)
+            counterObserver.unobserve(entry.target)
+          }
+        })
+      }, { threshold: 0.5 })
 
-      // Show/hide gallery items based on filter
-      galleryItems.forEach((item) => {
-        if (filterValue === "all" || item.dataset.category === filterValue) {
-          item.style.display = "block"
-          item.classList.add("fade-in")
-        } else {
-          item.style.display = "none"
-          item.classList.remove("fade-in")
+      counters.forEach(counter => counterObserver.observe(counter))
+    }
+  }
+
+  animateCounter(element) {
+    const target = parseInt(element.textContent.replace(/[^\d]/g, ''))
+    const duration = 2000
+    const step = target / (duration / 16)
+    let current = 0
+
+    const timer = setInterval(() => {
+      current += step
+      if (current >= target) {
+        current = target
+        clearInterval(timer)
+      }
+      
+      element.textContent = element.textContent.replace(/\d+/, Math.floor(current).toLocaleString())
+    }, 16)
+  }
+
+  // Accessibility features
+  initAccessibility() {
+    this.initKeyboardNavigation()
+    this.initFocusManagement()
+    this.initARIAUpdates()
+  }
+
+  initKeyboardNavigation() {
+    // Tab navigation for custom components
+    const interactiveElements = document.querySelectorAll('.amount-option, .payment-method, .filter-btn')
+    
+    interactiveElements.forEach(element => {
+      if (!element.hasAttribute('tabindex')) {
+        element.setAttribute('tabindex', '0')
+      }
+      
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          element.click()
         }
       })
     })
-  })
-
-  // Gallery Modal Functionality
-  galleryItems.forEach((item) => {
-    item.addEventListener("click", function () {
-      const imgSrc = this.querySelector("img").src
-      const imgAlt = this.querySelector("img").alt
-
-      if (modal && modalImg) {
-        modalImg.src = imgSrc
-        modalImg.alt = imgAlt
-        modal.classList.add("active")
-        document.body.style.overflow = "hidden"
-      }
-    })
-  })
-
-  // Close Modal
-  if (modalClose) {
-    modalClose.addEventListener("click", closeModal)
   }
 
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal()
-      }
-    })
-  }
-
-  // Close modal with Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal && modal.classList.contains("active")) {
-      closeModal()
-    }
-  })
-
-  function closeModal() {
-    if (modal) {
-      modal.classList.remove("active")
-      document.body.style.overflow = "auto"
-    }
-  }
-
-  // Partner ID Validation (Simulate)
-  const partnerIdInput = document.getElementById("partnerNumber")
-  if (partnerIdInput) {
-    partnerIdInput.addEventListener("blur", function () {
-      const partnerId = this.value.trim()
-      if (partnerId) {
-        // Simulate partner ID validation
-        const isValid = /^EP\d{6}$/.test(partnerId) // Format: EP123456
-
-        const existingMessage = this.parentNode.querySelector(".partner-status")
-        if (existingMessage) {
-          existingMessage.remove()
+  initFocusManagement() {
+    // Focus management for modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const modal = document.querySelector('.modal.active')
+        if (modal) {
+          this.trapFocus(e, modal)
         }
-
-        const statusMessage = document.createElement("div")
-        statusMessage.className = "partner-status"
-        statusMessage.style.fontSize = "0.875rem"
-        statusMessage.style.marginTop = "0.25rem"
-
-        if (isValid) {
-          statusMessage.style.color = "#28a745"
-          statusMessage.textContent = "✓ Valid Elpis Partner ID"
-        } else {
-          statusMessage.style.color = "#dc3545"
-          statusMessage.textContent = "✗ Invalid Partner ID format (should be EP followed by 6 digits)"
-        }
-
-        this.parentNode.appendChild(statusMessage)
       }
     })
   }
 
-  // Scroll to Top Functionality
-  const scrollToTopBtn = document.createElement("button")
-  scrollToTopBtn.innerHTML = "↑"
-  scrollToTopBtn.className = "scroll-to-top"
-  scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: var(--primary-pink);
-        color: white;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        display: none;
-        z-index: 1000;
-        transition: all 0.3s ease;
-    `
+  trapFocus(e, container) {
+    const focusableElements = container.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const firstElement = focusableElements[0]
+    const lastElement = focusableElements[focusableElements.length - 1]
 
-  document.body.appendChild(scrollToTopBtn)
-
-  // Show/hide scroll to top button
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 300) {
-      scrollToTopBtn.style.display = "block"
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault()
+        lastElement.focus()
+      }
     } else {
-      scrollToTopBtn.style.display = "none"
+      if (document.activeElement === lastElement) {
+        e.preventDefault()
+        firstElement.focus()
+      }
     }
-  })
-
-  // Scroll to top when button is clicked
-  scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  })
-
-  // Animation on Scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in")
-      }
-    })
-  }, observerOptions)
+  initARIAUpdates() {
+    // Update ARIA labels dynamically
+    const hamburger = document.querySelector('.hamburger')
+    if (hamburger) {
+      hamburger.setAttribute('aria-label', 'Toggle navigation menu')
+      hamburger.setAttribute('aria-expanded', 'false')
+    }
 
-  // Observe elements for animation
-  document.querySelectorAll(".card, .stat-item, .job-item").forEach((el) => {
-    observer.observe(el)
-  })
-
-  // Contact Form Handler (if exists)
-  const contactForm = document.getElementById("contactForm")
-  if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault()
-
-      if (validateForm(this)) {
-        const submitBtn = this.querySelector('button[type="submit"]')
-        const originalText = submitBtn.textContent
-
-        submitBtn.textContent = "Sending..."
-        submitBtn.disabled = true
-
-        setTimeout(() => {
-          alert("Thank you for your message! We will get back to you within 24 hours.")
-          this.reset()
-          submitBtn.textContent = originalText
-          submitBtn.disabled = false
-        }, 1500)
-      }
-    })
+    const navMenu = document.querySelector('.nav-menu')
+    if (navMenu) {
+      navMenu.setAttribute('aria-hidden', 'true')
+    }
   }
 
-  // Initialize tooltips (if needed)
-  const tooltips = document.querySelectorAll("[data-tooltip]")
-  tooltips.forEach((tooltip) => {
-    tooltip.addEventListener("mouseenter", function () {
-      const tooltipText = this.getAttribute("data-tooltip")
-      const tooltipElement = document.createElement("div")
-      tooltipElement.className = "tooltip"
-      tooltipElement.textContent = tooltipText
-      tooltipElement.style.cssText = `
-                position: absolute;
-                background: rgba(0, 0, 0, 0.8);
-                color: white;
-                padding: 5px 10px;
-                border-radius: 4px;
-                font-size: 12px;
-                white-space: nowrap;
-                z-index: 1000;
-                pointer-events: none;
-            `
+  // Utility methods
+  createModal(content) {
+    const modal = document.createElement('div')
+    modal.className = 'modal active'
+    modal.innerHTML = content
+    modal.setAttribute('role', 'dialog')
+    modal.setAttribute('aria-modal', 'true')
+    
+    return modal
+  }
 
-      document.body.appendChild(tooltipElement)
-
-      const rect = this.getBoundingClientRect()
-      tooltipElement.style.left = rect.left + rect.width / 2 - tooltipElement.offsetWidth / 2 + "px"
-      tooltipElement.style.top = rect.top - tooltipElement.offsetHeight - 5 + "px"
-    })
-
-    tooltip.addEventListener("mouseleave", () => {
-      const tooltipElement = document.querySelector(".tooltip")
-      if (tooltipElement) {
-        tooltipElement.remove()
+  debounce(func, wait) {
+    let timeout
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
       }
-    })
-  })
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
+  }
 
-  console.log("Elpis Initiative Uganda website initialized successfully!")
+  // Public API methods
+  showNotification(message, type = 'info') {
+    const notification = document.createElement('div')
+    notification.className = `notification notification-${type}`
+    notification.innerHTML = `
+      <span>${message}</span>
+      <button onclick="this.parentElement.remove()">&times;</button>
+    `
+    
+    document.body.appendChild(notification)
+    
+    setTimeout(() => {
+      notification.remove()
+    }, 5000)
+  }
+
+  updatePartnerStatus(isPartner, partnerId = null) {
+    const partnerElements = document.querySelectorAll('.partner-only')
+    
+    partnerElements.forEach(element => {
+      element.style.display = isPartner ? 'block' : 'none'
+    })
+
+    if (isPartner && partnerId) {
+      const partnerIdInputs = document.querySelectorAll('input[name="partner-id"]')
+      partnerIdInputs.forEach(input => {
+        input.value = partnerId
+        input.readOnly = true
+      })
+    }
+  }
+}
+
+// Enhanced CSS animations
+const style = document.createElement('style')
+style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .loading {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: loading 1.5s infinite;
+  }
+  
+  @keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--success-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-lg);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    max-width: 400px;
+  }
+  
+  .notification-success {
+    border-left: 4px solid var(--success-green);
+  }
+  
+  .notification-error {
+    border-left: 4px solid var(--error-red);
+  }
+  
+  .notification-warning {
+    border-left: 4px solid var(--warning-orange);
+  }
+  
+  .notification button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+  .notification button:hover {
+    opacity: 1;
+  }
+  
+  .form-input.error,
+  .form-select.error,
+  .form-textarea.error {
+    border-color: var(--error-red);
+  }
+`
+
+document.head.appendChild(style)
+
+// Initialize the website when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  window.elpis = new ElpisWebsite()
 })
 
-// Utility Functions
-function formatCurrency(amount) {
-  return new Intl.NumberFormat("en-UG", {
-    style: "currency",
-    currency: "UGX",
-    minimumFractionDigits: 0,
-  }).format(amount)
-}
-
-function debounce(func, wait) {
-  let timeout
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
-    }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
-}
-
-// Export functions for potential use in other scripts
-window.ElpisUtils = {
-  formatCurrency,
-  debounce,
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ElpisWebsite
 }
