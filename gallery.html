@@ -3,153 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Our Work in Action | Elpis Initiative Uganda</title>
-    <meta name="description" content="Explore our gallery showcasing events, programs, and community impact. See our arts-based advocacy and youth empowerment work across Uganda.">
+    <title>Gallery - Our Journey in Pictures | Elpis Initiative Uganda</title>
+    <meta name="description" content="Explore our visual journey since 2022. See the impact of our arts-based programs across Uganda through community events, artwork, performances, and transformational moments.">
+    <meta name="keywords" content="Elpis Uganda photos, youth programs gallery, HIV AIDS awareness, mental health advocacy, community art Uganda">
+    <meta name="author" content="Elpis Initiative Uganda">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Gallery - Our Journey in Pictures | Elpis Initiative Uganda">
+    <meta property="og:description" content="Visual stories of transformation - see how art is changing lives across Uganda's communities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elpisuganda.org/gallery.html">
+    <meta property="og:image" content="docs/EIU Black Slogan.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="EUI Black Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo">
-                    <span>Elpis Initiative Uganda</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="programs.html" class="nav-link">What We Do</a></li>
-                    <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
-                    <li><a href="assist.html" class="nav-link">Assist Me</a></li>
-                    <li><a href="donate.html" class="nav-link btn-primary">Donate</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="nav-logo" aria-label="Elpis Initiative Uganda Homepage">
+                        <img src="EUI Black Logo.png" alt="Elpis Initiative Uganda" class="logo" width="64" height="64">
+                    </a>
+                    
+                    <ul class="nav-menu" role="menubar">
+                        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+                        <li role="none"><a href="programs.html" class="nav-link" role="menuitem">What We Do</a></li>
+                        <li role="none"><a href="gallery.html" class="nav-link active" role="menuitem">Gallery</a></li>
+                        <li role="none"><a href="careers.html" class="nav-link" role="menuitem">Careers</a></li>
+                        <li role="none"><a href="assist.html" class="nav-link" role="menuitem">Assist Me</a></li>
+                        <li role="none"><a href="donate.html" class="nav-link btn-primary" role="menuitem">Donate</a></li>
+                    </ul>
+                    
+                    <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="page-hero">
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h1>Our Gallery</h1>
-                <p>Witness our impact through powerful visuals of our programs and community engagement</p>
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        Our Journey in Pictures
+                    </h1>
+                    <p class="hero-subtitle">
+                        Since 2022, we've been documenting the transformative power of art in addressing youth health challenges. These images tell the story of hope, creativity, and community impact across Uganda.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#featured-gallery" class="btn btn-primary btn-lg">
+                            View Featured Work
+                        </a>
+                        <a href="#community-impact" class="btn btn-secondary btn-lg">
+                            See Community Impact
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="gallery-content">
+        <!-- Gallery Stats Section -->
+        <section class="section" id="gallery-stats" aria-labelledby="stats-title">
             <div class="container">
-                <div class="gallery-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="events">Events</button>
-                    <button class="filter-btn" data-filter="programs">Programs</button>
-                    <button class="filter-btn" data-filter="impact">Community Impact</button>
+                <div class="section-header">
+                    <h2 id="stats-title">A Movement Captured</h2>
+                    <p>Two years of transformative work documented across Uganda</p>
                 </div>
+                
+                <div class="grid grid-4 gap-6">
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-lg">6</span>
+                        </div>
+                        <h4 class="text-primary mb-2">Regions</h4>
+                        <p class="text-sm">Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-lg">50+</span>
+                        </div>
+                        <h4 class="text-secondary mb-2">Events</h4>
+                        <p class="text-sm">Workshops, performances, and community programs</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-lg">8</span>
+                        </div>
+                        <h4 class="text-primary mb-2">Art Installations</h4>
+                        <p class="text-sm">Permanent community murals and displays</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-lg">1,200+</span>
+                        </div>
+                        <h4 class="text-secondary mb-2">Youth Reached</h4>
+                        <p class="text-sm">Direct participants in our programs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <div class="gallery-grid" id="galleryGrid">
-                    <!-- Events -->
-                    <div class="gallery-item" data-category="events">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Youth Advocacy Workshop" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Youth Advocacy Workshop</h3>
-                            <p>Training session in Kampala</p>
+        <!-- Featured Gallery Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="featured-gallery" aria-labelledby="featured-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="featured-title">Featured Moments</h2>
+                    <p>Highlights from our most impactful programs and events</p>
+                </div>
+                
+                <div class="grid grid-1 gap-12">
+                    <!-- Featured Item 1: Community Mural Project -->
+                    <article class="glass-card p-0 overflow-hidden">
+                        <div class="grid grid-2 gap-0">
+                            <div class="image-container">
+                                <img src="https://placehold.co/600x400/ec008c/ffffff?text=Community+Mural+Project" alt="Youth collaborating on a large community mural addressing HIV awareness" loading="lazy" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-8 flex flex-col justify-center">
+                                <h3 class="text-2xl font-bold text-primary mb-4">Community Mural Project - Kampala</h3>
+                                <p class="text-lg mb-6">Over 50 young artists came together to create a powerful 30-meter mural addressing HIV stigma. This permanent installation serves as an ongoing educational tool for the Kamwokya community.</p>
+                                <div class="flex gap-2 mb-4">
+                                    <span class="bg-primary-pink bg-opacity-20 text-primary-pink px-3 py-1 rounded-full text-sm">Community Art</span>
+                                    <span class="bg-primary-pink bg-opacity-20 text-primary-pink px-3 py-1 rounded-full text-sm">HIV Awareness</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Kampala • August 2023</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Item 2: Mental Health Poetry Night -->
+                    <article class="glass-card p-0 overflow-hidden">
+                        <div class="grid grid-2 gap-0">
+                            <div class="p-8 flex flex-col justify-center order-2">
+                                <h3 class="text-2xl font-bold text-secondary mb-4">Mental Health Poetry Night - Gulu</h3>
+                                <p class="text-lg mb-6">A groundbreaking event where 200+ youth shared their mental health stories through spoken word. The evening created safe spaces for healing conversations in post-conflict communities.</p>
+                                <div class="flex gap-2 mb-4">
+                                    <span class="bg-primary-blue bg-opacity-20 text-primary-blue px-3 py-1 rounded-full text-sm">Mental Health</span>
+                                    <span class="bg-primary-blue bg-opacity-20 text-primary-blue px-3 py-1 rounded-full text-sm">Spoken Word</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Gulu • March 2024</p>
+                            </div>
+                            <div class="image-container order-1">
+                                <img src="https://placehold.co/600x400/00aeef/ffffff?text=Poetry+Night+Gulu" alt="Young people performing spoken word poetry on stage during mental health awareness event" loading="lazy" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Item 3: Film Screening -->
+                    <article class="glass-card p-0 overflow-hidden">
+                        <div class="grid grid-2 gap-0">
+                            <div class="image-container">
+                                <img src="https://placehold.co/600x400/ec008c/ffffff?text=Film+Screening+Event" alt="Community members watching youth-produced film about HIV stigma" loading="lazy" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-8 flex flex-col justify-center">
+                                <h3 class="text-2xl font-bold text-primary mb-4">Youth Film Premiere - Mbarara</h3>
+                                <p class="text-lg mb-6">"Breaking Chains" - our youth-produced short film about HIV stigma - premiered to over 300 community members. The film sparked critical conversations and policy discussions at the district level.</p>
+                                <div class="flex gap-2 mb-4">
+                                    <span class="bg-primary-pink bg-opacity-20 text-primary-pink px-3 py-1 rounded-full text-sm">Film Production</span>
+                                    <span class="bg-primary-pink bg-opacity-20 text-primary-pink px-3 py-1 rounded-full text-sm">Community Engagement</span>
+                                </div>
+                                <p class="text-sm text-gray-600">Mbarara • November 2023</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery by Region Section -->
+        <section class="section" id="regional-gallery" aria-labelledby="regional-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="regional-title">Our Work Across Uganda</h2>
+                    <p>Tailored programming creating impact in each community we serve</p>
+                </div>
+                
+                <div class="grid grid-3 gap-8">
+                    <!-- Kampala -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/ec008c/ffffff?text=Kampala+Programs" alt="Urban youth engagement programs in Kampala" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-3">Kampala</h4>
+                        <p class="mb-4">Urban youth engagement through digital arts, performance workshops, and community murals addressing HIV awareness and mental health.</p>
+                        <div class="text-sm text-gray-600">15+ community events • 400+ youth engaged</div>
+                    </div>
+
+                    <!-- Gulu -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/00aeef/ffffff?text=Gulu+Healing" alt="Post-conflict healing programs in Gulu through creative arts" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-3">Gulu</h4>
+                        <p class="mb-4">Post-conflict mental health healing through creative therapies, community art projects, and trauma-informed performance programs.</p>
+                        <div class="text-sm text-gray-600">12+ healing circles • 250+ participants</div>
+                    </div>
+
+                    <!-- Kotido -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/ec008c/ffffff?text=Kotido+Culture" alt="Culturally-sensitive programs in Kotido pastoral communities" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-3">Kotido</h4>
+                        <p class="mb-4">Culturally-sensitive health education programs designed specifically for pastoral communities, incorporating traditional art forms.</p>
+                        <div class="text-sm text-gray-600">8+ cultural workshops • 180+ community members</div>
+                    </div>
+
+                    <!-- Luuka -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/00aeef/ffffff?text=Luuka+SRHR" alt="Rural SRHR education through community theater in Luuka" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-3">Luuka</h4>
+                        <p class="mb-4">Rural SRHR education through community theater, traditional dance, and interactive mural projects engaging entire villages.</p>
+                        <div class="text-sm text-gray-600">10+ village programs • 200+ youth reached</div>
+                    </div>
+
+                    <!-- Arua -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/ec008c/ffffff?text=Arua+Border" alt="Border community health initiatives addressing cross-border challenges in Arua" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-3">Arua</h4>
+                        <p class="mb-4">Border community health initiatives addressing cross-border challenges through multilingual arts programs and mobile outreach.</p>
+                        <div class="text-sm text-gray-600">6+ border programs • 120+ youth engaged</div>
+                    </div>
+
+                    <!-- Mbarara -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/00aeef/ffffff?text=Mbarara+University" alt="University-focused creative health education programs in Mbarara" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-3">Mbarara</h4>
+                        <p class="mb-4">University-focused creative health education, peer-to-peer programs, and student-led advocacy initiatives reaching higher education institutions.</p>
+                        <div class="text-sm text-gray-600">8+ campus events • 150+ students involved</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Art Gallery Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="artwork-gallery" aria-labelledby="artwork-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="artwork-title">Youth-Created Artwork</h2>
+                    <p>Powerful visual stories created by the young people in our programs</p>
+                </div>
+                
+                <div class="grid grid-4 gap-6">
+                    <!-- Artwork 1 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/ec008c/ffffff?text=Hope+Rising" alt="'Hope Rising' - Mixed media artwork about overcoming HIV stigma" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Hope Rising"</h5>
+                            <p class="text-sm text-gray-600">Mixed Media • Sarah, 19 • Kampala</p>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="events">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Art Exhibition Opening" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Art Exhibition Opening</h3>
-                            <p>Community health awareness through art</p>
+                    <!-- Artwork 2 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/00aeef/ffffff?text=Healing+Hands" alt="'Healing Hands' - Sculpture representing mental health support" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Healing Hands"</h5>
+                            <p class="text-sm text-gray-600">Sculpture • David, 22 • Gulu</p>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="events">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Community Theater Performance" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Community Theater Performance</h3>
-                            <p>Mental health awareness in Gulu</p>
+                    <!-- Artwork 3 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/ec008c/ffffff?text=Unity+Dance" alt="'Unity Dance' - Traditional painting celebrating diversity and inclusion" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Unity Dance"</h5>
+                            <p class="text-sm text-gray-600">Acrylic Paint • Grace, 20 • Kotido</p>
                         </div>
                     </div>
 
-                    <!-- Programs -->
-                    <div class="gallery-item" data-category="programs">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Mural Creation Workshop" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Mural Creation Workshop</h3>
-                            <p>Arts-based health education in Luuka</p>
+                    <!-- Artwork 4 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/00aeef/ffffff?text=Breaking+Silence" alt="'Breaking Silence' - Digital art about speaking up for health rights" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Breaking Silence"</h5>
+                            <p class="text-sm text-gray-600">Digital Art • Michael, 21 • Mbarara</p>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="programs">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Film Production Training" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Film Production Training</h3>
-                            <p>Award-winning short film creation</p>
+                    <!-- Artwork 5 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/ec008c/ffffff?text=Tomorrow%27s+Promise" alt="'Tomorrow's Promise' - Photography series about youth empowerment" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Tomorrow's Promise"</h5>
+                            <p class="text-sm text-gray-600">Photography • Esther, 18 • Luuka</p>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="programs">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Digital Content Workshop" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Digital Content Workshop</h3>
-                            <p>Social media advocacy training</p>
+                    <!-- Artwork 6 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/00aeef/ffffff?text=Voices+United" alt="'Voices United' - Collaborative mural by multiple young artists" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Voices United"</h5>
+                            <p class="text-sm text-gray-600">Collaborative Mural • 12 Artists • Arua</p>
                         </div>
                     </div>
 
-                    <!-- Community Impact -->
-                    <div class="gallery-item" data-category="impact">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Program Graduates" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Program Graduates</h3>
-                            <p>Certified youth health advocates</p>
+                    <!-- Artwork 7 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/ec008c/ffffff?text=Journey+Home" alt="'Journey Home' - Textile art about finding belonging and acceptance" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Journey Home"</h5>
+                            <p class="text-sm text-gray-600">Textile Art • Rebecca, 23 • Kampala</p>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="impact">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Community Health Fair" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Community Health Fair</h3>
-                            <p>Reaching families in Mbarara</p>
+                    <!-- Artwork 8 -->
+                    <div class="glass-card p-0 overflow-hidden">
+                        <div class="image-container">
+                            <img src="https://placehold.co/300x300/00aeef/ffffff?text=Strength+Within" alt="'Strength Within' - Poetry visual combining words and imagery" loading="lazy">
+                        </div>
+                        <div class="p-4">
+                            <h5 class="font-semibold mb-2">"Strength Within"</h5>
+                            <p class="text-sm text-gray-600">Poetry Visual • James, 19 • Gulu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Impact Section -->
+        <section class="section" id="community-impact" aria-labelledby="impact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="impact-title">Community Impact Stories</h2>
+                    <p>Real stories of transformation from the communities we serve</p>
+                </div>
+                
+                <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+                    <!-- Impact Story 1 -->
+                    <div class="glass-card p-8">
+                        <div class="grid grid-2 gap-8 items-center">
+                            <div class="image-container">
+                                <img src="https://placehold.co/400x300/ec008c/ffffff?text=Sarah%27s+Story" alt="Sarah, young artist who overcame HIV stigma through art therapy" loading="lazy">
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-4">Sarah's Story - From Stigma to Strength</h4>
+                                <p class="mb-4">"Before joining Elpis, I was afraid to speak about my HIV status. Through art therapy and community support, I found my voice. Now I lead workshops helping other young women break free from stigma."</p>
+                                <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                                    <p class="text-sm font-medium">Sarah, 21 • Kampala Program Participant & Peer Educator</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="gallery-item" data-category="impact">
-                        <img src="/placeholder.svg?height=300&width=400" alt="School Outreach Program" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>School Outreach Program</h3>
-                            <p>Interactive health education</p>
+                    <!-- Impact Story 2 -->
+                    <div class="glass-card p-8">
+                        <div class="grid grid-2 gap-8 items-center">
+                            <div class="order-2">
+                                <div class="image-container">
+                                    <img src="https://placehold.co/400x300/00aeef/ffffff?text=David%27s+Journey" alt="David, community leader who transformed trauma through creative healing" loading="lazy">
+                                </div>
+                            </div>
+                            <div class="order-1">
+                                <h4 class="text-xl font-bold text-secondary mb-4">David's Journey - Healing Through Art</h4>
+                                <p class="mb-4">"Growing up in post-conflict Gulu, I carried trauma that I couldn't express. Elpis taught me that art could be medicine. Today, I facilitate healing circles and help others transform pain into purpose."</p>
+                                <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
+                                    <p class="text-sm font-medium">David, 24 • Community Art Therapist & Program Alumni</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- More Events -->
-                    <div class="gallery-item" data-category="events">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Partnership Ceremony" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Partnership Ceremony</h3>
-                            <p>Strategic alliance signing</p>
+                    <!-- Impact Story 3 -->
+                    <div class="glass-card p-8">
+                        <div class="grid grid-2 gap-8 items-center">
+                            <div class="image-container">
+                                <img src="https://placehold.co/400x300/ec008c/ffffff?text=Community+Leader" alt="Local community leader speaking about the impact of Elpis programs" loading="lazy">
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-primary mb-4">Community Leader Perspective</h4>
+                                <p class="mb-4">"Elpis didn't just bring programs to our community - they brought hope. The murals our youth created are daily reminders that health challenges don't define us. They inspire us to keep fighting stigma."</p>
+                                <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                                    <p class="text-sm font-medium">Margaret Akello • LC3 Chairperson, Kamwokya</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- More Programs -->
-                    <div class="gallery-item" data-category="programs">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Creative Therapy Session" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Creative Therapy Session</h3>
-                            <p>Mental health support in Kotido</p>
+        <!-- Behind the Scenes Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="behind-scenes" aria-labelledby="behind-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="behind-title">Behind the Scenes</h2>
+                    <p>The people and processes that make transformation possible</p>
+                </div>
+                
+                <div class="grid grid-3 gap-8">
+                    <!-- Team in Action -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/ec008c/ffffff?text=Team+Planning" alt="Elpis team members planning community programs" loading="lazy">
                         </div>
+                        <h4 class="text-primary mb-3">Program Planning</h4>
+                        <p>Our team collaborates closely with communities to design culturally appropriate, impactful programs that address real needs.</p>
                     </div>
 
-                    <!-- More Impact -->
-                    <div class="gallery-item" data-category="impact">
-                        <img src="/placeholder.svg?height=300&width=400" alt="Community Transformation" loading="lazy">
-                        <div class="gallery-overlay">
-                            <h3>Community Transformation</h3>
-                            <p>Visible change in Arua region</p>
+                    <!-- Training Sessions -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/00aeef/ffffff?text=Peer+Training" alt="Peer educator training sessions" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-3">Peer Educator Training</h4>
+                        <p>We invest deeply in training young people to become effective peer educators, ensuring sustainable community impact.</p>
+                    </div>
+
+                    <!-- Setup Process -->
+                    <div class="glass-card p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/400x250/ec008c/ffffff?text=Event+Setup" alt="Team setting up for community events" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-3">Event Setup</h4>
+                        <p>Every community event requires careful preparation to create safe, welcoming spaces where young people feel comfortable sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section" id="get-involved" aria-labelledby="involve-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="involve-title">Become Part of Our Visual Story</h2>
+                    <p>Help us create more moments of transformation across Uganda</p>
+                </div>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="glass-card p-8 text-center">
+                        <h3 class="text-2xl font-bold mb-6">Every Photo Tells a Story of Hope</h3>
+                        <p class="text-lg mb-8">The images you see here represent just the beginning. With your support, we can capture thousands more stories of young Ugandans finding healing, strength, and purpose through art.</p>
+                        
+                        <div class="grid grid-1 gap-6 mb-8">
+                            <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg">
+                                <h4 class="font-bold text-primary mb-3">📸 Share Your Story</h4>
+                                <p>Have you been part of our programs? Share your photos and experiences with us for inclusion in our community gallery.</p>
+                            </div>
+                            
+                            <div class="bg-primary-blue bg-opacity-10 p-6 rounded-lg">
+                                <h4 class="font-bold text-secondary mb-3">💝 Support Our Work</h4>
+                                <p>Help us reach more young people and document more transformative moments through the 10 Million Hearts campaign.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 justify-center">
+                            <a href="donate.html" class="btn btn-primary btn-lg">Support Our Mission</a>
+                            <a href="careers.html" class="btn btn-secondary btn-lg">Join Our Team</a>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <p class="text-lg font-medium">
+                                <strong>Follow our journey:</strong> 
+                                <a href="mailto:officialeu@elpisuganda.org" class="text-primary hover:underline">officialeu@elpisuganda.org</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -157,47 +507,95 @@
         </section>
     </main>
 
-    <!-- Modal for enlarged images -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <img id="modalImage" src="/placeholder.svg" alt="">
-            <div id="modalCaption"></div>
-        </div>
-    </div>
-
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Email: officialeu@elpisuganda.org</p>
-                    <p>Serving: Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                    <div class="image-container mb-4" style="width: 100px;">
+                        <img src="EUI White Logo.png" alt="Elpis Initiative Uganda Logo" loading="lazy">
+                    </div>
+                    <h4>Contact Information</h4>
+                    <p>
+                        <strong>Email:</strong> 
+                        <a href="mailto:officialeu@elpisuganda.org" class="text-white">officialeu@elpisuganda.org</a>
+                    </p>
+                    <p><strong>Regions Served:</strong></p>
+                    <p>Kampala • Gulu • Kotido • Luuka • Arua • Mbarara</p>
+                    <p class="text-sm mt-4">
+                        <strong>Founded:</strong> 2022<br>
+                        <strong>Co-Founders:</strong> Nkuutu Brian Moses & Feni Desmond
+                    </p>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Quick Links</h4>
+                    <nav aria-label="Footer navigation">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="programs.html">Our Programs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="careers.html">Career Opportunities</a></li>
+                            <li><a href="assist.html">Request Assistance</a></li>
+                            <li><a href="donate.html">Make a Donation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Our Impact Areas</h4>
                     <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="donate.html">Donate</a></li>
+                        <li>HIV/AIDS Awareness & Prevention</li>
+                        <li>Mental Health Support</li>
+                        <li>Gender Equality Advocacy</li>
+                        <li>Arts-Based Education</li>
+                        <li>Youth Leadership Development</li>
+                        <li>Community Health Initiatives</li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Follow Us</h4>
+                    <h4>Stay Connected</h4>
+                    <p class="mb-4">Follow our journey and stay updated on our latest initiatives.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
-                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Follow us on Facebook" class="social-link">Facebook</a>
+                        <a href="#" aria-label="Follow us on Twitter" class="social-link">Twitter</a>
+                        <a href="#" aria-label="Follow us on Instagram" class="social-link">Instagram</a>
+                        <a href="#" aria-label="Connect with us on LinkedIn" class="social-link">LinkedIn</a>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="mt-6">
+                        <h5 class="text-sm font-semibold mb-2">Newsletter</h5>
+                        <form class="flex gap-2" aria-label="Newsletter signup">
+                            <input 
+                                type="email" 
+                                placeholder="Your email" 
+                                class="form-input text-sm"
+                                style="min-height: 40px; background: var(--white); color: var(--charcoal);"
+                                aria-label="Email address for newsletter"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                <div class="flex justify-between items-center gap-4" style="flex-wrap: wrap;">
+                    <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-white">Privacy Policy</a>
+                        <a href="#" class="text-white">Terms of Service</a>
+                        <a href="#" class="text-white">Accessibility</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
