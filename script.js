@@ -58,13 +58,13 @@ class ElpisWebsite {
   toggleMobileMenu() {
     const hamburger = document.querySelector('.hamburger')
     const navMenu = document.querySelector('.nav-menu')
-    
+
     hamburger.classList.toggle('active')
     navMenu.classList.toggle('active')
-    
+
     // Prevent body scroll when menu is open
     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : ''
-    
+
     // Update ARIA attributes
     const isOpen = navMenu.classList.contains('active')
     hamburger.setAttribute('aria-expanded', isOpen)
@@ -74,12 +74,12 @@ class ElpisWebsite {
   closeMobileMenu() {
     const hamburger = document.querySelector('.hamburger')
     const navMenu = document.querySelector('.nav-menu')
-    
+
     if (hamburger && navMenu) {
       hamburger.classList.remove('active')
       navMenu.classList.remove('active')
       document.body.style.overflow = ''
-      
+
       // Update ARIA attributes
       hamburger.setAttribute('aria-expanded', 'false')
       navMenu.setAttribute('aria-hidden', 'true')
@@ -92,7 +92,7 @@ class ElpisWebsite {
 
     window.addEventListener('scroll', () => {
       const currentScrollY = window.scrollY
-      
+
       if (header) {
         if (currentScrollY > 100) {
           header.style.background = 'rgba(255, 255, 255, 0.95)'
@@ -102,7 +102,7 @@ class ElpisWebsite {
           header.style.backdropFilter = 'none'
         }
       }
-      
+
       lastScrollY = currentScrollY
     })
   }
@@ -113,11 +113,11 @@ class ElpisWebsite {
       anchor.addEventListener('click', (e) => {
         e.preventDefault()
         const target = document.querySelector(anchor.getAttribute('href'))
-        
+
         if (target) {
           const headerHeight = document.querySelector('.header')?.offsetHeight || 0
           const targetPosition = target.offsetTop - headerHeight - 20
-          
+
           window.scrollTo({
             top: targetPosition,
             behavior: 'smooth'
@@ -130,10 +130,10 @@ class ElpisWebsite {
   // Active navigation link highlighting
   initActiveNavHighlighting() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html'
-    
+
     document.querySelectorAll('.nav-menu a').forEach(link => {
       link.classList.remove('active')
-      
+
       if (link.getAttribute('href') === currentPage) {
         link.classList.add('active')
       }
@@ -164,7 +164,7 @@ class ElpisWebsite {
   // Form validation
   initFormValidation() {
     const forms = document.querySelectorAll('form')
-    
+
     forms.forEach(form => {
       form.addEventListener('submit', (e) => {
         if (!this.validateForm(form)) {
@@ -184,7 +184,7 @@ class ElpisWebsite {
   validateForm(form) {
     let isValid = true
     const inputs = form.querySelectorAll('input[required], select[required], textarea[required]')
-    
+
     inputs.forEach(input => {
       if (!this.validateField(input)) {
         isValid = false
@@ -193,7 +193,7 @@ class ElpisWebsite {
 
     // Specific validation for different forms
     const formType = form.dataset.formType
-    
+
     if (formType === 'donation') {
       isValid = this.validateDonationForm(form) && isValid
     } else if (formType === 'assist') {
@@ -229,7 +229,7 @@ class ElpisWebsite {
             isValid = false
           }
           break
-        
+
         case 'tel':
           const phoneRegex = /^[\d\s\-\+\(\)]+$/
           if (!phoneRegex.test(value) || value.length < 10) {
@@ -237,7 +237,7 @@ class ElpisWebsite {
             isValid = false
           }
           break
-        
+
         case 'number':
           if (fieldName === 'custom-amount' && parseFloat(value) < 20000) {
             errorMessage = 'Minimum donation amount is UGX 20,000'
@@ -265,7 +265,7 @@ class ElpisWebsite {
   validateDonationForm(form) {
     const selectedAmount = form.querySelector('.amount-option.selected')
     const customAmount = form.querySelector('input[name="custom-amount"]')
-    
+
     if (!selectedAmount && (!customAmount || !customAmount.value)) {
       this.showFormError(form, 'Please select or enter a donation amount')
       return false
@@ -299,7 +299,7 @@ class ElpisWebsite {
     errorElement.className = 'form-error'
     errorElement.textContent = message
     errorElement.setAttribute('role', 'alert')
-    
+
     field.parentNode.appendChild(errorElement)
     field.classList.add('error')
     field.setAttribute('aria-invalid', 'true')
@@ -324,7 +324,7 @@ class ElpisWebsite {
     errorElement.className = 'form-error'
     errorElement.textContent = message
     errorElement.setAttribute('role', 'alert')
-    
+
     form.insertBefore(errorElement, form.firstChild)
   }
 
@@ -344,7 +344,7 @@ class ElpisWebsite {
         // Clear other selections
         amountOptions.forEach(opt => opt.classList.remove('selected'))
         option.classList.add('selected')
-        
+
         // Clear custom amount
         if (customAmountInput) {
           customAmountInput.value = ''
@@ -359,7 +359,7 @@ class ElpisWebsite {
       customAmountInput.addEventListener('input', () => {
         // Clear preset selections
         amountOptions.forEach(opt => opt.classList.remove('selected'))
-        
+
         // Update form data
         this.updateDonationAmount(customAmountInput.value)
       })
@@ -368,12 +368,12 @@ class ElpisWebsite {
 
   initPaymentMethodSelection() {
     const paymentMethods = document.querySelectorAll('.payment-method')
-    
+
     paymentMethods.forEach(method => {
       method.addEventListener('click', () => {
         paymentMethods.forEach(m => m.classList.remove('selected'))
         method.classList.add('selected')
-        
+
         // Update payment form fields
         this.updatePaymentMethod(method.dataset.method)
       })
@@ -416,11 +416,11 @@ class ElpisWebsite {
   togglePaymentFields(method) {
     const mtnFields = document.querySelectorAll('.mtn-fields')
     const airtelFields = document.querySelectorAll('.airtel-fields')
-    
+
     mtnFields.forEach(field => {
       field.style.display = method === 'mtn' ? 'block' : 'none'
     })
-    
+
     airtelFields.forEach(field => {
       field.style.display = method === 'airtel' ? 'block' : 'none'
     })
@@ -428,7 +428,7 @@ class ElpisWebsite {
 
   initDonationSubmission() {
     const donationForm = document.querySelector('form[data-form-type="donation"]')
-    
+
     if (donationForm) {
       donationForm.addEventListener('submit', (e) => {
         e.preventDefault()
@@ -488,7 +488,7 @@ class ElpisWebsite {
       </div>
     `)
     document.body.appendChild(modal)
-    
+
     // Reset form
     setTimeout(() => {
       location.reload()
@@ -517,7 +517,7 @@ class ElpisWebsite {
         // Filter items
         galleryItems.forEach(item => {
           const itemCategory = item.dataset.category
-          
+
           if (filter === 'all' || itemCategory === filter) {
             item.style.display = 'block'
             item.style.animation = 'fadeIn 0.5s ease-in-out'
@@ -531,13 +531,13 @@ class ElpisWebsite {
 
   initGalleryModal() {
     const galleryItems = document.querySelectorAll('.gallery-item')
-    
+
     galleryItems.forEach(item => {
       item.addEventListener('click', () => {
         const imgSrc = item.querySelector('img').src
         const imgAlt = item.querySelector('img').alt
         const caption = item.querySelector('.gallery-overlay')?.textContent || imgAlt
-        
+
         this.showImageModal(imgSrc, caption)
       })
     })
@@ -553,16 +553,16 @@ class ElpisWebsite {
         </div>
       </div>
     `)
-    
+
     document.body.appendChild(modal)
-    
+
     // Close on background click
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.remove()
       }
     })
-    
+
     // Close on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -573,7 +573,7 @@ class ElpisWebsite {
 
   initGalleryLazyLoading() {
     const images = document.querySelectorAll('.gallery-item img')
-    
+
     if ('IntersectionObserver' in window) {
       const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -598,7 +598,7 @@ class ElpisWebsite {
 
   initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.card, .stat-card, .program-card, .glass-card')
-    
+
     if ('IntersectionObserver' in window) {
       const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -609,7 +609,7 @@ class ElpisWebsite {
             animationObserver.unobserve(entry.target)
           }
         })
-      }, { 
+      }, {
         threshold: 0.2,
         rootMargin: '50px 0px -50px 0px'
       })
@@ -631,7 +631,7 @@ class ElpisWebsite {
 
   initCounterAnimations() {
     const counters = document.querySelectorAll('.stat-number')
-    
+
     if ('IntersectionObserver' in window) {
       const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -640,7 +640,7 @@ class ElpisWebsite {
             counterObserver.unobserve(entry.target)
           }
         })
-      }, { 
+      }, {
         threshold: 0.3,
         rootMargin: '0px 0px -100px 0px'
       })
@@ -654,18 +654,18 @@ class ElpisWebsite {
     const duration = 2000
     const step = target / (duration / 16)
     let current = 0
-    
+
     // Store the original suffix (like '+' in "1,200+")
     const originalText = element.textContent
     const suffix = originalText.match(/[^\d,]+$/)?.[0] || ''
-    
+
     const timer = setInterval(() => {
       current += step
       if (current >= target) {
         current = target
         clearInterval(timer)
       }
-      
+
       // Reapply the suffix (like '+') when replacing the number
       element.textContent = Math.floor(current).toLocaleString() + suffix
     }, 16)
@@ -681,12 +681,12 @@ class ElpisWebsite {
   initKeyboardNavigation() {
     // Tab navigation for custom components
     const interactiveElements = document.querySelectorAll('.amount-option, .payment-method, .filter-btn')
-    
+
     interactiveElements.forEach(element => {
       if (!element.hasAttribute('tabindex')) {
         element.setAttribute('tabindex', '0')
       }
-      
+
       element.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
@@ -749,7 +749,7 @@ class ElpisWebsite {
     modal.innerHTML = content
     modal.setAttribute('role', 'dialog')
     modal.setAttribute('aria-modal', 'true')
-    
+
     return modal
   }
 
@@ -773,9 +773,9 @@ class ElpisWebsite {
       <span>${message}</span>
       <button onclick="this.parentElement.remove()">&times;</button>
     `
-    
+
     document.body.appendChild(notification)
-    
+
     setTimeout(() => {
       notification.remove()
     }, 5000)
@@ -783,7 +783,7 @@ class ElpisWebsite {
 
   updatePartnerStatus(isPartner, partnerId = null) {
     const partnerElements = document.querySelectorAll('.partner-only')
-    
+
     partnerElements.forEach(element => {
       element.style.display = isPartner ? 'block' : 'none'
     })
