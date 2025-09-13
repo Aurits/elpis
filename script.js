@@ -596,24 +596,37 @@ class ElpisWebsite {
   }
 
   initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.card, .stat-card, .program-card')
+    const animatedElements = document.querySelectorAll('.card, .stat-card, .program-card, .glass-card')
     
     if ('IntersectionObserver' in window) {
       const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease-out'
+            entry.target.style.opacity = '1'
+            entry.target.style.transform = 'translateY(0)'
+            entry.target.style.transition = 'all 0.6s ease-out'
             animationObserver.unobserve(entry.target)
           }
         })
-      }, { threshold: 0.1 })
+      }, { 
+        threshold: 0.2,
+        rootMargin: '50px 0px -50px 0px'
+      })
 
       animatedElements.forEach(el => {
         el.style.opacity = '0'
-        el.style.transform = 'translateY(20px)'
+        el.style.transform = 'translateY(30px)'
+        el.style.transition = 'all 0.6s ease-out'
         animationObserver.observe(el)
       })
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      animatedElements.forEach(el => {
+        el.style.opacity = '1'
+        el.style.transform = 'translateY(0)'
+      })
     }
+  }
   }
 
   initCounterAnimations() {
@@ -627,7 +640,10 @@ class ElpisWebsite {
             counterObserver.unobserve(entry.target)
           }
         })
-      }, { threshold: 0.5 })
+      }, { 
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+      })
 
       counters.forEach(counter => counterObserver.observe(counter))
     }
