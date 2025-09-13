@@ -14,6 +14,7 @@ class ElpisWebsite {
     this.initGalleryFunctionality()
     this.initAnimations()
     this.initAccessibility()
+    this.initCopyrightYear()
   }
 
   // Navigation functionality
