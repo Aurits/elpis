@@ -3,152 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assist Me - Get Support | Elpis Initiative Uganda</title>
-    <meta name="description" content="Request assistance from Elpis Initiative Uganda. Our partnership program provides financial assistance for medical emergencies.">
+    <title>Request Assistance | Elpis Initiative Uganda</title>
+    <meta name="description" content="Need help? Elpis Initiative Uganda provides support to individuals facing difficult situations and emergencies through our partnership program. We're here to help you thrive.">
+    <meta name="keywords" content="medical assistance Uganda, emergency support, youth help Uganda, HIV AIDS support, mental health assistance">
+    <meta name="author" content="Elpis Initiative Uganda">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Request Assistance | Elpis Initiative Uganda">
+    <meta property="og:description" content="Need help? We provide support to individuals facing difficult situations and emergencies through our partnership program.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elpisuganda.org/assist.html">
+    <meta property="og:image" content="docs/EIU Black Slogan.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="EUI Black Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo">
-                    <span>Elpis Initiative Uganda</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="programs.html" class="nav-link">What We Do</a></li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
-                    <li><a href="assist.html" class="nav-link active">Assist Me</a></li>
-                    <li><a href="donate.html" class="nav-link btn-primary">Donate</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="nav-logo" aria-label="Elpis Initiative Uganda Homepage">
+                        <img src="EUI Black Logo.png" alt="Elpis Initiative Uganda" class="logo" width="64" height="64">
+                    </a>
+                    
+                    <ul class="nav-menu" role="menubar">
+                        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+                        <li role="none"><a href="programs.html" class="nav-link" role="menuitem">What We Do</a></li>
+                        <li role="none"><a href="gallery.html" class="nav-link" role="menuitem">Gallery</a></li>
+                        <li role="none"><a href="careers.html" class="nav-link" role="menuitem">Careers</a></li>
+                        <li role="none"><a href="assist.html" class="nav-link active" role="menuitem">Assist Me</a></li>
+                        <li role="none"><a href="donate.html" class="nav-link btn-primary" role="menuitem">Donate</a></li>
+                    </ul>
+                    
+                    <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="page-hero">
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h1>Request Assistance</h1>
-                <p>Our partnership program provides support for medical emergencies and urgent needs</p>
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        We're Here to Help
+                    </h1>
+                    <p class="hero-subtitle">
+                        At Elpis Initiative Uganda, we believe that everyone deserves a helping hand in times of need. Our Assist Me program is dedicated to providing support to individuals facing difficult situations and emergencies.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#assistance-form" class="btn btn-primary btn-lg">
+                            Request Assistance
+                        </a>
+                        <a href="#how-we-help" class="btn btn-secondary btn-lg">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="assist-content">
+        <!-- How We Help Section -->
+        <section class="section" id="how-we-help" aria-labelledby="help-title">
             <div class="container">
-                <div class="assist-grid">
-                    <div class="assist-info">
-                        <h2>How We Can Help</h2>
-                        <p>Through our partnership program, we provide financial assistance for medical emergencies and other urgent needs. Our support network is designed to help young people in crisis situations.</p>
-                        
-                        <h3>Eligibility</h3>
-                        <ul class="eligibility-list">
-                            <li>Ages 15-40</li>
-                            <li>Located in our service regions</li>
-                            <li>Genuine medical or emergency need</li>
-                            <li>Preference given to Elpis Partners</li>
-                        </ul>
+                <div class="section-header">
+                    <h2 id="help-title">How We Can Assist You</h2>
+                    <p>Through our partnership program, we're able to offer financial assistance to those who need it most.</p>
+                </div>
+                <div class="grid grid-3 gap-8">
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/ec008c/ffffff?text=🏥+Medical" alt="Medical Emergency Support" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-4">Medical Emergency Support</h4>
+                        <p>We provide critical financial support for young people aged 15-40 facing medical emergencies, hospitalization, and other health-related expenses.</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/00aeef/ffffff?text=💪+Mental+Health" alt="Mental Health Support" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-4">Mental Health Support</h4>
+                        <p>Access to counseling services, mental health resources, and connections to support networks in your region.</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/ec008c/ffffff?text=🤝+Emergency+Aid" alt="Emergency Assistance" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-4">Emergency Assistance</h4>
+                        <p>Immediate support for urgent situations, ensuring that individuals are not forced into desperate situations due to lack of support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div class="partner-note">
-                            <h3>Elpis Partners</h3>
-                            <p>If you're an Elpis Partner (donor), please include your partner number for priority consideration. Not a partner yet? <a href="donate.html">Become one today</a>.</p>
+        <!-- Our Commitment Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="commitment" aria-labelledby="commitment-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="commitment-title">Our Commitment to You</h2>
+                </div>
+                <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-card p-8">
+                        <div class="grid grid-1 gap-6 text-lg">
+                            <p>We recognize that emergencies can be overwhelming, and we want to ensure that individuals are not forced into desperate situations due to lack of support. Our goal is to empower Ugandan youth and provide them with the resources they need to thrive.</p>
+                            
+                            <p>We may not have a lot of resources, but we're committed to doing what we can to make a difference. By supporting our initiative, you're helping to create a safety net for those who need it most.</p>
+                            
+                            <p class="font-semibold text-primary">Together, we can make a positive impact in the lives of Ugandan youth.</p>
+                            
+                            <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg border-l-4 border-primary-pink">
+                                <p class="font-medium">If you're in need of assistance or want to support our cause, we'd love to hear from you. Kindly fill in the form below and we will contact you at the earliest opportunity.</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="assist-form">
-                        <form id="assistForm" class="form">
-                            <h3>Support Request Form</h3>
-                            
-                            <div class="form-group">
-                                <label for="requestName">Full Name *</label>
-                                <input type="text" id="requestName" name="requestName" required>
+        <!-- Assistance Request Form Section -->
+        <section class="section" id="assistance-form" aria-labelledby="form-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="form-title">Request Assistance</h2>
+                    <p>Fill out the form below and we will contact you at the earliest opportunity to discuss how we can help.</p>
+                </div>
+                
+                <div class="max-w-2xl mx-auto">
+                    <form class="glass-card p-8" data-form-type="assist" aria-labelledby="form-title">
+                        <!-- Personal Information -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                            <div class="grid grid-1 gap-6">
+                                <div>
+                                    <label for="full-name" class="form-label">Full Name *</label>
+                                    <input type="text" id="full-name" name="full-name" class="form-input" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="phone-number" class="form-label">Phone Number *</label>
+                                    <input type="tel" id="phone-number" name="phone-number" class="form-input" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="form-label">Email Address (Optional)</label>
+                                    <input type="email" id="email" name="email" class="form-input">
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="location">Location *</label>
-                                <select id="location" name="location" required>
-                                    <option value="">Select your location</option>
-                                    <option value="arua">Arua</option>
-                                    <option value="kampala">Kampala</option>
-                                    <option value="kotido">Kotido</option>
-                                    <option value="luuka">Luuka</option>
-                                    <option value="mbarara">Mbarara</option>
-                                    <option value="gulu">Gulu</option>
-                                </select>
+                        <!-- Location -->
+                        <div class="mb-8">
+                            <label for="location" class="form-label">Location *</label>
+                            <select id="location" name="location" class="form-select" required>
+                                <option value="">Select your region</option>
+                                <option value="Kampala">Kampala</option>
+                                <option value="Gulu">Gulu</option>
+                                <option value="Kotido">Kotido</option>
+                                <option value="Luuka">Luuka</option>
+                                <option value="Arua">Arua</option>
+                                <option value="Mbarara">Mbarara</option>
+                                <option value="Other">Other (Please specify in message)</option>
+                            </select>
+                        </div>
+
+                        <!-- Type of Assistance -->
+                        <div class="mb-8">
+                            <label class="form-label mb-4 block">Type of Assistance Needed</label>
+                            <div class="grid grid-1 gap-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="assistance-type" value="Medical Emergency" class="mr-3">
+                                    <span>Medical Emergency</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="assistance-type" value="Mental Health Support" class="mr-3">
+                                    <span>Mental Health Support</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="assistance-type" value="HIV/AIDS Support" class="mr-3">
+                                    <span>HIV/AIDS Related Support</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="assistance-type" value="Financial Emergency" class="mr-3">
+                                    <span>Financial Emergency</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="assistance-type" value="Other" class="mr-3">
+                                    <span>Other (Please specify below)</span>
+                                </label>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone Number *</label>
-                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                        <!-- Detailed Message -->
+                        <div class="mb-8">
+                            <label for="message" class="form-label">Describe Your Need *</label>
+                            <textarea 
+                                id="message" 
+                                name="message" 
+                                class="form-textarea" 
+                                rows="6" 
+                                placeholder="Please provide as much detail as possible about your situation and how we can help you. The more information you provide, the better we can assist you."
+                                required
+                            ></textarea>
+                            <p class="text-sm text-gray-600 mt-2">Minimum 20 characters required</p>
+                        </div>
+
+                        <!-- Elpis Partner ID -->
+                        <div class="mb-8">
+                            <label for="partner-number" class="form-label">Elpis Partner Number (Optional)</label>
+                            <input type="text" id="partner-number" name="partner-number" class="form-input" placeholder="EP123456">
+                            <p class="text-sm text-gray-600 mt-2">If you're already an Elpis Partner, please enter your partner number</p>
+                        </div>
+
+                        <!-- Privacy Notice -->
+                        <div class="mb-8">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Privacy Notice</h4>
+                                <p class="text-sm text-gray-700">Your information will be kept confidential and used only to assess and provide the assistance you've requested. We will contact you within 48 hours of receiving your request.</p>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="partnerNumber">Elpis Partner Number (if applicable)</label>
-                                <input type="text" id="partnerNumber" name="partnerNumber" placeholder="Enter your partner number">
-                            </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-full">
+                            Submit Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-                            <div class="form-group">
-                                <label for="needDescription">What's your need? *</label>
-                                <textarea id="needDescription" name="needDescription" rows="6" required placeholder="Please describe your situation and the type of assistance you need..."></textarea>
-                            </div>
+        <!-- Support Information -->
+        <section class="section" id="support-info" aria-labelledby="support-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="support-title">What Happens Next?</h2>
+                    <p>After submitting your request, here's what you can expect from our team.</p>
+                </div>
+                
+                <div class="grid grid-3 gap-8">
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="mb-4">Review & Assessment</h4>
+                        <p>Our team will carefully review your request and assess how we can best support your specific situation within 24-48 hours.</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">2</span>
+                        </div>
+                        <h4 class="mb-4">Personal Contact</h4>
+                        <p>We'll reach out to you directly via phone or email to discuss your needs and explain the support options available to you.</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">3</span>
+                        </div>
+                        <h4 class="mb-4">Support & Follow-up</h4>
+                        <p>Once approved, we'll provide the assistance you need and follow up to ensure you're getting the support necessary to thrive.</p>
+                    </div>
+                </div>
 
-                            <div class="form-group">
-                                <label for="urgency">Urgency Level *</label>
-                                <select id="urgency" name="urgency" required>
-                                    <option value="">Select urgency level</option>
-                                    <option value="immediate">Immediate (within 24 hours)</option>
-                                    <option value="urgent">Urgent (within 1 week)</option>
-                                    <option value="moderate">Moderate (within 1 month)</option>
-                                </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Submit Request</button>
-                        </form>
+                <div class="text-center mt-12">
+                    <div class="glass-card p-8 max-w-2xl mx-auto">
+                        <h3 class="text-primary mb-4">Emergency Contact</h3>
+                        <p class="mb-4">If you're facing a life-threatening emergency, please contact emergency services immediately.</p>
+                        <p class="font-semibold">For urgent non-emergency support: <a href="mailto:officialeu@elpisuganda.org" class="text-primary underline">officialeu@elpisuganda.org</a></p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Email: officialeu@elpisuganda.org</p>
-                    <p>Serving: Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                    <div class="image-container mb-4" style="width: 100px;">
+                        <img src="EUI White Logo.png" alt="Elpis Initiative Uganda Logo" loading="lazy">
+                    </div>
+                    <h4>Contact Information</h4>
+                    <p>
+                        <strong>Email:</strong> 
+                        <a href="mailto:officialeu@elpisuganda.org" class="text-white">officialeu@elpisuganda.org</a>
+                    </p>
+                    <p><strong>Regions Served:</strong></p>
+                    <p>Kampala • Gulu • Kotido • Luuka • Arua • Mbarara</p>
+                    <p class="text-sm mt-4">
+                        <strong>Founded:</strong> 2022<br>
+                        <strong>Co-Founders:</strong> Nkuutu Brian Moses & Feni Desmond
+                    </p>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Quick Links</h4>
+                    <nav aria-label="Footer navigation">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="programs.html">Our Programs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="careers.html">Career Opportunities</a></li>
+                            <li><a href="assist.html">Request Assistance</a></li>
+                            <li><a href="donate.html">Make a Donation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Our Impact Areas</h4>
                     <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="donate.html">Donate</a></li>
+                        <li>HIV/AIDS Awareness & Prevention</li>
+                        <li>Mental Health Support</li>
+                        <li>Gender Equality Advocacy</li>
+                        <li>Arts-Based Education</li>
+                        <li>Youth Leadership Development</li>
+                        <li>Community Health Initiatives</li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Follow Us</h4>
+                    <h4>Stay Connected</h4>
+                    <p class="mb-4">Follow our journey and stay updated on our latest initiatives.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
-                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Follow us on Facebook" class="social-link">Facebook</a>
+                        <a href="#" aria-label="Follow us on Twitter" class="social-link">Twitter</a>
+                        <a href="#" aria-label="Follow us on Instagram" class="social-link">Instagram</a>
+                        <a href="#" aria-label="Connect with us on LinkedIn" class="social-link">LinkedIn</a>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="mt-6">
+                        <h5 class="text-sm font-semibold mb-2">Newsletter</h5>
+                        <form class="flex gap-2" aria-label="Newsletter signup">
+                            <input 
+                                type="email" 
+                                placeholder="Your email" 
+                                class="form-input text-sm"
+                                style="min-height: 40px; background: var(--white); color: var(--charcoal);"
+                                aria-label="Email address for newsletter"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                <div class="flex justify-between items-center gap-4" style="flex-wrap: wrap;">
+                    <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-white">Privacy Policy</a>
+                        <a href="#" class="text-white">Terms of Service</a>
+                        <a href="#" class="text-white">Accessibility</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
