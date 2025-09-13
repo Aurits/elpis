@@ -627,7 +627,6 @@ class ElpisWebsite {
       })
     }
   }
-  }
 
   initCounterAnimations() {
     const counters = document.querySelectorAll('.stat-number')
