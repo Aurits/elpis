@@ -3,169 +3,468 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Our Story | Elpis Initiative Uganda</title>
-    <meta name="description" content="Learn about Elpis Initiative Uganda's journey from local advocates to nationwide movement, empowering youth through innovative arts-based solutions.">
+    <title>About Us - A Movement for Youth Empowerment | Elpis Initiative Uganda</title>
+    <meta name="description" content="Born in 2022, Elpis Initiative Uganda represents a new vision for youth empowerment. Learn about our founders, mission, and innovative arts-based approach to HIV/AIDS and mental health advocacy.">
+    <meta name="keywords" content="about Elpis Uganda, youth empowerment, founders Nkuutu Brian Moses, Feni Desmond, HIV AIDS advocacy, mental health Uganda">
+    <meta name="author" content="Elpis Initiative Uganda">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Us - A Movement for Youth Empowerment | Elpis Initiative Uganda">
+    <meta property="og:description" content="Born in 2022, we represent a new vision for youth empowerment in Uganda through innovative, arts-based solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elpisuganda.org/about.html">
+    <meta property="og:image" content="docs/EIU Black Slogan.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="EUI Black Logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <a href="index.html" class="nav-logo">
-                    <img src="logo.svg" alt="Elpis Initiative Uganda" class="logo">
-                    <span>Elpis Initiative Uganda</span>
-                </a>
-                <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link active">About</a></li>
-                    <li><a href="programs.html" class="nav-link">What We Do</a></li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="careers.html" class="nav-link">Careers</a></li>
-                    <li><a href="assist.html" class="nav-link">Assist Me</a></li>
-                    <li><a href="donate.html" class="nav-link btn-primary">Donate</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <div class="container">
+                <div class="nav-container">
+                    <a href="index.html" class="nav-logo" aria-label="Elpis Initiative Uganda Homepage">
+                        <img src="EUI Black Logo.png" alt="Elpis Initiative Uganda" class="logo" width="64" height="64">
+                    </a>
+                    
+                    <ul class="nav-menu" role="menubar">
+                        <li role="none"><a href="index.html" class="nav-link" role="menuitem">Home</a></li>
+                        <li role="none"><a href="about.html" class="nav-link active" role="menuitem">About</a></li>
+                        <li role="none"><a href="programs.html" class="nav-link" role="menuitem">What We Do</a></li>
+                        <li role="none"><a href="gallery.html" class="nav-link" role="menuitem">Gallery</a></li>
+                        <li role="none"><a href="careers.html" class="nav-link" role="menuitem">Careers</a></li>
+                        <li role="none"><a href="assist.html" class="nav-link" role="menuitem">Assist Me</a></li>
+                        <li role="none"><a href="donate.html" class="nav-link btn-primary" role="menuitem">Donate</a></li>
+                    </ul>
+                    
+                    <button class="hamburger" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="page-hero">
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" id="hero" aria-labelledby="hero-title">
             <div class="container">
-                <h1>Our Story</h1>
-                <p>From passionate advocates to nationwide movement</p>
+                <div class="hero-content">
+                    <h1 id="hero-title" class="hero-title">
+                        About Elpis Initiative Uganda
+                    </h1>
+                    <p class="hero-subtitle">
+                        A Movement for Youth Empowerment
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#our-story" class="btn btn-primary btn-lg">
+                            Our Story
+                        </a>
+                        <a href="#leadership" class="btn btn-secondary btn-lg">
+                            Meet Our Leaders
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="about-content">
+        <!-- Our Story Section -->
+        <section class="section" id="our-story" aria-labelledby="story-title">
             <div class="container">
-                <div class="leadership-message">
-                    <h2>Message from Our Executive Director</h2>
-                    <div class="message-content">
-                        <div class="director-info">
-                            <h3>Feni Desmond</h3>
-                            <p class="title">Executive Director</p>
-                        </div>
-                        <div class="message-text">
-                            <p>"The time has come for young people to take ownership of HIV and mental health solutions in Uganda. We cannot continue to depend solely on foreign aid when we have the creativity, passion, and innovation right here in our communities."</p>
-                            <p>"At Elpis Initiative Uganda, we believe in the power of local solutions. We're not just another organization - we're a movement that challenges traditional methods and embraces innovation. Our youth-centered approach has proven that when young people are empowered with the right tools and support, they become the most effective advocates for change."</p>
-                            <p>"Join us in this revolution. Together, we're not just changing statistics - we're transforming lives and building a healthier, more inclusive Uganda for all."</p>
+                <div class="section-header">
+                    <h2 id="story-title">Our Story</h2>
+                    <p>From a local initiative to a nationwide movement</p>
+                </div>
+                
+                <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-card p-8">
+                        <div class="grid grid-1 gap-6 text-lg">
+                            <p><strong>Born in 2022</strong>, Elpis Initiative Uganda represents a new vision for youth empowerment in Uganda. Founders <strong>Nkuutu Brian Moses</strong> and <strong>Feni Desmond</strong> witnessed firsthand how traditional approaches to health education failed to truly reach young people, inspiring them to pioneer an innovative model that speaks to youth in their own language.</p>
+                            
+                            <p>Our organization has rapidly evolved from a local initiative to a nationwide movement with presence across six strategic locations. Each region presents unique challenges that inform our tailored programming - from urban health education in Kampala to post-conflict mental health support in Gulu, from rural outreach in Luuka to specialized interventions in pastoral communities of Kotido.</p>
+                            
+                            <p>This geographic diversity reflects our commitment to meeting young people where they are, addressing their specific needs through contextually relevant approaches.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="organization-history">
-                    <h2>Our Journey</h2>
-                    <div class="history-timeline">
-                        <div class="timeline-item">
-                            <h3>2022 - The Beginning</h3>
-                            <p>Founded by passionate advocates Nkuutu Brian Moses and Feni Desmond, driven by a vision to empower Ugandan youth through innovative approaches to health education and advocacy.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h3>Rapid Evolution</h3>
-                            <p>What started as a local initiative quickly evolved into a nationwide movement, as our arts-based approach resonated with communities across Uganda.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h3>Geographic Expansion</h3>
-                            <p>Established strategic presence across six key locations: Kampala, Gulu, Kotido, Luuka, Arua, and Mbarara, each with tailored programs addressing local needs.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h3>Recognition & Validation</h3>
-                            <p>Our youth-centered approaches gained recognition from communities, partners, and stakeholders, validating our belief that young people are the most effective agents of change.</p>
+        <!-- Core Philosophy Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="philosophy" aria-labelledby="philosophy-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="philosophy-title">Our Philosophy</h2>
+                    <p>What drives everything we do</p>
+                </div>
+                
+                <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-card p-8">
+                        <div class="grid grid-1 gap-6 text-lg">
+                            <p>At the core of our work lies a simple but powerful truth: <strong>when young people engage creatively with important issues, transformation happens</strong>. We've seen how interactive programming creates safe spaces for dialogue about topics often shrouded in silence and stigma.</p>
+                            
+                            <p>Our methods foster not just awareness but genuine understanding, equipping participants with knowledge they internalize and share within their communities.</p>
+                            
+                            <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg border-l-4 border-primary-pink">
+                                <p class="font-medium">What makes Elpis Initiative Uganda unique isn't just what we do, but how we do it. Every program, every campaign, every interaction is rooted in principles of <strong>youth participation, creative engagement, and community ownership</strong>. We don't just deliver messages, we create experiences that transform perspectives and inspire action.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="mission-vision">
-                    <div class="mv-grid">
-                        <div class="mv-card">
-                            <h3>Our Vision</h3>
-                            <p>A Uganda where every young person thrives in good health, free from stigma</p>
+        <!-- Impact & Recognition Section -->
+        <section class="section" id="impact" aria-labelledby="impact-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="impact-title">Our Impact & Recognition</h2>
+                    <p>Measurable change in just two years</p>
+                </div>
+                
+                <div class="grid grid-2 gap-8 mb-12">
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">1,200+</span>
                         </div>
-                        <div class="mv-card">
-                            <h3>Our Mission</h3>
-                            <p>Empower youth through innovative, arts-based solutions addressing HIV/AIDS, mental health, and gender equality</p>
+                        <h4 class="text-primary mb-4">Youth Directly Engaged</h4>
+                        <p>Through transformative programs across all six regions</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white font-bold text-xl">8</span>
                         </div>
+                        <h4 class="text-secondary mb-4">Permanent Art Installations</h4>
+                        <p>Serving as ongoing education tools in communities</p>
                     </div>
                 </div>
 
-                <div class="founders-section">
-                    <h2>Our Founders</h2>
-                    <div class="founders-grid">
-                        <div class="founder-card">
-                            <h3>Nkuutu Brian Moses</h3>
-                            <p class="founder-title">Co-Founder</p>
-                            <p>Visionary leader passionate about youth empowerment and innovative health advocacy approaches.</p>
+                <div class="glass-card p-8 max-w-4xl mx-auto">
+                    <div class="grid grid-1 gap-6 text-lg">
+                        <p>The impact of this approach has been both profound and measurable. In just two years, we've directly engaged over 1,200 young Ugandans, establishing partnerships with educational institutions and community organizations across our operational areas.</p>
+                        
+                        <p>The recognition we've received validates what we've always believed - that innovative, youth-centered approaches can achieve what conventional methods cannot.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="leadership" aria-labelledby="leadership-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="leadership-title">Meet Our Leadership</h2>
+                    <p>Visionary leaders driving change across Uganda</p>
+                </div>
+                
+                <div class="grid grid-2 gap-8">
+                    <!-- Co-Founder -->
+                    <article class="glass-card p-8">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x300/ec008c/ffffff?text=Brian+Moses" alt="Nkuutu Brian Moses, Co-Founder" loading="lazy">
                         </div>
-                        <div class="founder-card">
-                            <h3>Feni Desmond</h3>
-                            <p class="founder-title">Co-Founder & Executive Director</p>
-                            <p>Advocate for local solutions and youth-centered approaches to health and social challenges.</p>
+                        <div class="card-header mb-6">
+                            <h3 class="card-title">Nkuutu Brian Moses</h3>
+                            <p class="text-sm text-primary font-semibold">Co-Founder</p>
+                        </div>
+                        <div class="card-content">
+                            <blockquote class="text-lg italic mb-4">
+                                "At Elpis Initiative Uganda, we recognize that the fight against HIV and mental health stigma cannot be won with silence or complacency. It requires <strong>bold action, innovation, and ownership</strong> from us the youth."
+                            </blockquote>
+                            <p class="text-base">Co-founded Elpis Initiative Uganda in 2022 with a vision to pioneer innovative approaches to youth health education. Passionate about empowering young people to take charge of their own development and community transformation.</p>
+                        </div>
+                    </article>
+                    
+                    <!-- Executive Director -->
+                    <article class="glass-card p-8">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x300/00aeef/ffffff?text=Feni+Desmond" alt="Feni Desmond, Executive Director" loading="lazy">
+                        </div>
+                        <div class="card-header mb-6">
+                            <h3 class="card-title">Feni Desmond</h3>
+                            <p class="text-sm text-secondary font-semibold">Executive Director</p>
+                        </div>
+                        <div class="card-content">
+                            <blockquote class="text-lg italic mb-4">
+                                "The time for waiting is over. The power to shape Uganda's future lies in our hands, our voices, and our actions. Together, let's build a nation where no young person suffers in silence."
+                            </blockquote>
+                            <p class="text-base">Leads the organization's strategic direction with a focus on sustainable, youth-led solutions. Advocates for economic independence and local funding to ensure long-term impact and community ownership.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Director's Message Section -->
+        <section class="section" id="directors-message" aria-labelledby="message-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="message-title">A Message from Our Executive Director</h2>
+                    <p>Mr. Feni Desmond addresses the youth of Uganda and beyond</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="glass-card p-8">
+                        <h3 class="text-xl font-bold mb-6 text-center">To the Youth of Uganda and Beyond</h3>
+                        
+                        <div class="grid grid-1 gap-6 text-lg">
+                            <p>As young people, we face some of the greatest challenges of our time: HIV/AIDS and mental health crises that disproportionately affect our generation. These are not just health issues; they are threats to our future, our dreams, and our nation's progress. But I say with a firm belief: <strong>we are not victims. We are the solution.</strong></p>
+                            
+                            <p>At Elpis Initiative Uganda, we recognize that the fight against HIV and mental health stigma cannot be won with silence or complacency. It requires <strong>bold action, innovation, and ownership</strong> from us the youth. Too often, we wait for others to solve our problems, but the truth is, no one will care for our future more than we do. That is why I call upon every young Ugandan to stand up, speak out, and take charge of this fight.</p>
+                            
+                            <div class="bg-primary-blue bg-opacity-10 p-6 rounded-lg border-l-4 border-primary-blue">
+                                <p class="font-medium">Another harsh reality we must confront is dependency on foreign funding. While international support has played a role in development, history has shown us its fragility - like when President Trump cut aid to USAID, leaving many programs stranded. If we truly want sustainable change, we must fund our own movements. That is why Elpis Initiative Uganda champions initiatives like <strong>10 Million Hearts, 1 Cause</strong> - because real transformation begins when we take responsibility for our own solutions.</p>
+                            </div>
+                            
+                            <p>Let's be honest: conventional methods are failing us. Lectures and pamphlets are not enough to engage today's youth. At Elpis Initiative Uganda, we break the mold by using creative, relatable, and interactive approaches that truly resonate. Our success reaching over 1,200 young lives in just two years proves that when we meet youth where they are, real change happens.</p>
+                            
+                            <p>But we cannot do this alone. I call upon every Ugandan - young and old, artist or activist, student or professional - to join us. Support Elpis Initiative Uganda not just for our sake, but for the future of our country. Whether through donations, volunteering, or simply spreading our message, your contribution matters.</p>
+                            
+                            <p class="font-bold text-primary text-xl text-center">The time for waiting is over. The power to shape Uganda's future lies in our hands, our voices, and our actions. Together, let's build a nation where no young person suffers in silence, where health is a right, not a privilege, and where Ugandans fund Ugandan solutions.</p>
+                            
+                            <p class="text-center font-semibold">Join us. The revolution starts now.</p>
+                            
+                            <div class="text-center mt-8">
+                                <p class="font-semibold">With determination,</p>
+                                <p class="text-lg font-bold text-primary">Feni Desmond</p>
+                                <p class="text-sm">Executive Director, Elpis Initiative Uganda</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="values-section">
-                    <h2>Our Core Values</h2>
-                    <div class="values-grid">
-                        <div class="value-card">
-                            <h3>Innovation</h3>
-                            <p>We embrace creative solutions over traditional methods</p>
+        <!-- Our Regions Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="regions" aria-labelledby="regions-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="regions-title">Our Operational Regions</h2>
+                    <p>Tailored programming across six strategic locations</p>
+                </div>
+                
+                <div class="grid grid-3 gap-6">
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/ec008c/ffffff?text=Kampala" alt="Kampala urban programs" loading="lazy">
                         </div>
-                        <div class="value-card">
-                            <h3>Youth Empowerment</h3>
-                            <p>Young people are at the center of everything we do</p>
+                        <h4 class="text-primary mb-2">Kampala</h4>
+                        <p class="text-sm">Urban youth engagement through digital and performing arts</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/00aeef/ffffff?text=Gulu" alt="Gulu post-conflict programs" loading="lazy">
                         </div>
-                        <div class="value-card">
-                            <h3>Local Solutions</h3>
-                            <p>We believe in the power of community-driven change</p>
+                        <h4 class="text-secondary mb-2">Gulu</h4>
+                        <p class="text-sm">Post-conflict mental health healing via creative therapies</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/ec008c/ffffff?text=Kotido" alt="Kotido pastoral community programs" loading="lazy">
                         </div>
-                        <div class="value-card">
-                            <h3>Arts-Based Advocacy</h3>
-                            <p>Creativity is our tool for breaking barriers and creating dialogue</p>
+                        <h4 class="text-primary mb-2">Kotido</h4>
+                        <p class="text-sm">Culturally-sensitive programs for pastoral communities</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/00aeef/ffffff?text=Luuka" alt="Luuka rural education programs" loading="lazy">
                         </div>
+                        <h4 class="text-secondary mb-2">Luuka</h4>
+                        <p class="text-sm">Rural SRHR education through community murals and theater</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/ec008c/ffffff?text=Arua" alt="Arua border community programs" loading="lazy">
+                        </div>
+                        <h4 class="text-primary mb-2">Arua</h4>
+                        <p class="text-sm">Border community health initiatives</p>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-4">
+                            <img src="https://placehold.co/300x180/00aeef/ffffff?text=Mbarara" alt="Mbarara university programs" loading="lazy">
+                        </div>
+                        <h4 class="text-secondary mb-2">Mbarara</h4>
+                        <p class="text-sm">University-focused creative health education</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Vision Section -->
+        <section class="section" id="future" aria-labelledby="future-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="future-title">Our Vision for the Future</h2>
+                    <p>Building sustainable structures for lasting impact</p>
+                </div>
+                
+                <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+                    <div class="glass-card p-8">
+                        <div class="grid grid-1 gap-6 text-lg">
+                            <p>As we look ahead, Elpis Initiative Uganda remains committed to expanding and deepening our impact. We're focused on building sustainable structures, training facilitators, developing replicable program models, and establishing youth leadership councils.</p>
+                            
+                            <p>Our vision includes creating platforms that amplify youth voices nationally and forging partnerships that extend our reach across East Africa.</p>
+                            
+                            <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg border-l-4 border-primary-pink">
+                                <p class="font-medium">This is more than an organization - it's a movement powered by the energy, creativity and vision of Uganda's youth. From the young participants who become peer educators to the community members who champion our work, Elpis Initiative Uganda represents a collective effort to build a healthier, more equitable future.</p>
+                            </div>
+                            
+                            <p class="text-center font-bold text-xl text-primary">We invite you to join us in this journey of transformation - as a participant, a partner, or a supporter. Together, we're proving that when young people are truly engaged, meaningful change is not just possible, but inevitable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="section" style="background: rgba(255, 255, 255, 0.05);" id="join-us" aria-labelledby="join-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="join-title">Join Our Movement</h2>
+                    <p>Be part of the solution</p>
+                </div>
+                
+                <div class="grid grid-3 gap-8">
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/ec008c/ffffff?text=💖+Support" alt="Support our mission" loading="lazy">
+                        </div>
+                        <h4 class="mb-4">Support Our Mission</h4>
+                        <p class="mb-6">Join the 10 Million Hearts, One Cause campaign and become an Elpis Partner</p>
+                        <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/00aeef/ffffff?text=🤝+Volunteer" alt="Volunteer with us" loading="lazy">
+                        </div>
+                        <h4 class="mb-4">Work With Us</h4>
+                        <p class="mb-6">Explore career opportunities across our six operational regions</p>
+                        <a href="careers.html" class="btn btn-secondary">View Positions</a>
+                    </div>
+                    
+                    <div class="glass-card text-center p-6">
+                        <div class="image-container mb-6">
+                            <img src="https://placehold.co/300x200/ec008c/ffffff?text=📚+Learn" alt="Learn about our programs" loading="lazy">
+                        </div>
+                        <h4 class="mb-4">Learn More</h4>
+                        <p class="mb-6">Discover our innovative programs and see how we're making a difference</p>
+                        <a href="programs.html" class="btn btn-outline">Our Programs</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Email: officialeu@elpisuganda.org</p>
-                    <p>Serving: Kampala, Gulu, Kotido, Luuka, Arua, Mbarara</p>
+                    <div class="image-container mb-4" style="width: 100px;">
+                        <img src="EUI White Logo.png" alt="Elpis Initiative Uganda Logo" loading="lazy">
+                    </div>
+                    <h4>Contact Information</h4>
+                    <p>
+                        <strong>Email:</strong> 
+                        <a href="mailto:officialeu@elpisuganda.org" class="text-white">officialeu@elpisuganda.org</a>
+                    </p>
+                    <p><strong>Regions Served:</strong></p>
+                    <p>Kampala • Gulu • Kotido • Luuka • Arua • Mbarara</p>
+                    <p class="text-sm mt-4">
+                        <strong>Founded:</strong> 2022<br>
+                        <strong>Co-Founders:</strong> Nkuutu Brian Moses & Feni Desmond
+                    </p>
                 </div>
+                
                 <div class="footer-section">
                     <h4>Quick Links</h4>
+                    <nav aria-label="Footer navigation">
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="programs.html">Our Programs</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="careers.html">Career Opportunities</a></li>
+                            <li><a href="assist.html">Request Assistance</a></li>
+                            <li><a href="donate.html">Make a Donation</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Our Impact Areas</h4>
                     <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="programs.html">Programs</a></li>
-                        <li><a href="careers.html">Careers</a></li>
-                        <li><a href="donate.html">Donate</a></li>
+                        <li>HIV/AIDS Awareness & Prevention</li>
+                        <li>Mental Health Support</li>
+                        <li>Gender Equality Advocacy</li>
+                        <li>Arts-Based Education</li>
+                        <li>Youth Leadership Development</li>
+                        <li>Community Health Initiatives</li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4>Follow Us</h4>
+                    <h4>Stay Connected</h4>
+                    <p class="mb-4">Follow our journey and stay updated on our latest initiatives.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">Facebook</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
-                        <a href="#" aria-label="Instagram">Instagram</a>
+                        <a href="#" aria-label="Follow us on Facebook" class="social-link">Facebook</a>
+                        <a href="#" aria-label="Follow us on Twitter" class="social-link">Twitter</a>
+                        <a href="#" aria-label="Follow us on Instagram" class="social-link">Instagram</a>
+                        <a href="#" aria-label="Connect with us on LinkedIn" class="social-link">LinkedIn</a>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="mt-6">
+                        <h5 class="text-sm font-semibold mb-2">Newsletter</h5>
+                        <form class="flex gap-2" aria-label="Newsletter signup">
+                            <input 
+                                type="email" 
+                                placeholder="Your email" 
+                                class="form-input text-sm"
+                                style="min-height: 40px; background: var(--white); color: var(--charcoal);"
+                                aria-label="Email address for newsletter"
+                                required
+                            >
+                            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                <div class="flex justify-between items-center gap-4" style="flex-wrap: wrap;">
+                    <p>&copy; 2024 Elpis Initiative Uganda. All rights reserved.</p>
+                    <div class="flex gap-4 text-sm">
+                        <a href="#" class="text-white">Privacy Policy</a>
+                        <a href="#" class="text-white">Terms of Service</a>
+                        <a href="#" class="text-white">Accessibility</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
