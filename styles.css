@@ -459,9 +459,8 @@ p {
   background-color: var(--primary-blue);
 }
 
-.bg-opacity-10 {
-  opacity: 0.1;
-}
+/* Removed .bg-opacity-10 with opacity: 0.1 - it was making content invisible */
+/* Background opacity is now handled by the specific color classes above */
 
 .flex-col {
   flex-direction: column;
