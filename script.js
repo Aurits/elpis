@@ -15,6 +15,7 @@ class ElpisWebsite {
     this.initAnimations()
     this.initAccessibility()
     this.initCopyrightYear()
+    this.initJobListings()
   }
 
   // Navigation functionality
@@ -805,6 +806,656 @@ class ElpisWebsite {
       copyrightYear.textContent = currentYear
     }
   }
+
+  // Job listings functionality
+  initJobListings() {
+    this.currentPage = 1
+    this.jobsPerPage = 6
+    this.initPagination() // Initialize pagination first
+    this.loadJobs()
+    this.initJobFilters()
+  }
+
+  loadJobs() {
+    // Load embedded job data directly
+    this.loadEmbeddedJobs()
+  }
+
+  loadEmbeddedJobs() {
+    // Embedded job data as fallback
+    this.jobs = [
+      {
+        "id": 1,
+        "title": "Regional Finance Officer",
+        "department": "Finance & Admin",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Manage daily financial operations and budget support across regional offices.",
+        "qualifications": "Degree in finance/accounting, CPA preferred",
+        "experience": "3-5 years",
+        "salary_range": "UGX 2,800,000 - 3,800,000"
+      },
+      {
+        "id": 2,
+        "title": "Accountant",
+        "department": "Finance & Admin",
+        "location": "Arua",
+        "type": "partner-only",
+        "description": "Handle financial records, reporting, and compliance.",
+        "qualifications": "Degree in accounting, professional certification",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,200,000 - 3,000,000"
+      },
+      {
+        "id": 3,
+        "title": "HR Assistant",
+        "department": "Finance & Admin",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Support HR operations, recruitment, and employee relations.",
+        "qualifications": "Diploma in HR, CIPD certification preferred",
+        "experience": "1-3 years",
+        "salary_range": "UGX 1,500,000 - 2,200,000"
+      },
+      {
+        "id": 4,
+        "title": "Procurement Officer",
+        "department": "Finance & Admin",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Manage procurement processes and ensure compliance with regulations.",
+        "qualifications": "Degree in procurement, CIPS certification preferred",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,000,000 - 2,800,000"
+      },
+      {
+        "id": 5,
+        "title": "Logistics Officer",
+        "department": "Finance & Admin",
+        "location": "Gulu",
+        "type": "partner-only",
+        "description": "Oversee logistics operations and supply chain management.",
+        "qualifications": "Degree in logistics or supply chain management",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,000,000 - 2,800,000"
+      },
+      {
+        "id": 6,
+        "title": "Office Manager",
+        "department": "Finance & Admin",
+        "location": "Kotido",
+        "type": "partner-only",
+        "description": "Supervise office operations, administration, and staff coordination.",
+        "qualifications": "Degree in administration or business management",
+        "experience": "3-5 years",
+        "salary_range": "UGX 2,500,000 - 3,500,000"
+      },
+      {
+        "id": 7,
+        "title": "Front Desk Manager",
+        "department": "Finance & Admin",
+        "location": "Kampala",
+        "type": "open",
+        "description": "Ensure excellent customer service and manage front desk operations.",
+        "qualifications": "Good English, Smart and Presentable, customer service experience",
+        "experience": "1-2 years",
+        "salary_range": "UGX 1,200,000 - 1,800,000"
+      },
+      {
+        "id": 8,
+        "title": "Regional Manager M&E",
+        "department": "Monitoring & Evaluation",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Oversee monitoring and evaluation across regional offices, ensuring data quality.",
+        "qualifications": "Degree in M&E, statistics, or social sciences",
+        "experience": "3-5 years",
+        "salary_range": "UGX 2,500,000 - 3,500,000"
+      },
+      {
+        "id": 9,
+        "title": "M&E Assistant",
+        "department": "Monitoring & Evaluation",
+        "location": "Gulu",
+        "type": "partner-only",
+        "description": "Support M&E processes, data collection, and reporting activities.",
+        "qualifications": "Diploma in relevant field, data collection experience",
+        "experience": "1-2 years",
+        "salary_range": "UGX 1,200,000 - 1,800,000"
+      },
+      {
+        "id": 10,
+        "title": "Data Entry Clerk",
+        "department": "Monitoring & Evaluation",
+        "location": "Mbarara",
+        "type": "partner-only",
+        "description": "Enter and manage data with accuracy and attention to detail.",
+        "qualifications": "Certificate in data entry, computer literacy",
+        "experience": "0-1 years",
+        "salary_range": "UGX 800,000 - 1,200,000"
+      },
+      {
+        "id": 11,
+        "title": "Data Analyst",
+        "department": "Monitoring & Evaluation",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Analyze program data, identify trends, and support evaluation processes.",
+        "qualifications": "Degree in statistics/analytics, data analysis experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,000,000 - 2,800,000"
+      },
+      {
+        "id": 12,
+        "title": "Programs Officer",
+        "department": "Programs & Operations",
+        "location": "Luuka",
+        "type": "partner-only",
+        "description": "Support implementation of HIV and mental health programs.",
+        "qualifications": "Degree in relevant field, program management experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,200,000 - 3,000,000"
+      },
+      {
+        "id": 13,
+        "title": "Project Coordinator",
+        "department": "Programs & Operations",
+        "location": "Mbarara",
+        "type": "partner-only",
+        "description": "Manage specific program projects and ensure timely delivery.",
+        "qualifications": "Degree and project management certification preferred",
+        "experience": "3-5 years",
+        "salary_range": "UGX 2,800,000 - 3,800,000"
+      },
+      {
+        "id": 14,
+        "title": "Community Development Officers",
+        "department": "Programs & Operations",
+        "location": "Arua",
+        "type": "partner-only",
+        "description": "Engage communities in HIV and mental health awareness programs.",
+        "qualifications": "Degree in community development or social work",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,000,000 - 2,800,000"
+      },
+      {
+        "id": 15,
+        "title": "Training & Capacity Building Officer",
+        "department": "Programs & Operations",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Conduct training sessions for staff and community members.",
+        "qualifications": "Degree in education or relevant field, training experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,200,000 - 3,000,000"
+      },
+      {
+        "id": 16,
+        "title": "Counsellors",
+        "department": "Programs & Operations",
+        "location": "Gulu",
+        "type": "partner-only",
+        "description": "Provide mental health counseling and support services to youth.",
+        "qualifications": "Degree in psychology or counseling, professional certification",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,500,000 - 3,500,000"
+      },
+      {
+        "id": 17,
+        "title": "Drivers",
+        "department": "Programs & Operations",
+        "location": "Gulu",
+        "type": "open",
+        "description": "Provide safe transportation services for staff and program activities.",
+        "qualifications": "Valid driving license, clean record, defensive driving certificate",
+        "experience": "2-3 years",
+        "salary_range": "UGX 1,200,000 - 1,800,000"
+      },
+      {
+        "id": 18,
+        "title": "Public Relations Officer",
+        "department": "Communications & Advocacy",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Manage public image, media relations, and organizational communications.",
+        "qualifications": "Degree in PR/communications, media relations experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,200,000 - 3,000,000"
+      },
+      {
+        "id": 19,
+        "title": "Digital Content Manager",
+        "department": "Communications & Advocacy",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Oversee website content, social media strategy, and digital marketing.",
+        "qualifications": "Degree in digital media, content management experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,200,000 - 3,000,000"
+      },
+      {
+        "id": 20,
+        "title": "Social Media Assistants",
+        "department": "Communications & Advocacy",
+        "location": "Mbarara",
+        "type": "open",
+        "description": "Create engaging content and manage social media platforms.",
+        "qualifications": "Diploma in digital media, social media management skills",
+        "experience": "1-2 years",
+        "salary_range": "UGX 1,200,000 - 1,800,000"
+      },
+      {
+        "id": 21,
+        "title": "Media & Outreach Coordinator",
+        "department": "Communications & Advocacy",
+        "location": "Gulu",
+        "type": "partner-only",
+        "description": "Coordinate with media partners and drive outreach campaigns.",
+        "qualifications": "Degree in communications, media relations experience",
+        "experience": "2-4 years",
+        "salary_range": "UGX 2,000,000 - 2,800,000"
+      },
+      {
+        "id": 22,
+        "title": "Videographer",
+        "department": "Communications & Advocacy",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Capture high-quality videos for program documentation and marketing.",
+        "qualifications": "Diploma in videography, portfolio required",
+        "experience": "1-3 years",
+        "salary_range": "UGX 1,800,000 - 2,500,000"
+      },
+      {
+        "id": 23,
+        "title": "Graphic Designers",
+        "department": "Communications & Advocacy",
+        "location": "Kampala",
+        "type": "partner-only",
+        "description": "Design graphics, publications, and marketing materials for campaigns.",
+        "qualifications": "Degree in graphic design, portfolio required",
+        "experience": "1-3 years",
+        "salary_range": "UGX 1,800,000 - 2,500,000"
+      }
+    ]
+
+    this.displayCurrentPage()
+    this.updateJobCounts()
+    this.populateDepartmentFilter()
+    this.hideLoadingState()
+  }
+
+  displayJobs(jobs) {
+    const container = document.getElementById('job-listings')
+    if (!container) return
+
+    if (jobs.length === 0) {
+      container.innerHTML = `
+        <div class="glass-card p-8 text-center">
+          <p class="text-lg">No jobs found matching your criteria.</p>
+        </div>
+      `
+      this.hidePagination()
+      return
+    }
+
+    // Calculate pagination
+    const startIndex = (this.currentPage - 1) * this.jobsPerPage
+    const endIndex = startIndex + this.jobsPerPage
+    const paginatedJobs = jobs.slice(startIndex, endIndex)
+
+    // Group jobs by type
+    const partnerJobs = paginatedJobs.filter(job => job.type === 'partner-only')
+    const openJobs = paginatedJobs.filter(job => job.type === 'open')
+
+    let html = ''
+
+    // Partner-only jobs section
+    if (partnerJobs.length > 0) {
+      html += `
+        <div class="mb-16">
+          <h3 class="text-2xl font-bold mb-8 text-center">
+            ✅ Positions Reserved for Elpis Uganda Partners
+          </h3>
+          <div class="grid grid-1 gap-6" id="partner-jobs">
+      `
+
+      partnerJobs.forEach(job => {
+        html += this.createJobCard(job)
+      })
+
+      html += `
+          </div>
+        </div>
+      `
+    }
+
+    // Open jobs section
+    if (openJobs.length > 0) {
+      html += `
+        <div class="mb-16">
+          <h3 class="text-2xl font-bold mb-8 text-center">
+            🌐 Positions Open to All Candidates
+          </h3>
+          <div class="grid grid-1 gap-6" id="open-jobs">
+      `
+
+      openJobs.forEach(job => {
+        html += this.createJobCard(job)
+      })
+
+      html += `
+          </div>
+        </div>
+      `
+    }
+
+    // Add page info
+    const totalPages = Math.ceil(jobs.length / this.jobsPerPage)
+    const startJob = (this.currentPage - 1) * this.jobsPerPage + 1
+    const endJob = Math.min(this.currentPage * this.jobsPerPage, jobs.length)
+
+    html += `
+      <div class="text-center mt-6 mb-4">
+        <p class="text-sm text-gray-600">
+          Showing ${startJob}-${endJob} of ${jobs.length} positions
+        </p>
+      </div>
+    `
+
+    container.innerHTML = html
+    this.updatePagination(jobs)
+  }
+
+  createJobCard(job) {
+    const typeColor = job.type === 'partner-only' ? 'text-primary' : 'text-secondary'
+    const typeBg = job.type === 'partner-only' ? 'bg-primary-pink' : 'bg-primary-blue'
+
+    return `
+      <div class="glass-card job-card" data-job-id="${job.id}" data-type="${job.type}" data-location="${job.location}" data-department="${job.department}">
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h4 class="${typeColor} font-semibold text-lg mb-2">
+              ${job.title}
+            </h4>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold ${typeBg} text-white">
+              ${job.type === 'partner-only' ? 'Partner Only' : 'Open to All'}
+            </span>
+          </div>
+          
+          <div class="mb-4">
+            <p class="text-sm text-gray-600 mb-2">
+              <strong>Department:</strong> ${job.department}
+            </p>
+          </div>
+          
+          <p class="mb-4 text-gray-700">
+            ${job.description}
+          </p>
+          
+          <div class="border-t pt-4">
+            <p class="text-sm">
+              <strong>Qualifications:</strong> ${job.qualifications}
+            </p>
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  updateJobCounts() {
+    if (!this.jobs) return
+
+    const partnerCount = this.jobs.filter(job => job.type === 'partner-only').length
+    const openCount = this.jobs.filter(job => job.type === 'open').length
+
+    const partnerCountEl = document.getElementById('partner-jobs-count')
+    const openCountEl = document.getElementById('open-jobs-count')
+    const totalJobsEl = document.getElementById('total-jobs')
+
+    if (partnerCountEl) partnerCountEl.textContent = partnerCount
+    if (openCountEl) openCountEl.textContent = openCount
+    if (totalJobsEl) totalJobsEl.textContent = this.jobs.length
+  }
+
+  populateDepartmentFilter() {
+    if (!this.jobs) return
+
+    const departments = [...new Set(this.jobs.map(job => job.department))].sort()
+    const departmentFilter = document.getElementById('department-filter')
+
+    if (departmentFilter) {
+      // Clear existing options except "All Departments"
+      departmentFilter.innerHTML = '<option value="all">All Departments</option>'
+
+      departments.forEach(dept => {
+        const option = document.createElement('option')
+        option.value = dept
+        option.textContent = dept
+        departmentFilter.appendChild(option)
+      })
+    }
+  }
+
+  initJobFilters() {
+    const jobFilter = document.getElementById('job-filter')
+    const locationFilter = document.getElementById('location-filter')
+    const departmentFilter = document.getElementById('department-filter')
+
+    if (jobFilter) {
+      jobFilter.addEventListener('change', () => this.filterJobs())
+    }
+    if (locationFilter) {
+      locationFilter.addEventListener('change', () => this.filterJobs())
+    }
+    if (departmentFilter) {
+      departmentFilter.addEventListener('change', () => this.filterJobs())
+    }
+  }
+
+  filterJobs() {
+    if (!this.jobs) return
+
+    // Reset to first page when filtering
+    this.currentPage = 1
+    this.displayCurrentPage()
+  }
+
+  // Pagination functionality
+  initPagination() {
+    // Create pagination container
+    const jobListings = document.getElementById('job-listings')
+    if (!jobListings) return
+
+    // Check if pagination container already exists
+    let paginationContainer = document.getElementById('pagination-container')
+    if (!paginationContainer) {
+      const paginationHTML = `
+        <div id="pagination-container" class="mt-8 flex justify-center" style="display: none;">
+          <div class="glass-card p-4">
+            <div id="pagination" class="flex items-center gap-2">
+              <!-- Pagination buttons will be inserted here -->
+            </div>
+          </div>
+        </div>
+      `
+
+      jobListings.insertAdjacentHTML('afterend', paginationHTML)
+    }
+  }
+
+  updatePagination(jobs) {
+    const totalPages = Math.ceil(jobs.length / this.jobsPerPage)
+    const pagination = document.getElementById('pagination')
+    
+    console.log('Updating pagination:', {
+      totalJobs: jobs.length,
+      totalPages: totalPages,
+      currentPage: this.currentPage,
+      jobsPerPage: this.jobsPerPage,
+      paginationElement: pagination
+    })
+    
+    if (!pagination) {
+      console.error('Pagination element not found!')
+      return
+    }
+    
+    // Always show pagination for debugging (remove this later)
+    if (totalPages <= 1) {
+      // Show test pagination
+      pagination.innerHTML = `
+        <button onclick="window.elpisWebsite.goToPage(1)" 
+                class="px-3 py-2 rounded-lg bg-primary-pink text-white">
+          Test Page 1
+        </button>
+        <button onclick="window.elpisWebsite.goToPage(2)" 
+                class="px-3 py-2 rounded-lg bg-gray-200 text-gray-700">
+          Test Page 2
+        </button>
+      `
+      this.showPagination()
+      return
+    }
+
+    let paginationHTML = ''
+
+    // Previous button
+    if (this.currentPage > 1) {
+      paginationHTML += `
+        <button onclick="window.elpisWebsite.goToPage(${this.currentPage - 1})" 
+                class="px-3 py-2 rounded-lg bg-primary-blue text-white hover:bg-opacity-80 transition-all">
+          Previous
+        </button>
+      `
+    }
+
+    // Page numbers
+    const startPage = Math.max(1, this.currentPage - 2)
+    const endPage = Math.min(totalPages, this.currentPage + 2)
+
+    if (startPage > 1) {
+      paginationHTML += `
+        <button onclick="window.elpisWebsite.goToPage(1)" 
+                class="px-3 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all">
+          1
+        </button>
+      `
+      if (startPage > 2) {
+        paginationHTML += `<span class="px-2 text-gray-500">...</span>`
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      const isActive = i === this.currentPage
+      paginationHTML += `
+        <button onclick="window.elpisWebsite.goToPage(${i})" 
+                class="px-3 py-2 rounded-lg ${isActive ? 'bg-primary-pink text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'} transition-all">
+          ${i}
+        </button>
+      `
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        paginationHTML += `<span class="px-2 text-gray-500">...</span>`
+      }
+      paginationHTML += `
+        <button onclick="window.elpisWebsite.goToPage(${totalPages})" 
+                class="px-3 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition-all">
+          ${totalPages}
+        </button>
+      `
+    }
+
+    // Next button
+    if (this.currentPage < totalPages) {
+      paginationHTML += `
+        <button onclick="window.elpisWebsite.goToPage(${this.currentPage + 1})" 
+                class="px-3 py-2 rounded-lg bg-primary-blue text-white hover:bg-opacity-80 transition-all">
+          Next
+        </button>
+      `
+    }
+
+    pagination.innerHTML = paginationHTML
+    this.showPagination()
+    
+    // Force show pagination for debugging
+    console.log('Pagination HTML:', paginationHTML)
+    console.log('Pagination container:', document.getElementById('pagination-container'))
+  }
+
+  goToPage(page) {
+    console.log('Going to page:', page)
+    this.currentPage = page
+    this.displayCurrentPage()
+  }
+
+  displayCurrentPage() {
+    if (!this.jobs) return
+
+    const typeFilter = document.getElementById('job-filter')?.value || 'all'
+    const locationFilter = document.getElementById('location-filter')?.value || 'all'
+    const departmentFilter = document.getElementById('department-filter')?.value || 'all'
+
+    let filteredJobs = this.jobs
+
+    if (typeFilter !== 'all') {
+      filteredJobs = filteredJobs.filter(job => job.type === typeFilter)
+    }
+
+    if (locationFilter !== 'all') {
+      filteredJobs = filteredJobs.filter(job => job.location === locationFilter)
+    }
+
+    if (departmentFilter !== 'all') {
+      filteredJobs = filteredJobs.filter(job => job.department === departmentFilter)
+    }
+
+    // Ensure current page doesn't exceed total pages
+    const totalPages = Math.ceil(filteredJobs.length / this.jobsPerPage)
+    if (this.currentPage > totalPages && totalPages > 0) {
+      this.currentPage = totalPages
+    }
+
+    this.displayJobs(filteredJobs)
+  }
+
+  showPagination() {
+    const container = document.getElementById('pagination-container')
+    if (container) {
+      container.style.display = 'flex'
+      console.log('Showing pagination')
+    }
+  }
+
+  hidePagination() {
+    const container = document.getElementById('pagination-container')
+    if (container) {
+      container.style.display = 'none'
+      console.log('Hiding pagination')
+    }
+  }
+
+  hideLoadingState() {
+    const loadingEl = document.getElementById('loading-jobs')
+    if (loadingEl) {
+      loadingEl.style.display = 'none'
+    }
+  }
+
+  showJobError() {
+    const container = document.getElementById('job-listings')
+    if (container) {
+      container.innerHTML = `
+        <div class="glass-card p-8 text-center">
+          <p class="text-lg text-red-600">Error loading job opportunities. Please try again later.</p>
+        </div>
+      `
+    }
+    this.hideLoadingState()
+  }
 }
 
 // Enhanced CSS animations
@@ -912,7 +1563,7 @@ document.head.appendChild(style)
 
 // Initialize the website when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  window.elpis = new ElpisWebsite()
+  window.elpisWebsite = new ElpisWebsite()
 })
 
 // Export for module systems
