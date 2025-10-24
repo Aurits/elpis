@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Form | Elpis Initiative Uganda</title>
+    <meta
+      name="description"
+      content="Apply for a position at Elpis Initiative Uganda. Submit your application and join our youth-led movement making a positive impact."
+    />
+    <meta
+      name="keywords"
+      content="job application, career application, Elpis Uganda jobs, NGO application form"
+    />
+    <meta name="author" content="Elpis Initiative Uganda" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta
+      property="og:title"
+      content="Job Application Form | Elpis Initiative Uganda"
+    />
+    <meta
+      property="og:description"
+      content="Apply for a position at Elpis Initiative Uganda. Join our team making a difference."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://elpisuganda.org/apply.html" />
+    <meta property="og:image" content="docs/EIU Black Slogan.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="EUI Black Logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png" />
+
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+          <div class="nav-container">
+            <a
+              href="index.html"
+              class="nav-logo"
+              aria-label="Elpis Initiative Uganda Homepage"
+            >
+              <img
+                src="EUI Black Logo.png"
+                alt="Elpis Initiative Uganda"
+                class="logo"
+                width="64"
+                height="64"
+              />
+            </a>
+
+            <ul class="nav-menu" role="menubar">
+              <li role="none">
+                <a href="index.html" class="nav-link" role="menuitem">Home</a>
+              </li>
+              <li role="none">
+                <a href="about.html" class="nav-link" role="menuitem">About</a>
+              </li>
+              <li role="none">
+                <a href="programs.html" class="nav-link" role="menuitem"
+                  >What We Do</a
+                >
+              </li>
+              <li role="none">
+                <a href="gallery.html" class="nav-link" role="menuitem"
+                  >Gallery</a
+                >
+              </li>
+              <li role="none">
+                <a href="careers.html" class="nav-link active" role="menuitem"
+                  >Careers</a
+                >
+              </li>
+              <li role="none">
+                <a href="assist.html" class="nav-link" role="menuitem"
+                  >Assist Me</a
+                >
+              </li>
+              <li role="none">
+                <a
+                  href="donate.html"
+                  class="nav-link btn-primary"
+                  role="menuitem"
+                  >Donate</a
+                >
+              </li>
+            </ul>
+
+            <button
+              class="hamburger"
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded="false"
+              aria-controls="nav-menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+      <!-- Hero Section -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-content">
+            <h1 id="hero-title" class="hero-title">📝 Job Application Form</h1>
+            <p class="hero-subtitle">
+              Take the first step towards joining our dynamic team. Fill out the
+              form below and attach your CV and cover letter.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Application Form Section -->
+      <section class="section" id="application-form" aria-labelledby="form-title">
+        <div class="container">
+          <div class="max-w-4xl mx-auto">
+            <div class="glass-card p-6">
+              <h2 id="form-title" class="application-form-title">
+                Submit Your Application
+              </h2>
+
+              <form id="job-application-form" class="form" novalidate>
+                <!-- Personal Information -->
+                <div class="form-section">
+                  <h3 class="text-primary">
+                    Personal Information
+                  </h3>
+
+                  <div class="grid grid-1 md:grid-2 gap-6">
+                    <div class="form-group">
+                      <label for="first-name" class="form-label required"
+                        >First Name</label
+                      >
+                      <input
+                        type="text"
+                        id="first-name"
+                        name="first-name"
+                        class="form-input"
+                        required
+                        aria-required="true"
+                      />
+                      <span class="error-message" id="first-name-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="last-name" class="form-label required"
+                        >Last Name</label
+                      >
+                      <input
+                        type="text"
+                        id="last-name"
+                        name="last-name"
+                        class="form-input"
+                        required
+                        aria-required="true"
+                      />
+                      <span class="error-message" id="last-name-error"></span>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-1 md:grid-2 gap-6">
+                    <div class="form-group">
+                      <label for="email" class="form-label required">Email Address</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-input"
+                        required
+                        aria-required="true"
+                      />
+                      <span class="error-message" id="email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="phone" class="form-label required"
+                        >Phone Number</label
+                      >
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="form-input"
+                        placeholder="+256 XXX XXX XXX"
+                        required
+                        aria-required="true"
+                      />
+                      <span class="error-message" id="phone-error"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="address" class="form-label">Current Address</label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      class="form-input"
+                      placeholder="City, District"
+                    />
+                  </div>
+                </div>
+
+                <!-- Position Information -->
+                <div class="form-section">
+                  <h3 class="text-secondary">
+                    Position Details
+                  </h3>
+
+                  <div class="form-group">
+                    <label for="position" class="form-label required"
+                      >Position Applied For</label
+                    >
+                    <select
+                      id="position"
+                      name="position"
+                      class="form-select"
+                      required
+                      aria-required="true"
+                    >
+                      <option value="">-- Select a Position --</option>
+                      <optgroup label="Finance & Admin">
+                        <option value="Regional Finance Officer">Regional Finance Officer</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="HR Assistant">HR Assistant</option>
+                        <option value="Procurement Officer">Procurement Officer</option>
+                        <option value="Logistics Officer">Logistics Officer</option>
+                        <option value="Office Manager">Office Manager</option>
+                        <option value="Front Desk Manager">Front Desk Manager</option>
+                      </optgroup>
+                      <optgroup label="Monitoring & Evaluation">
+                        <option value="Regional Manager M&E">Regional Manager M&E</option>
+                        <option value="M&E Assistant">M&E Assistant</option>
+                        <option value="Data Entry Clerk">Data Entry Clerk</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                      </optgroup>
+                      <optgroup label="Programs & Operations">
+                        <option value="Programs Officer">Programs Officer</option>
+                        <option value="Project Coordinator">Project Coordinator</option>
+                        <option value="Community Development Officers">Community Development Officers</option>
+                        <option value="Training & Capacity Building Officer">Training & Capacity Building Officer</option>
+                        <option value="Counsellors">Counsellors</option>
+                        <option value="Drivers">Drivers</option>
+                      </optgroup>
+                      <optgroup label="Communications & Advocacy">
+                        <option value="Public Relations Officer">Public Relations Officer</option>
+                        <option value="Digital Content Manager">Digital Content Manager</option>
+                        <option value="Social Media Assistants">Social Media Assistants</option>
+                        <option value="Media & Outreach Coordinator">Media & Outreach Coordinator</option>
+                        <option value="Videographer">Videographer</option>
+                        <option value="Graphic Designers">Graphic Designers</option>
+                      </optgroup>
+                    </select>
+                    <span class="error-message" id="position-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="location-preference" class="form-label"
+                      >Preferred Location</label
+                    >
+                    <select id="location-preference" name="location-preference" class="form-select">
+                      <option value="">-- Select Location --</option>
+                      <option value="Kampala">Kampala</option>
+                      <option value="Gulu">Gulu</option>
+                      <option value="Kotido">Kotido</option>
+                      <option value="Luuka">Luuka</option>
+                      <option value="Arua">Arua</option>
+                      <option value="Mbarara">Mbarara</option>
+                      <option value="Any">Any Location</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Qualifications -->
+                <div class="form-section">
+                  <h3 class="text-primary">
+                    Qualifications & Experience
+                  </h3>
+
+                  <div class="form-group">
+                    <label for="education" class="form-label required"
+                      >Highest Level of Education</label
+                    >
+                    <select
+                      id="education"
+                      name="education"
+                      class="form-select"
+                      required
+                      aria-required="true"
+                    >
+                      <option value="">-- Select Education Level --</option>
+                      <option value="Certificate">Certificate</option>
+                      <option value="Diploma">Diploma</option>
+                      <option value="Degree">Bachelor's Degree</option>
+                      <option value="Masters">Master's Degree</option>
+                      <option value="PhD">PhD/Doctorate</option>
+                    </select>
+                    <span class="error-message" id="education-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="experience" class="form-label required"
+                      >Years of Relevant Experience</label
+                    >
+                    <select
+                      id="experience"
+                      name="experience"
+                      class="form-select"
+                      required
+                      aria-required="true"
+                    >
+                      <option value="">-- Select Experience --</option>
+                      <option value="0-1">0-1 years</option>
+                      <option value="1-2">1-2 years</option>
+                      <option value="2-4">2-4 years</option>
+                      <option value="3-5">3-5 years</option>
+                      <option value="5+">5+ years</option>
+                    </select>
+                    <span class="error-message" id="experience-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="skills" class="form-label"
+                      >Key Skills & Competencies</label
+                    >
+                    <textarea
+                      id="skills"
+                      name="skills"
+                      class="form-textarea"
+                      rows="4"
+                      placeholder="List your key skills relevant to this position..."
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Elpis Partner Status -->
+                <div class="form-section">
+                  <h3 class="text-secondary">
+                    Elpis Partner Status
+                  </h3>
+
+                  <div class="form-group">
+                    <label class="form-label required">Are you an Elpis Uganda Partner?</label>
+                    <div class="flex gap-6">
+                      <label class="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="partner-status"
+                          value="yes"
+                          required
+                          aria-required="true"
+                        />
+                        <span>Yes</span>
+                      </label>
+                      <label class="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="partner-status"
+                          value="no"
+                          required
+                          aria-required="true"
+                        />
+                        <span>No</span>
+                      </label>
+                    </div>
+                    <span class="error-message" id="partner-status-error"></span>
+                  </div>
+
+                  <div class="form-group partner-id-hidden" id="partner-id-group">
+                    <label for="partner-id" class="form-label">Partner ID</label>
+                    <input
+                      type="text"
+                      id="partner-id"
+                      name="partner-id"
+                      class="form-input"
+                      placeholder="Enter your Elpis Partner ID"
+                    />
+                  </div>
+                </div>
+
+                <!-- Cover Letter -->
+                <div class="form-section">
+                  <h3 class="text-primary">
+                    Cover Letter
+                  </h3>
+
+                  <div class="form-group">
+                    <label for="cover-letter" class="form-label required"
+                      >Why do you want to work with Elpis Initiative Uganda?</label
+                    >
+                    <textarea
+                      id="cover-letter"
+                      name="cover-letter"
+                      class="form-textarea"
+                      rows="6"
+                      placeholder="Tell us why you're interested in this position and what you can bring to our team..."
+                      required
+                      aria-required="true"
+                    ></textarea>
+                    <span class="error-message" id="cover-letter-error"></span>
+                  </div>
+                </div>
+
+                <!-- File Uploads -->
+                <div class="form-section">
+                  <h3 class="text-secondary">
+                    Required Documents
+                  </h3>
+
+                  <div class="form-group">
+                    <label for="cv-upload" class="form-label required"
+                      >Upload Your CV/Resume (PDF, DOC, DOCX - Max 5MB)</label
+                    >
+                    <input
+                      type="file"
+                      id="cv-upload"
+                      name="cv-upload"
+                      class="form-input"
+                      accept=".pdf,.doc,.docx"
+                      required
+                      aria-required="true"
+                    />
+                    <span class="error-message" id="cv-upload-error"></span>
+                    <p class="text-sm text-gray-600 mt-2">
+                      Please upload your most recent CV
+                    </p>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cover-letter-upload" class="form-label"
+                      >Upload Cover Letter (PDF, DOC, DOCX - Max 5MB) - Optional</label
+                    >
+                    <input
+                      type="file"
+                      id="cover-letter-upload"
+                      name="cover-letter-upload"
+                      class="form-input"
+                      accept=".pdf,.doc,.docx"
+                    />
+                    <p class="text-sm text-gray-600 mt-2">
+                      Optional: Upload a formal cover letter document
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="form-section">
+                  <h3 class="text-primary">
+                    Additional Information
+                  </h3>
+
+                  <div class="form-group">
+                    <label for="availability" class="form-label"
+                      >When are you available to start?</label
+                    >
+                    <input
+                      type="date"
+                      id="availability"
+                      name="availability"
+                      class="form-input"
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="references" class="form-label"
+                      >References (Name, Position, Contact)</label
+                    >
+                    <textarea
+                      id="references"
+                      name="references"
+                      class="form-textarea"
+                      rows="4"
+                      placeholder="Provide at least 2 professional references..."
+                    ></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="additional-info" class="form-label"
+                      >Additional Comments</label
+                    >
+                    <textarea
+                      id="additional-info"
+                      name="additional-info"
+                      class="form-textarea"
+                      rows="4"
+                      placeholder="Any other information you'd like to share..."
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Declaration -->
+                <div class="form-section mb-8">
+                  <div class="bg-primary-blue bg-opacity-10 p-6 rounded-lg">
+                    <label class="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="declaration"
+                        name="declaration"
+                        class="mt-1"
+                        required
+                        aria-required="true"
+                      />
+                      <span class="text-sm">
+                        I declare that the information provided in this application is
+                        true and accurate to the best of my knowledge. I understand
+                        that any false information may result in disqualification from
+                        the recruitment process.
+                      </span>
+                    </label>
+                    <span class="error-message" id="declaration-error"></span>
+                  </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Submit Application
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Important Notes Section -->
+      <section class="info-section">
+        <div class="container">
+          <div class="max-w-4xl mx-auto">
+            <div class="glass-card p-6">
+              <h3>
+                📌 Important Information
+              </h3>
+
+              <div class="grid grid-1 gap-6">
+                <div>
+                  <h4 class="text-primary">
+                    Application Deadline
+                  </h4>
+                  <p>All applications must be submitted by <strong>20th December 2024</strong>.</p>
+                </div>
+
+                <div>
+                  <h4 class="text-secondary">
+                    Selection Process
+                  </h4>
+                  <p>
+                    Only shortlisted candidates will be contacted for interviews.
+                    The selection process may take 2-4 weeks.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-primary">
+                    Contact Us
+                  </h4>
+                  <p>
+                    For questions about the application process, email:
+                    <a
+                      href="mailto:officialeu@elpisuganda.org"
+                      class="text-primary underline"
+                      >officialeu@elpisuganda.org</a
+                    >
+                  </p>
+                </div>
+
+                <div>
+                  <h4 class="text-secondary">
+                    Equal Opportunity Employer
+                  </h4>
+                  <p>
+                    Elpis Initiative Uganda is an equal opportunity employer. We
+                    encourage young professionals aged 25-35 and persons with
+                    special needs to apply.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="image-container footer-logo-container mb-4">
+              <img
+                src="EUI White Logo.png"
+                alt="Elpis Initiative Uganda Logo"
+                loading="lazy"
+              />
+            </div>
+            <h4>Contact Information</h4>
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:officialeu@elpisuganda.org" class="text-white"
+                >officialeu@elpisuganda.org</a
+              >
+            </p>
+            <p><strong>Regions Served:</strong></p>
+            <p>Kampala • Gulu • Kotido • Luuka • Arua • Mbarara</p>
+            <p class="text-sm mt-4">
+              <strong>Founded:</strong> 2022<br />
+              <strong>Co-Founders:</strong> Nkuutu Brian Moses & Feni Desmond
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <nav aria-label="Footer navigation">
+              <ul>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">Our Programs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="careers.html">Career Opportunities</a></li>
+                <li><a href="assist.html">Request Assistance</a></li>
+                <li><a href="donate.html">Make a Donation</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="footer-section">
+            <h4>Our Impact Areas</h4>
+            <ul>
+              <li>HIV/AIDS Awareness & Prevention</li>
+              <li>Mental Health Support</li>
+              <li>Gender Equality Advocacy</li>
+              <li>Arts-Based Education</li>
+              <li>Youth Leadership Development</li>
+              <li>Community Health Initiatives</li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h4>Stay Connected</h4>
+            <p class="mb-4">
+              Follow our journey and stay updated on our latest initiatives.
+            </p>
+            <div class="social-links">
+              <a href="#" aria-label="Follow us on Facebook" class="social-link"
+                >Facebook</a
+              >
+              <a href="#" aria-label="Follow us on Twitter" class="social-link"
+                >Twitter</a
+              >
+              <a
+                href="#"
+                aria-label="Follow us on Instagram"
+                class="social-link"
+                >Instagram</a
+              >
+              <a
+                href="#"
+                aria-label="Connect with us on LinkedIn"
+                class="social-link"
+                >LinkedIn</a
+              >
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="mt-6">
+              <h5 class="text-sm font-semibold mb-2">Newsletter</h5>
+              <form class="flex gap-2" aria-label="Newsletter signup">
+                  <input
+                    type="email"
+                    placeholder="Your email"
+                    class="form-input text-sm footer-newsletter-input"
+                    aria-label="Email address for newsletter"
+                    required
+                  />
+                <button type="submit" class="btn btn-primary btn-sm">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div
+            class="flex justify-between items-center gap-4 footer-flex-wrap"
+          >
+            <p>
+              &copy; <span id="copyright-year">2025</span> Elpis Initiative
+              Uganda. All rights reserved.
+            </p>
+            <div class="flex gap-4 text-sm">
+              <a href="#" class="text-white">Privacy Policy</a>
+              <a href="#" class="text-white">Terms of Service</a>
+              <a href="#" class="text-white">Accessibility</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
+

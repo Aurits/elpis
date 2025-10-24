@@ -12,10 +12,11 @@ class ElpisWebsite {
     this.initFormValidation()
     this.initDonationFunctionality()
     this.initGalleryFunctionality()
-    this.initAnimations()
+    // this.initAnimations() - Disabled to prevent fade-out effects
     this.initAccessibility()
     this.initCopyrightYear()
     this.initJobListings()
+    this.initJobApplicationForm()
   }
 
   // Navigation functionality
@@ -593,83 +594,27 @@ class ElpisWebsite {
 
   // Animations
   initAnimations() {
-    this.initScrollAnimations()
+    // Animations disabled for better performance and visibility
     this.initCounterAnimations()
   }
 
   initScrollAnimations() {
+    // Scroll animations disabled - all elements visible immediately
     const animatedElements = document.querySelectorAll('.card, .stat-card, .program-card, .glass-card')
 
-    if ('IntersectionObserver' in window) {
-      const animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1'
-            entry.target.style.transform = 'translateY(0)'
-            entry.target.style.transition = 'all 0.6s ease-out'
-            animationObserver.unobserve(entry.target)
-          }
-        })
-      }, {
-        threshold: 0.2,
-        rootMargin: '50px 0px -50px 0px'
-      })
-
-      animatedElements.forEach(el => {
-        el.style.opacity = '0'
-        el.style.transform = 'translateY(30px)'
-        el.style.transition = 'all 0.6s ease-out'
-        animationObserver.observe(el)
-      })
-    } else {
-      // Fallback for browsers without IntersectionObserver
-      animatedElements.forEach(el => {
-        el.style.opacity = '1'
-        el.style.transform = 'translateY(0)'
-      })
-    }
+    animatedElements.forEach(el => {
+      el.style.opacity = '1'
+      el.style.transform = 'none'
+      el.style.transition = 'none'
+    })
   }
 
   initCounterAnimations() {
-    const counters = document.querySelectorAll('.stat-number')
-
-    if ('IntersectionObserver' in window) {
-      const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            this.animateCounter(entry.target)
-            counterObserver.unobserve(entry.target)
-          }
-        })
-      }, {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
-      })
-
-      counters.forEach(counter => counterObserver.observe(counter))
-    }
+    // Counter animations disabled - numbers show immediately
   }
 
   animateCounter(element) {
-    const target = parseInt(element.textContent.replace(/[^\d]/g, ''))
-    const duration = 2000
-    const step = target / (duration / 16)
-    let current = 0
-
-    // Store the original suffix (like '+' in "1,200+")
-    const originalText = element.textContent
-    const suffix = originalText.match(/[^\d,]+$/)?.[0] || ''
-
-    const timer = setInterval(() => {
-      current += step
-      if (current >= target) {
-        current = target
-        clearInterval(timer)
-      }
-
-      // Reapply the suffix (like '+') when replacing the number
-      element.textContent = Math.floor(current).toLocaleString() + suffix
-    }, 16)
+    // Counter animation disabled
   }
 
   // Accessibility features
@@ -1113,9 +1058,9 @@ class ElpisWebsite {
     // Partner-only jobs section
     if (partnerJobs.length > 0) {
       html += `
-        <div class="mb-16">
+        <div class="mb-16 mt-16">
           <h3 class="text-2xl font-bold mb-8 text-center">
-            ✅ Positions Reserved for Elpis Uganda Partners
+            🌐 Positions Open to All Candidates
           </h3>
           <div class="grid grid-1 gap-6" id="partner-jobs">
       `
@@ -1134,10 +1079,7 @@ class ElpisWebsite {
     if (openJobs.length > 0) {
       html += `
         <div class="mb-16">
-          <h3 class="text-2xl font-bold mb-8 text-center">
-            🌐 Positions Open to All Candidates
-          </h3>
-          <div class="grid grid-1 gap-6" id="open-jobs">
+        <div class="grid grid-1 gap-6" id="open-jobs">
       `
 
       openJobs.forEach(job => {
@@ -1193,10 +1135,16 @@ class ElpisWebsite {
             ${job.description}
           </p>
           
-          <div class="border-t pt-4">
+          <div class="border-t pt-4 mb-4">
             <p class="text-sm">
               <strong>Qualifications:</strong> ${job.qualifications}
             </p>
+          </div>
+
+          <div class="text-center">
+            <a href="apply.html?position=${encodeURIComponent(job.title)}" class="btn btn-${job.type === 'partner-only' ? 'primary' : 'secondary'} btn-sm">
+              Apply Now
+            </a>
           </div>
         </div>
       </div>
@@ -1287,7 +1235,7 @@ class ElpisWebsite {
   updatePagination(jobs) {
     const totalPages = Math.ceil(jobs.length / this.jobsPerPage)
     const pagination = document.getElementById('pagination')
-    
+
     console.log('Updating pagination:', {
       totalJobs: jobs.length,
       totalPages: totalPages,
@@ -1295,12 +1243,12 @@ class ElpisWebsite {
       jobsPerPage: this.jobsPerPage,
       paginationElement: pagination
     })
-    
+
     if (!pagination) {
       console.error('Pagination element not found!')
       return
     }
-    
+
     // Always show pagination for debugging (remove this later)
     if (totalPages <= 1) {
       // Show test pagination
@@ -1380,7 +1328,7 @@ class ElpisWebsite {
 
     pagination.innerHTML = paginationHTML
     this.showPagination()
-    
+
     // Force show pagination for debugging
     console.log('Pagination HTML:', paginationHTML)
     console.log('Pagination container:', document.getElementById('pagination-container'))
@@ -1456,46 +1404,219 @@ class ElpisWebsite {
     }
     this.hideLoadingState()
   }
+
+  // Job Application Form functionality
+  initJobApplicationForm() {
+    const form = document.getElementById('job-application-form')
+    if (!form) return
+
+    // Pre-populate position from URL parameter
+    const urlParams = new URLSearchParams(window.location.search)
+    const position = urlParams.get('position')
+    const positionSelect = document.getElementById('position')
+
+    if (position && positionSelect) {
+      // Set the selected position
+      const options = positionSelect.options
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].value === position) {
+          positionSelect.selectedIndex = i
+          break
+        }
+      }
+    }
+
+    // Show/hide partner ID field based on partner status
+    const partnerRadios = document.getElementsByName('partner-status')
+    const partnerIdGroup = document.getElementById('partner-id-group')
+
+    partnerRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.value === 'yes') {
+          partnerIdGroup.style.display = 'block'
+        } else {
+          partnerIdGroup.style.display = 'none'
+        }
+      })
+    })
+
+    // Form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      if (this.validateJobApplicationForm(form)) {
+        this.submitJobApplication(form)
+      }
+    })
+
+    // File upload validation
+    const cvUpload = document.getElementById('cv-upload')
+    const coverLetterUpload = document.getElementById('cover-letter-upload')
+
+    if (cvUpload) {
+      cvUpload.addEventListener('change', (e) => {
+        this.validateFileUpload(e.target, 'cv-upload-error')
+      })
+    }
+
+    if (coverLetterUpload) {
+      coverLetterUpload.addEventListener('change', (e) => {
+        this.validateFileUpload(e.target, 'cover-letter-upload-error')
+      })
+    }
+  }
+
+  validateJobApplicationForm(form) {
+    let isValid = true
+    const formData = new FormData(form)
+
+    // Clear previous errors
+    document.querySelectorAll('.error-message').forEach(el => {
+      el.textContent = ''
+      el.style.display = 'none'
+    })
+
+    // Validate required text fields
+    const requiredFields = ['first-name', 'last-name', 'email', 'phone', 'position', 'education', 'experience', 'cover-letter']
+
+    requiredFields.forEach(fieldId => {
+      const field = document.getElementById(fieldId)
+      if (field && !field.value.trim()) {
+        this.showError(fieldId, 'This field is required')
+        isValid = false
+      }
+    })
+
+    // Validate email
+    const email = document.getElementById('email')
+    if (email && email.value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email.value)) {
+        this.showError('email', 'Please enter a valid email address')
+        isValid = false
+      }
+    }
+
+    // Validate phone
+    const phone = document.getElementById('phone')
+    if (phone && phone.value) {
+      const phoneRegex = /^(\+256|0)[0-9]{9}$/
+      if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+        this.showError('phone', 'Please enter a valid Ugandan phone number')
+        isValid = false
+      }
+    }
+
+    // Validate partner status
+    const partnerStatus = document.querySelector('input[name="partner-status"]:checked')
+    if (!partnerStatus) {
+      this.showError('partner-status', 'Please select your partner status')
+      isValid = false
+    }
+
+    // Validate CV upload
+    const cvUpload = document.getElementById('cv-upload')
+    if (cvUpload && !cvUpload.files.length) {
+      this.showError('cv-upload', 'Please upload your CV')
+      isValid = false
+    }
+
+    // Validate declaration
+    const declaration = document.getElementById('declaration')
+    if (declaration && !declaration.checked) {
+      this.showError('declaration', 'You must accept the declaration to proceed')
+      isValid = false
+    }
+
+    return isValid
+  }
+
+  validateFileUpload(input, errorId) {
+    const file = input.files[0]
+    const maxSize = 5 * 1024 * 1024 // 5MB
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
+
+    if (file) {
+      if (file.size > maxSize) {
+        this.showError(errorId, 'File size must be less than 5MB')
+        input.value = ''
+        return false
+      }
+
+      if (!allowedTypes.includes(file.type)) {
+        this.showError(errorId, 'Only PDF, DOC, and DOCX files are allowed')
+        input.value = ''
+        return false
+      }
+    }
+
+    return true
+  }
+
+  showError(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}-error`)
+    if (errorElement) {
+      errorElement.textContent = message
+      errorElement.style.display = 'block'
+    }
+  }
+
+  submitJobApplication(form) {
+    // Show loading state
+    const submitButton = form.querySelector('button[type="submit"]')
+    const originalText = submitButton.textContent
+    submitButton.textContent = 'Submitting...'
+    submitButton.disabled = true
+
+    // Simulate form submission (replace with actual API call)
+    setTimeout(() => {
+      // Show success message
+      this.showSuccessModal('Application Submitted Successfully',
+        'Thank you for your application! We have received your submission and will review it carefully. Only shortlisted candidates will be contacted for interviews.')
+
+      // Reset form
+      form.reset()
+      document.getElementById('partner-id-group').style.display = 'none'
+
+      // Reset button
+      submitButton.textContent = originalText
+      submitButton.disabled = false
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 2000)
+  }
+
+  showSuccessModal(title, message) {
+    // Create modal
+    const modal = document.createElement('div')
+    modal.className = 'modal-overlay'
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h3 class="text-2xl font-bold mb-4 text-primary">${title}</h3>
+        <p class="mb-6">${message}</p>
+        <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+      </div>
+    `
+
+    document.body.appendChild(modal)
+
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+      if (modal.parentElement) {
+        modal.remove()
+      }
+    }, 5000)
+  }
 }
 
 // Enhanced CSS animations
 const style = document.createElement('style')
 style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+  /* Animations disabled */
   .loading {
     position: relative;
     overflow: hidden;
-  }
-  
-  .loading::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: loading 1.5s infinite;
-  }
-  
-  @keyframes loading {
-    0% { left: -100%; }
-    100% { left: 100%; }
   }
   
   .success-icon {
