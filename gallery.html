@@ -31,6 +31,12 @@
     <link rel="icon" type="image/x-icon" href="EUI Black Logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png" />
 
+    <!-- Bootstrap CSS -->
+    <!-- <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+      rel="stylesheet"
+    /> -->
+    
     <!-- Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -39,6 +45,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    
+
   </head>
   <body>
     <!-- Skip to main content for accessibility -->
@@ -242,187 +250,203 @@
             <p>Real stories of transformation from the communities we serve</p>
           </div>
 
-          <div class="carousel-container">
-            <div class="carousel-wrapper">
-              <div class="carousel-track" id="impact-carousel-track">
-                
-                <!-- Impact Story 1 -->
-                <div class="carousel-slide">
-                  <div class="glass-card p-8">
-                    <div class="grid grid-2 gap-8 items-center">
-                      <div class="image-container">
-                        <img
-                          src="images/image (15).jpg"
-                          alt="Sarah, young artist who overcame HIV stigma through art therapy"
-                          loading="lazy"
-                          class="w-full object-cover rounded-lg"
-                        />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-bold text-primary mb-4">
-                          Sarah's Story - From Stigma to Strength
-                        </h4>
-                        <p class="mb-4">
-                          "Before joining Elpis, I was afraid to speak about my HIV
-                          status. Through art therapy and community support, I found
-                          my voice. Now I lead workshops helping other young women
-                          break free from stigma."
+          <!-- Bootstrap Carousel -->
+          <div id="impactCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="0" class="active" 
+                      aria-current="true" aria-label="Sarah's Story"></button>
+              <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="1" 
+                      aria-label="David's Journey"></button>
+              <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="2" 
+                      aria-label="Community Leader Perspective"></button>
+              <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="3" 
+                      aria-label="Grace's Impact"></button>
+              <button type="button" data-bs-target="#impactCarousel" data-bs-slide-to="4" 
+                      aria-label="James' Transformation"></button>
+            </div>
+
+            <!-- Carousel Items -->
+            <div class="carousel-inner">
+              
+              <!-- Impact Story 1 -->
+              <div class="carousel-item active">
+                <div class="glass-card p-8">
+                  <div class="grid grid-2 gap-8 items-center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div class="image-container">
+                      <img
+                        src="images/image (15).jpg"
+                        alt="Sarah, young artist who overcame HIV stigma through art therapy"
+                        loading="lazy"
+                        class="w-full object-cover rounded-lg"
+                        style="width: 100%; object-fit: cover; border-radius: 0.5rem;"
+                      />
+                    </div>
+                    <div>
+                      <h4 class="text-xl font-bold text-primary mb-4">
+                        Sarah's Story - From Stigma to Strength
+                      </h4>
+                      <p class="mb-4">
+                        "Before joining Elpis, I was afraid to speak about my HIV
+                        status. Through art therapy and community support, I found
+                        my voice. Now I lead workshops helping other young women
+                        break free from stigma."
+                      </p>
+                      <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-sm font-medium">
+                          Sarah, 21 • Kampala Program Participant & Peer Educator
                         </p>
-                        <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
-                          <p class="text-sm font-medium">
-                            Sarah, 21 • Kampala Program Participant & Peer Educator
-                          </p>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Impact Story 2 -->
-                <div class="carousel-slide">
-                  <div class="glass-card p-8">
-                    <div class="grid grid-2 gap-8 items-center">
-                      <div class="order-2">
-                        <div class="image-container">
-                          <img
-                            src="images/image (38).jpeg"
-                            alt="David, community leader who transformed trauma through creative healing"
-                            loading="lazy"
-                            class="w-full object-cover rounded-lg"
-                          />
-                        </div>
-                      </div>
-                      <div class="order-1">
-                        <h4 class="text-xl font-bold text-secondary mb-4">
-                          David's Journey - Healing Through Art
-                        </h4>
-                        <p class="mb-4">
-                          "Growing up in post-conflict Gulu, I carried trauma that I
-                          couldn't express. Elpis taught me that art could be
-                          medicine. Today, I facilitate healing circles and help
-                          others transform pain into purpose."
-                        </p>
-                        <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
-                          <p class="text-sm font-medium">
-                            David, 24 • Community Art Therapist & Program Alumni
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Impact Story 3 -->
-                <div class="carousel-slide">
-                  <div class="glass-card p-8">
-                    <div class="grid grid-2 gap-8 items-center">
-                      <div class="image-container">
-                        <img
-                          src="images/image (28).jpg"
-                          alt="Local community leader speaking about the impact of Elpis programs"
-                          loading="lazy"
-                          class="w-full object-cover rounded-lg"
-                        />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-bold text-primary mb-4">
-                          Community Leader Perspective
-                        </h4>
-                        <p class="mb-4">
-                          "Elpis didn't just bring programs to our community - they
-                          brought hope. The murals our youth created are daily
-                          reminders that health challenges don't define us. They
-                          inspire us to keep fighting stigma."
-                        </p>
-                        <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
-                          <p class="text-sm font-medium">
-                            Margaret Akello • LC3 Chairperson, Kamwokya
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Impact Story 4 -->
-                <div class="carousel-slide">
-                  <div class="glass-card p-8">
-                    <div class="grid grid-2 gap-8 items-center">
-                      <div class="order-2">
-                        <div class="image-container">
-                          <img
-                            src="images/image (45).jpeg"
-                            alt="Grace, youth mentor empowering others through peer education"
-                            loading="lazy"
-                            class="w-full object-cover rounded-lg"
-                          />
-                        </div>
-                      </div>
-                      <div class="order-1">
-                        <h4 class="text-xl font-bold text-secondary mb-4">
-                          Grace's Impact - Empowering Others
-                        </h4>
-                        <p class="mb-4">
-                          "When I first came to Elpis, I was struggling with my identity and purpose. 
-                          Through mentorship and leadership training, I discovered my passion for 
-                          peer education. Now I coordinate programs across three districts."
-                        </p>
-                        <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
-                          <p class="text-sm font-medium">
-                            Grace, 23 • Regional Program Coordinator & Youth Leader
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Impact Story 5 -->
-                <div class="carousel-slide">
-                  <div class="glass-card p-8">
-                    <div class="grid grid-2 gap-8 items-center">
-                      <div class="image-container">
-                        <img
-                          src="images/image (64).jpeg"
-                          alt="James, former street youth now community advocate"
-                          loading="lazy"
-                          class="w-full object-cover rounded-lg"
-                        />
-                      </div>
-                      <div>
-                        <h4 class="text-xl font-bold text-primary mb-4">
-                          James' Transformation - From Streets to Strength
-                        </h4>
-                        <p class="mb-4">
-                          "I was living on the streets when Elpis found me. They didn't just give me 
-                          shelter - they gave me hope and skills. Through their vocational training 
-                          and arts programs, I built a new life and now help other street youth."
-                        </p>
-                        <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
-                          <p class="text-sm font-medium">
-                            James, 20 • Youth Advocate & Street Outreach Coordinator
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
               </div>
+
+              <!-- Impact Story 2 -->
+              <div class="carousel-item">
+                <div class="glass-card p-8">
+                  <div class="grid grid-2 gap-8 items-center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div style="order: 2;">
+                      <div class="image-container">
+                        <img
+                          src="images/image (38).jpeg"
+                          alt="David, community leader who transformed trauma through creative healing"
+                          loading="lazy"
+                          class="w-full object-cover rounded-lg"
+                          style="width: 100%; object-fit: cover; border-radius: 0.5rem;"
+                        />
+                      </div>
+                    </div>
+                    <div style="order: 1;">
+                      <h4 class="text-xl font-bold text-secondary mb-4">
+                        David's Journey - Healing Through Art
+                      </h4>
+                      <p class="mb-4">
+                        "Growing up in post-conflict Gulu, I carried trauma that I
+                        couldn't express. Elpis taught me that art could be
+                        medicine. Today, I facilitate healing circles and help
+                        others transform pain into purpose."
+                      </p>
+                      <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-sm font-medium">
+                          David, 24 • Community Art Therapist & Program Alumni
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Impact Story 3 -->
+              <div class="carousel-item">
+                <div class="glass-card p-8">
+                  <div class="grid grid-2 gap-8 items-center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div class="image-container">
+                      <img
+                        src="images/image (28).jpg"
+                        alt="Local community leader speaking about the impact of Elpis programs"
+                        loading="lazy"
+                        class="w-full object-cover rounded-lg"
+                        style="width: 100%; object-fit: cover; border-radius: 0.5rem;"
+                      />
+                    </div>
+                    <div>
+                      <h4 class="text-xl font-bold text-primary mb-4">
+                        Community Leader Perspective
+                      </h4>
+                      <p class="mb-4">
+                        "Elpis didn't just bring programs to our community - they
+                        brought hope. The murals our youth created are daily
+                        reminders that health challenges don't define us. They
+                        inspire us to keep fighting stigma."
+                      </p>
+                      <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-sm font-medium">
+                          Margaret Akello • LC3 Chairperson, Kamwokya
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Impact Story 4 -->
+              <div class="carousel-item">
+                <div class="glass-card p-8">
+                  <div class="grid grid-2 gap-8 items-center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div style="order: 2;">
+                      <div class="image-container">
+                        <img
+                          src="images/image (45).jpeg"
+                          alt="Grace, youth mentor empowering others through peer education"
+                          loading="lazy"
+                          class="w-full object-cover rounded-lg"
+                          style="width: 100%; object-fit: cover; border-radius: 0.5rem;"
+                        />
+                      </div>
+                    </div>
+                    <div style="order: 1;">
+                      <h4 class="text-xl font-bold text-secondary mb-4">
+                        Grace's Impact - Empowering Others
+                      </h4>
+                      <p class="mb-4">
+                        "When I first came to Elpis, I was struggling with my identity and purpose. 
+                        Through mentorship and leadership training, I discovered my passion for 
+                        peer education. Now I coordinate programs across three districts."
+                      </p>
+                      <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-sm font-medium">
+                          Grace, 23 • Regional Program Coordinator & Youth Leader
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Impact Story 5 -->
+              <div class="carousel-item">
+                <div class="glass-card p-8">
+                  <div class="grid grid-2 gap-8 items-center" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+                    <div class="image-container">
+                      <img
+                        src="images/image (64).jpeg"
+                        alt="James, former street youth now community advocate"
+                        loading="lazy"
+                        class="w-full object-cover rounded-lg"
+                        style="width: 100%; object-fit: cover; border-radius: 0.5rem;"
+                      />
+                    </div>
+                    <div>
+                      <h4 class="text-xl font-bold text-primary mb-4">
+                        James' Transformation - From Streets to Strength
+                      </h4>
+                      <p class="mb-4">
+                        "I was living on the streets when Elpis found me. They didn't just give me 
+                        shelter - they gave me hope and skills. Through their vocational training 
+                        and arts programs, I built a new life and now help other street youth."
+                      </p>
+                      <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                        <p class="text-sm font-medium">
+                          James, 20 • Youth Advocate & Street Outreach Coordinator
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Carousel Navigation -->
-            <button class="carousel-btn carousel-btn-prev" id="impact-carousel-prev" aria-label="Previous story">
-              <span>❮</span>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#impactCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-btn carousel-btn-next" id="impact-carousel-next" aria-label="Next story">
-              <span>❯</span>
+            <button class="carousel-control-next" type="button" data-bs-target="#impactCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
             </button>
-
-            <!-- Carousel Dots -->
-            <div class="carousel-dots" id="impact-carousel-dots">
-              <!-- Dots will be generated by JavaScript -->
-            </div>
           </div>
         </div>
       </section>
@@ -619,6 +643,9 @@
       </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- Scripts -->
     <script src="script.js"></script>
   </body>

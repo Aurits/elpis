@@ -33,6 +33,12 @@
     <link rel="icon" type="image/x-icon" href="EUI Black Logo.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="EUI Black Logo.png" />
 
+    <!-- Bootstrap CSS -->
+    <!-- <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+      rel="stylesheet"
+    /> -->
+    
     <!-- Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,6 +47,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    
+    <!-- Custom Payment Carousel Styles + Bootstrap Override -->
+
   </head>
   <body>
     <!-- Skip to main content for accessibility -->
@@ -78,9 +87,7 @@
                 >
               </li>
               <li role="none">
-                <a href="gallery.html" class="nav-link" role="menuitem"
-                  >Gallery</a
-                >
+                <a href="gallery.html" class="nav-link" role="menuitem">Gallery</a>
               </li>
               <li role="none">
                 <a href="careers.html" class="nav-link" role="menuitem"
@@ -128,112 +135,76 @@
       <!-- Hero Section -->
       <section class="hero" id="hero" aria-labelledby="hero-title">
         <div class="container">
-          <div class="hero-content">
-            <h1 id="hero-title" class="hero-title">
-              10 Million Hearts, One Cause
-            </h1>
-            <p class="hero-subtitle">
-              Join Uganda's first youth-led philanthropic movement. Together we
-              can create a ripple effect of kindness and generosity that will
-              resonate across Uganda.
+          <div class="hero-content text-center">
+            <h1 id="hero-title" class="hero-title">10 Million Hearts, One Cause</h1>
+            <p class="hero-subtitle max-w-3xl mx-auto">
+              Join Uganda's first youth-led philanthropic movement. Your contribution directly 
+              supports HIV/AIDS awareness, mental health programs, and emergency medical assistance 
+              for young people across Uganda.
             </p>
             <div class="hero-buttons">
               <a href="#payment-methods" class="btn btn-primary btn-lg">
                 Donate Now
               </a>
-              <a href="#campaign-details" class="btn btn-secondary btn-lg">
-                Learn More
+              <a href="#impact" class="btn btn-secondary btn-lg">
+                See Your Impact
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Campaign Overview Section -->
-      <section
-        class="section"
-        id="campaign-details"
-        aria-labelledby="campaign-title"
-      >
+      <!-- Impact Section -->
+      <section class="section" id="impact" aria-labelledby="impact-title">
         <div class="container">
-          <div class="section-header">
-            <h2 id="campaign-title">About the Campaign</h2>
-            <p>
-              We believe in the power of collective action to drive positive
-              change in our communities.
-            </p>
+          <div class="section-header text-center">
+            <h2 id="impact-title">Your Impact</h2>
+            <p>Every donation creates ripples of positive change across Uganda</p>
           </div>
-          <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+
+          <div class="max-w-4xl mx-auto">
             <div class="glass-card p-8">
-              <p class="text-lg mb-6">
-                In response to the pressing need for increased charitable giving
-                in Uganda, Elpis Initiative Uganda launched the "10 Million
-                Hearts, One Cause" campaign. This campaign under the Elpis
-                Initiative Uganda partnership program aims to create a new and
-                more effective way to promote giving for charity in Uganda,
-                seeking to target 10 million individuals especially youth to
-                contribute towards this cause.
-              </p>
-
-              <div class="grid grid-1 gap-6">
-                <div class="flex items-start gap-4">
-                  <div
-                    class="w-12 h-12 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
-                  >
-                    1
-                  </div>
-                  <div>
-                    <h4 class="text-primary mb-3">
-                      HIV/AIDS and Mental Health Awareness
-                    </h4>
-                    <p>
-                      Elpis Initiative Uganda has a track record of using art,
-                      music, dance, drama, film and poetry to raise awareness
-                      about HIV and mental health issues. This fund enables us
-                      to expand our reach and impact, engage people with their
-                      own experiences, and help them thrive.
-                    </p>
-                  </div>
+              <div class="grid grid-2 gap-8 items-center">
+                <div class="image-container">
+                  <img
+                    src="images/image (5).png"
+                    alt="Young people coming together to make a difference"
+                    loading="lazy"
+                    class="w-full h-80 object-cover rounded-lg"
+                  />
                 </div>
-
-                <div class="flex items-start gap-4">
-                  <div
-                    class="w-12 h-12 bg-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
-                  >
-                    2
-                  </div>
-                  <div>
-                    <h4 class="text-secondary mb-3">
-                      Supporting Similar Organizations
-                    </h4>
-                    <p>
-                      We recognize that other organizations are working
-                      tirelessly to address HIV and/or mental health issues in
-                      Uganda, but often lack the resources to do so effectively.
-                      This fund will provide financial support to such
-                      organizations, empowering them to continue carrying out
-                      their vital role.
-                    </p>
-                  </div>
-                </div>
-
-                <div class="flex items-start gap-4">
-                  <div
-                    class="w-12 h-12 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
-                  >
-                    3
-                  </div>
-                  <div>
-                    <h4 class="text-primary mb-3">
-                      Medical Emergency Assistance
-                    </h4>
-                    <p>
-                      For young people aged between 15-40, better medical
-                      services are necessary. This fund will provide critical
-                      financial support for hospitalization and other medical
-                      payments, ensuring that no one has to face these
-                      challenges alone.
-                    </p>
+                <div>
+                  <h3 class="text-2xl font-bold text-primary mb-6">
+                    Every Contribution Counts
+                  </h3>
+                  <div class="space-y-4">
+                    <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                      <div class="flex items-center gap-3">
+                        <span class="text-2xl">🎯</span>
+                        <div>
+                          <h4 class="font-bold text-primary">UGX 20,000</h4>
+                          <p class="text-sm">Funds one youth workshop session</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bg-primary-blue bg-opacity-10 p-4 rounded-lg">
+                      <div class="flex items-center gap-3">
+                        <span class="text-2xl">💚</span>
+                        <div>
+                          <h4 class="font-bold text-secondary">UGX 50,000</h4>
+                          <p class="text-sm">Mental health counseling for 5 people</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bg-primary-pink bg-opacity-10 p-4 rounded-lg">
+                      <div class="flex items-center gap-3">
+                        <span class="text-2xl">🏥</span>
+                        <div>
+                          <h4 class="font-bold text-primary">UGX 100,000</h4>
+                          <p class="text-sm">Emergency medical support for 1 person</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -250,324 +221,289 @@
         aria-labelledby="payment-title"
       >
         <div class="container">
-          <div class="section-header">
-            <h2 id="payment-title">Make Your Contribution</h2>
-            <p>
-              The minimum donation is UGX 20,000. Choose your preferred payment method below to support our mission.
-            </p>
+          <div class="section-header text-center">
+            <h2 id="payment-title">Choose Your Payment Method</h2>
+            <p>Minimum donation: UGX 20,000 • All methods are secure and reliable</p>
           </div>
 
-          <!-- Donation Theme Image -->
-          <div class="max-w-4xl mx-auto mb-12">
-            <div class="glass-card p-8">
-              <div class="grid grid-2 gap-8 items-center">
-                <div class="image-container">
-                  <img
-                    src="images/image (5).png"
-                    alt="Young people coming together to make a difference through donations"
-                    loading="lazy"
-                    class="w-full h-80 object-cover rounded-lg"
-                  />
-                </div>
-                <div>
-                  <h3 class="text-2xl font-bold text-primary mb-6">
-                    Every Contribution Counts
-                  </h3>
-                  <p class="text-lg mb-6">
-                    Join thousands of young Ugandans who are making a difference. Your donation directly supports 
-                    HIV/AIDS awareness, mental health programs, and emergency medical assistance for youth across Uganda.
-                  </p>
-                  <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg">
-                    <h4 class="font-bold text-primary mb-3">🎯 Your Impact</h4>
-                    <ul class="space-y-2 text-sm">
-                      <li>• UGX 20,000 = 1 youth workshop session</li>
-                      <li>• UGX 50,000 = Mental health counseling for 5 people</li>
-                      <li>• UGX 100,000 = Emergency medical support for 1 person</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Payment Options -->
-          <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
-            
-            <!-- Mobile Money Section -->
-            <div class="glass-card p-8">
-              <div class="flex items-center gap-4 mb-8">
-                <div class="w-16 h-16 bg-gradient-to-r from-primary-pink to-primary-blue rounded-full flex items-center justify-center">
-                  <span class="text-white font-bold text-xl">📱</span>
-                </div>
-                <div>
-                  <h3 class="text-2xl font-bold text-primary">Mobile Money</h3>
-                  <p class="text-gray-600">Fast, secure, and convenient</p>
-                </div>
+          <!-- Payment Options Bootstrap Carousel -->
+          <div class="max-w-4xl mx-auto">
+            <div id="paymentCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+              <!-- Carousel Indicators -->
+              <div class="carousel-indicators mb-4">
+                <button type="button" data-bs-target="#paymentCarousel" data-bs-slide-to="0" class="active" 
+                        aria-current="true" aria-label="MTN Mobile Money"></button>
+                <button type="button" data-bs-target="#paymentCarousel" data-bs-slide-to="1" 
+                        aria-label="Airtel Money"></button>
+                <button type="button" data-bs-target="#paymentCarousel" data-bs-slide-to="2" 
+                        aria-label="Stanbic Bank"></button>
+                <button type="button" data-bs-target="#paymentCarousel" data-bs-slide-to="3" 
+                        aria-label="Centenary Bank"></button>
               </div>
 
-              <div class="grid grid-2 gap-8">
-                <!-- MTN Mobile Money -->
-                <div class="payment-card bg-gradient-to-br from-yellow-400 to-yellow-600 p-6 rounded-xl text-black">
-                  <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <span class="font-bold text-xl text-yellow-600">MTN</span>
-                    </div>
-                    <div>
-                      <h4 class="text-xl font-bold">MTN Mobile Money</h4>
-                      <p class="text-sm opacity-80">Uganda's largest mobile money network</p>
-                    </div>
-                  </div>
-                  
-                  <div class="space-y-4">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">💰 Payment Details:</h5>
-                      <div class="space-y-2 text-sm">
-                        <p><strong>Name:</strong> Elpis Initiative Uganda</p>
-                        <p><strong>Number:</strong> <span class="font-mono text-lg">+256 700 123 456</span></p>
-                        <p><strong>Reference:</strong> 10MILLIONHEARTS</p>
-                      </div>
-                    </div>
-                    
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">📋 How to Send:</h5>
-                      <ol class="list-decimal list-inside text-sm space-y-1">
-                        <li>Dial *165#</li>
-                        <li>Select "Send Money"</li>
-                        <li>Enter: <strong>+256 700 123 456</strong></li>
-                        <li>Enter amount (Min: UGX 20,000)</li>
-                        <li>Reference: <strong>10MILLIONHEARTS</strong></li>
-                        <li>Confirm with PIN</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Airtel Money -->
-                <div class="payment-card bg-gradient-to-br from-red-500 to-red-700 p-6 rounded-xl text-white">
-                  <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <span class="font-bold text-xl text-red-600">Airtel</span>
-                    </div>
-                    <div>
-                      <h4 class="text-xl font-bold">Airtel Money</h4>
-                      <p class="text-sm opacity-80">Reliable and widely accessible</p>
-                    </div>
-                  </div>
-                  
-                  <div class="space-y-4">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">💰 Payment Details:</h5>
-                      <div class="space-y-2 text-sm">
-                        <p><strong>Name:</strong> Elpis Initiative Uganda</p>
-                        <p><strong>Number:</strong> <span class="font-mono text-lg">+256 750 987 654</span></p>
-                        <p><strong>Reference:</strong> 10MILLIONHEARTS</p>
-                      </div>
-                    </div>
-                    
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">📋 How to Send:</h5>
-                      <ol class="list-decimal list-inside text-sm space-y-1">
-                        <li>Dial *185#</li>
-                        <li>Select "Send Money"</li>
-                        <li>Enter: <strong>+256 750 987 654</strong></li>
-                        <li>Enter amount (Min: UGX 20,000)</li>
-                        <li>Reference: <strong>10MILLIONHEARTS</strong></li>
-                        <li>Confirm with PIN</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bank Transfer Section -->
-            <div class="glass-card p-8">
-              <div class="flex items-center gap-4 mb-8">
-                <div class="w-16 h-16 bg-gradient-to-r from-primary-blue to-primary-pink rounded-full flex items-center justify-center">
-                  <span class="text-white font-bold text-xl">🏦</span>
-                </div>
-                <div>
-                  <h3 class="text-2xl font-bold text-secondary">Bank Transfer</h3>
-                  <p class="text-gray-600">For larger donations and international transfers</p>
-                </div>
-              </div>
-
-              <div class="grid grid-2 gap-8">
-                <!-- Stanbic Bank -->
-                <div class="payment-card bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl text-white">
-                  <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <span class="font-bold text-sm text-blue-600">STANBIC</span>
-                    </div>
-                    <div>
-                      <h4 class="text-xl font-bold">Stanbic Bank</h4>
-                      <p class="text-sm opacity-80">Primary organizational account</p>
-                    </div>
-                  </div>
-                  
-                  <div class="space-y-4">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">🏛️ Bank Details:</h5>
-                      <div class="space-y-2 text-sm">
-                        <p><strong>Account Name:</strong> Elpis Initiative Uganda</p>
-                        <p><strong>Account Number:</strong> <span class="font-mono">9030010123456</span></p>
-                        <p><strong>Bank:</strong> Stanbic Bank Uganda</p>
-                        <p><strong>Branch:</strong> Kampala Main Branch</p>
-                        <p><strong>Swift Code:</strong> SBICUGKX</p>
-                      </div>
-                    </div>
-                    
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">📝 Transfer Reference:</h5>
-                      <p class="text-sm">Please use: <strong>10MILLIONHEARTS-[YourName]</strong></p>
-                      <p class="text-xs opacity-75 mt-2">This helps us track your donation and send confirmation</p>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Centenary Bank -->
-                <div class="payment-card bg-gradient-to-br from-green-600 to-green-800 p-6 rounded-xl text-white">
-                  <div class="flex items-center gap-4 mb-6">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <span class="font-bold text-sm text-green-600">CENTE</span>
-                    </div>
-                    <div>
-                      <h4 class="text-xl font-bold">Centenary Bank</h4>
-                      <p class="text-sm opacity-80">Alternative banking option</p>
-                    </div>
-                  </div>
-                  
-                  <div class="space-y-4">
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">🏛️ Bank Details:</h5>
-                      <div class="space-y-2 text-sm">
-                        <p><strong>Account Name:</strong> Elpis Initiative Uganda</p>
-                        <p><strong>Account Number:</strong> <span class="font-mono">3100987654321</span></p>
-                        <p><strong>Bank:</strong> Centenary Bank</p>
-                        <p><strong>Branch:</strong> Wandegeya Branch</p>
-                        <p><strong>Swift Code:</strong> CENTUGAS</p>
-                      </div>
-                    </div>
-                    
-                    <div class="bg-white bg-opacity-20 p-4 rounded-lg">
-                      <h5 class="font-semibold mb-2">📝 Transfer Reference:</h5>
-                      <p class="text-sm">Please use: <strong>10MILLIONHEARTS-[YourName]</strong></p>
-                      <p class="text-xs opacity-75 mt-2">This helps us track your donation and send confirmation</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Confirmation Instructions -->
-            <div class="glass-card p-8 text-center">
-              <div class="max-w-3xl mx-auto">
-                <h3 class="text-2xl font-bold text-primary mb-6">📧 After Your Donation</h3>
+              <!-- Carousel Items -->
+              <div class="carousel-inner">
                 
-                <div class="grid grid-2 gap-8 mb-8">
-                  <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg">
-                    <h4 class="font-bold text-primary mb-3">1. Send Confirmation</h4>
-                    <p class="text-sm">
-                      Email us at <strong>officialeu@elpisuganda.org</strong> with your transaction reference 
-                      and contact details to receive your Elpis Partner ID.
-                    </p>
-                  </div>
-                  
-                  <div class="bg-primary-blue bg-opacity-10 p-6 rounded-lg">
-                    <h4 class="font-bold text-secondary mb-3">2. Get Your Partner ID</h4>
-                    <p class="text-sm">
-                      Within 24 hours, you'll receive your unique Elpis Partner ID and welcome package 
-                      with regular updates on your impact.
-                    </p>
+                <!-- MTN Mobile Money Slide -->
+                <div class="carousel-item active">
+                  <div class="payment-card glass-card" style="padding: 2rem; min-height: 380px;">
+                    <!-- Header with Logo -->
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="me-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFCB05, #FFA500); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 203, 5, 0.3);">
+                        <img
+                          src="images/mtn.png"
+                          alt="MTN"
+                          style="width: 40px; height: 40px; object-fit: contain;"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-primary mb-1" style="font-size: 1.5rem; margin-bottom: 0.25rem;">MTN Mobile Money</h3>
+                        <p class="text-gray-600 mb-0" style="font-size: 0.9rem; margin-bottom: 0;">Uganda's largest mobile money network</p>
+                      </div>
+                    </div>
+                    
+                    <!-- Content in Two Columns -->
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-primary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">💰</span> Payment Details
+                          </h5>
+                          <div style="font-size: 0.9rem; line-height: 1.4;">
+                            <p class="mb-1"><strong>Name:</strong> Elpis Initiative Uganda</p>
+                            <p class="mb-1"><strong>Number:</strong> <span class="font-monospace fw-bold">+256 700 123 456</span></p>
+                            <p class="mb-0"><strong>Reference:</strong> 10MILLIONHEARTS</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-primary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">📱</span> How to Send
+                          </h5>
+                          <ol class="mb-0" style="font-size: 0.85rem; line-height: 1.3; padding-left: 1.2rem;">
+                            <li>Dial <strong>*165#</strong></li>
+                            <li>Select "Send Money"</li>
+                            <li>Enter: <strong>+256 700 123 456</strong></li>
+                            <li>Enter amount (Min: UGX 20,000)</li>
+                            <li>Reference: <strong>10MILLIONHEARTS</strong></li>
+                            <li>Confirm with PIN</li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-primary-pink to-primary-blue p-6 rounded-lg text-white">
-                  <h4 class="text-xl font-bold mb-4">🤝 Welcome to the Movement!</h4>
-                  <p class="text-lg">
-                    Thank you for joining 10 Million Hearts, One Cause. Your contribution makes you an 
-                    <strong>Elpis Partner</strong> - a champion for Uganda's youth health and wellbeing.
-                  </p>
+                <!-- Airtel Money Slide -->
+                <div class="carousel-item">
+                  <div class="payment-card glass-card" style="padding: 2rem; min-height: 380px;">
+                    <!-- Header with Logo -->
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="me-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #FF0000, #CC0000); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);">
+                        <img
+                          src="images/airtel.png"
+                          alt="Airtel"
+                          style="width: 40px; height: 40px; object-fit: contain;"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-secondary mb-1" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Airtel Money</h3>
+                        <p class="text-gray-600 mb-0" style="font-size: 0.9rem; margin-bottom: 0;">Reliable and widely accessible</p>
+                      </div>
+                    </div>
+                    
+                    <!-- Content in Two Columns -->
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-secondary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">💰</span> Payment Details
+                          </h5>
+                          <div style="font-size: 0.9rem; line-height: 1.4;">
+                            <p class="mb-1"><strong>Name:</strong> Elpis Initiative Uganda</p>
+                            <p class="mb-1"><strong>Number:</strong> <span class="font-monospace fw-bold">+256 750 987 654</span></p>
+                            <p class="mb-0"><strong>Reference:</strong> 10MILLIONHEARTS</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-secondary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">📱</span> How to Send
+                          </h5>
+                          <ol class="mb-0" style="font-size: 0.85rem; line-height: 1.3; padding-left: 1.2rem;">
+                            <li>Dial <strong>*185#</strong></li>
+                            <li>Select "Send Money"</li>
+                            <li>Enter: <strong>+256 750 987 654</strong></li>
+                            <li>Enter amount (Min: UGX 20,000)</li>
+                            <li>Reference: <strong>10MILLIONHEARTS</strong></li>
+                            <li>Confirm with PIN</li>
+                          </ol>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="mt-8">
-                  <a href="mailto:officialeu@elpisuganda.org?subject=Donation%20Confirmation%20-%2010%20Million%20Hearts" 
-                     class="btn btn-primary btn-lg">
-                    📧 Send Donation Confirmation
-                  </a>
+                <!-- Stanbic Bank Slide -->
+                <div class="carousel-item">
+                  <div class="payment-card glass-card" style="padding: 2rem; min-height: 380px;">
+                    <!-- Header with Logo -->
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="me-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #0066CC, #004499); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);">
+                        <img
+                          src="images/stanbic.png"
+                          alt="Stanbic"
+                          style="width: 40px; height: 40px; object-fit: contain;"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-primary mb-1" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Stanbic Bank</h3>
+                        <p class="text-gray-600 mb-0" style="font-size: 0.9rem; margin-bottom: 0;">Primary organizational account</p>
+                      </div>
+                    </div>
+                    
+                    <!-- Content in Two Columns -->
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-primary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">🏛️</span> Bank Details
+                          </h5>
+                          <div style="font-size: 0.85rem; line-height: 1.4;">
+                            <p class="mb-1"><strong>Account Name:</strong> Elpis Initiative Uganda</p>
+                            <p class="mb-1"><strong>Account Number:</strong> <span class="font-monospace fw-bold">9030010123456</span></p>
+                            <p class="mb-1"><strong>Bank:</strong> Stanbic Bank Uganda</p>
+                            <p class="mb-1"><strong>Branch:</strong> Kampala Main Branch</p>
+                            <p class="mb-0"><strong>Swift Code:</strong> SBICUGKX</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-primary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">📝</span> Transfer Reference
+                          </h5>
+                          <div style="font-size: 0.9rem; line-height: 1.4;">
+                            <p class="mb-2">Please use: <strong>10MILLIONHEARTS-[YourName]</strong></p>
+                            <p class="text-muted mb-0" style="font-size: 0.8rem; opacity: 0.75;">This helps us track your donation</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                <!-- Centenary Bank Slide -->
+                <div class="carousel-item">
+                  <div class="payment-card glass-card" style="padding: 2rem; min-height: 380px;">
+                    <!-- Header with Logo -->
+                    <div class="d-flex align-items-center mb-4">
+                      <div class="me-3" style="width: 60px; height: 60px; background: linear-gradient(135deg, #228B22, #006400); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);">
+                        <img
+                          src="images/centenary.png"
+                          alt="Centenary"
+                          style="width: 40px; height: 40px; object-fit: contain;"
+                        />
+                      </div>
+                      <div>
+                        <h3 class="text-xl font-bold text-secondary mb-1" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Centenary Bank</h3>
+                        <p class="text-gray-600 mb-0" style="font-size: 0.9rem; margin-bottom: 0;">Alternative banking option</p>
+                      </div>
+                    </div>
+                    
+                    <!-- Content in Two Columns -->
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-secondary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">🏛️</span> Bank Details
+                          </h5>
+                          <div style="font-size: 0.85rem; line-height: 1.4;">
+                            <p class="mb-1"><strong>Account Name:</strong> Elpis Initiative Uganda</p>
+                            <p class="mb-1"><strong>Account Number:</strong> <span class="font-monospace fw-bold">3100987654321</span></p>
+                            <p class="mb-1"><strong>Bank:</strong> Centenary Bank</p>
+                            <p class="mb-1"><strong>Branch:</strong> Wandegeya Branch</p>
+                            <p class="mb-0"><strong>Swift Code:</strong> CENTUGAS</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6">
+                        <div class="bg-white bg-opacity-10 p-3 rounded" style="background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px;">
+                          <h5 class="fw-bold text-secondary mb-2 d-flex align-items-center" style="font-size: 1rem; margin-bottom: 0.5rem;">
+                            <span class="me-2">📝</span> Transfer Reference
+                          </h5>
+                          <div style="font-size: 0.9rem; line-height: 1.4;">
+                            <p class="mb-2">Please use: <strong>10MILLIONHEARTS-[YourName]</strong></p>
+                            <p class="text-muted mb-0" style="font-size: 0.8rem; opacity: 0.75;">This helps us track your donation</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Carousel Controls -->
+              <button class="carousel-control-prev" type="button" data-bs-target="#paymentCarousel" data-bs-slide="prev" 
+                      style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; top: 50%; transform: translateY(-50%); left: -50px;">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#paymentCarousel" data-bs-slide="next" 
+                      style="width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; top: 50%; transform: translateY(-50%); right: -50px;">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Impact Section -->
-      <section class="section" id="impact" aria-labelledby="impact-title">
+      <!-- Confirmation Section -->
+      <section class="section" id="confirmation" aria-labelledby="confirm-title">
         <div class="container">
-          <div class="section-header">
-            <h2 id="impact-title">Become an Elpis Partner</h2>
-            <p>
-              By making your contribution, you become an Elpis Partner - a
-              person that values the well-being of every individual and strives
-              to build a healthier and more compassionate Uganda.
-            </p>
-          </div>
-
-          <div class="grid grid-3 gap-8">
-            <div class="glass-card text-center p-6">
-              <div class="image-container mb-6">
-                <img
-                  src="images/bottom-view-women-protesting-outdoors.jpg"
-                  alt="Elpis Partner Benefits"
-                  loading="lazy"
-                />
+          <div class="max-w-4xl mx-auto">
+            <div class="glass-card p-8 text-center">
+              <h2 id="confirm-title" class="text-2xl font-bold text-primary mb-6">
+                After Your Donation
+              </h2>
+              
+              <div class="grid grid-2 gap-8">
+                <div class="bg-primary-pink bg-opacity-10 p-6 rounded-lg">
+                  <div class="w-16 h-16 bg-primary-pink rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                    📧
+                  </div>
+                  <h3 class="font-bold text-primary mb-3">1. Send Confirmation</h3>
+                  <p>
+                    Email us at <strong>officialeu@elpisuganda.org</strong> with your 
+                    transaction reference and contact details.
+                  </p>
+                </div>
+                
+                <div class="bg-primary-blue bg-opacity-10 p-6 rounded-lg">
+                  <div class="w-16 h-16 bg-primary-blue rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                    🎫
+                  </div>
+                  <h3 class="font-bold text-secondary mb-3">2. Get Your Partner ID</h3>
+                  <p>
+                    Within 24 hours, receive your unique Elpis Partner ID and 
+                    regular updates on your impact.
+                  </p>
+                </div>
               </div>
-              <h4 class="mb-4">Exclusive Updates</h4>
-              <p>
-                Receive regular updates on how your contribution is making a
-                difference in communities across Uganda.
-              </p>
-            </div>
 
-            <div class="glass-card text-center p-6">
-              <div class="image-container mb-6">
-                <img
-                  src="images/dark-businesswoman-shaking-hands-with-male-colleague.jpg"
-                  alt="Community Impact"
-                  loading="lazy"
-                />
+              <div class="mt-8">
+                <a href="mailto:officialeu@elpisuganda.org" class="btn btn-primary btn-lg">
+                  Send Confirmation Email
+                </a>
               </div>
-              <h4 class="mb-4">Community Impact</h4>
-              <p>
-                Be part of a growing movement of young Ugandans taking ownership
-                of their community's health and wellbeing.
-              </p>
-            </div>
-
-            <div class="glass-card text-center p-6">
-              <div class="image-container mb-6">
-                <img
-                  src="images/student.jpg"
-                  alt="Transparent Reporting"
-                  loading="lazy"
-                />
-              </div>
-              <h4 class="mb-4">Transparent Reporting</h4>
-              <p>
-                See exactly how funds are used through our transparent reporting
-                and impact measurement systems.
-              </p>
-            </div>
-          </div>
-
-          <div class="text-center mt-12">
-            <div class="glass-card p-8 max-w-2xl mx-auto">
-              <h3 class="text-primary mb-4">Thank You Message</h3>
-              <p class="text-lg font-medium">
-                YOU ARE AN ELPIS PARTNER: THANK YOU FOR YOUR CONTRIBUTION
-                TOWARDS MAKING OUR SOCIETY BETTER.
-              </p>
             </div>
           </div>
         </div>
@@ -696,6 +632,9 @@
       </div>
     </footer>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- Scripts -->
     <script src="script.js"></script>
   </body>
