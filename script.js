@@ -1,5 +1,272 @@
 // Elpis Initiative Uganda - Enhanced JavaScript Functionality
 
+class CustomCarousel {
+  constructor(element, options = {}) {
+    this.carousel = element;
+    this.options = {
+      autoplay: options.autoplay || false,
+      interval: options.interval || 5000,
+      ...options
+    };
+
+    // Find the carousel container
+    this.container = this.carousel.querySelector('.carousel-container');
+    if (!this.container) {
+      console.error('Carousel container not found');
+      return;
+    }
+
+    this.slides = Array.from(this.container.querySelectorAll('.carousel-slide'));
+    this.totalSlides = this.slides.length;
+    this.currentSlide = 0;
+
+    if (this.totalSlides === 0) {
+      console.error('No slides found in carousel');
+      return;
+    }
+
+    this.init();
+  }
+
+  init() {
+    // Set container height based on tallest slide
+    this.setContainerHeight();
+
+    // Create prev/next buttons inside carousel
+    this.createButtons();
+
+    // Create navigation dots outside carousel
+    this.createNavigation();
+
+    // Find which slide should be active initially
+    let initialSlide = 0;
+    this.slides.forEach((slide, index) => {
+      if (slide.classList.contains('active')) {
+        initialSlide = index;
+      }
+    });
+
+    // Set initial state
+    this.showSlide(initialSlide);
+
+    // Start autoplay if enabled
+    if (this.options.autoplay) {
+      this.startAutoplay();
+    }
+
+    // Add keyboard navigation
+    this.addKeyboardNavigation();
+
+    // Add touch navigation
+    this.addTouchNavigation();
+
+    // Pause autoplay on hover
+    if (this.options.autoplay) {
+      this.carousel.addEventListener('mouseenter', () => this.stopAutoplay());
+      this.carousel.addEventListener('mouseleave', () => this.startAutoplay());
+    }
+  }
+
+  setContainerHeight() {
+    // Use requestAnimationFrame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      // Calculate the height of the tallest slide
+      let maxHeight = 0;
+
+      this.slides.forEach((slide, index) => {
+        // Store original styles
+        const originalPosition = slide.style.position;
+
+        // Temporarily make slide visible and positioned relatively to measure it
+        slide.style.position = 'relative';
+        slide.style.visibility = 'visible';
+        slide.style.opacity = '1';
+
+        const height = slide.offsetHeight;
+        if (height > maxHeight) {
+          maxHeight = height;
+        }
+
+        // Restore position, but let CSS handle visibility/opacity
+        slide.style.position = originalPosition || 'absolute';
+        slide.style.visibility = '';
+        slide.style.opacity = '';
+      });
+
+      if (maxHeight > 0) {
+        this.container.style.minHeight = `${maxHeight}px`;
+      }
+    });
+  }
+
+  createNavigation() {
+    const nav = document.createElement('div');
+    nav.className = 'carousel-nav';
+
+    this.slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      dot.addEventListener('click', () => this.showSlide(index));
+      nav.appendChild(dot);
+    });
+
+    // Insert navigation after the carousel element
+    this.carousel.parentNode.insertBefore(nav, this.carousel.nextSibling);
+    this.dots = nav.querySelectorAll('.carousel-dot');
+  }
+
+  createButtons() {
+    const prevButton = document.createElement('button');
+    prevButton.className = 'carousel-button prev';
+    prevButton.innerHTML = '‹';
+    prevButton.setAttribute('aria-label', 'Previous slide');
+    prevButton.setAttribute('type', 'button');
+
+    const nextButton = document.createElement('button');
+    nextButton.className = 'carousel-button next';
+    nextButton.innerHTML = '›';
+    nextButton.setAttribute('aria-label', 'Next slide');
+    nextButton.setAttribute('type', 'button');
+
+    prevButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Previous button clicked');
+      this.prevSlide();
+    });
+
+    nextButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Next button clicked');
+      this.nextSlide();
+    });
+
+    this.carousel.appendChild(prevButton);
+    this.carousel.appendChild(nextButton);
+  }
+
+  showSlide(index) {
+    // Handle index bounds
+    if (index < 0) index = this.totalSlides - 1;
+    if (index >= this.totalSlides) index = 0;
+
+    console.log(`Showing slide ${index} of ${this.totalSlides}`);
+
+    // Update slides with smooth transition
+    this.slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+        // Remove inline styles that might override CSS
+        slide.style.opacity = '';
+        slide.style.visibility = '';
+      } else {
+        slide.classList.remove('active');
+        // Remove inline styles that might override CSS
+        slide.style.opacity = '';
+        slide.style.visibility = '';
+      }
+    });
+
+    // Update dots
+    if (this.dots) {
+      this.dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    this.currentSlide = index;
+
+    // Announce slide change to screen readers
+    this.announceSlideChange(index);
+  }
+
+  nextSlide() {
+    this.showSlide(this.currentSlide + 1);
+  }
+
+  prevSlide() {
+    this.showSlide(this.currentSlide - 1);
+  }
+
+  startAutoplay() {
+    this.stopAutoplay(); // Clear any existing interval
+    this.autoplayInterval = setInterval(() => {
+      this.nextSlide();
+    }, this.options.interval);
+  }
+
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+      this.autoplayInterval = null;
+    }
+  }
+
+  addKeyboardNavigation() {
+    this.carousel.setAttribute('tabindex', '0');
+    this.carousel.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          this.prevSlide();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          this.nextSlide();
+          break;
+      }
+    });
+  }
+
+  addTouchNavigation() {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    this.carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    this.carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      this.handleSwipe();
+    }, { passive: true });
+
+    this.handleSwipe = () => {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          this.nextSlide();
+        } else {
+          this.prevSlide();
+        }
+      }
+    };
+  }
+
+  announceSlideChange(index) {
+    // Create or update aria-live region
+    let liveRegion = this.carousel.querySelector('.carousel-live-region');
+    if (!liveRegion) {
+      liveRegion = document.createElement('div');
+      liveRegion.className = 'carousel-live-region sr-only';
+      liveRegion.setAttribute('aria-live', 'polite');
+      this.carousel.appendChild(liveRegion);
+    }
+
+    const currentSlide = this.slides[index];
+    const slideTitle = currentSlide.querySelector('h3, h4')?.textContent || `Slide ${index + 1} of ${this.totalSlides}`;
+    liveRegion.textContent = slideTitle;
+  }
+}
+
 class ElpisWebsite {
   constructor() {
     this.init()
@@ -17,6 +284,7 @@ class ElpisWebsite {
     this.initCopyrightYear()
     this.initJobListings()
     this.initJobApplicationForm()
+    this.initCustomCarousels()
   }
 
   // Navigation functionality
@@ -599,7 +867,7 @@ class ElpisWebsite {
     // Gallery image sources array - can accommodate 100+ images
     this.galleryImages = [
       'images/image (1).jpg',
-      'images/image (7).jpg', 
+      'images/image (7).jpg',
       'images/image (12).jpg',
       'images/image (15).jpg',
       'images/image (19).jpg',
@@ -681,7 +949,7 @@ class ElpisWebsite {
 
     this.currentImageIndex = 0
     this.imagesPerLoad = 15 // Load 15 images at a time
-    
+
     // Initialize gallery if on gallery page
     const galleryGrid = document.getElementById('gallery-grid')
     if (galleryGrid) {
@@ -780,12 +1048,12 @@ class ElpisWebsite {
   loadMoreImages() {
     const galleryGrid = document.getElementById('gallery-grid')
     const endIndex = Math.min(this.currentImageIndex + this.imagesPerLoad, this.galleryImages.length)
-    
+
     for (let i = this.currentImageIndex; i < endIndex; i++) {
       const imageItem = this.createGalleryImageItem(this.galleryImages[i], i)
       galleryGrid.appendChild(imageItem)
     }
-    
+
     this.currentImageIndex = endIndex
     this.updateLoadMoreButton()
   }
@@ -796,12 +1064,12 @@ class ElpisWebsite {
     item.innerHTML = `
       <img src="${imageSrc}" alt="Gallery image ${index + 1}" loading="lazy" />
     `
-    
+
     // Add click handler for modal
     item.addEventListener('click', () => {
       this.showGalleryImageModal(imageSrc, `Gallery image ${index + 1}`)
     })
-    
+
     return item
   }
 
@@ -844,16 +1112,16 @@ class ElpisWebsite {
         </div>
       </div>
     `)
-    
+
     document.body.appendChild(modal)
-    
+
     // Close on background click
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.remove()
       }
     })
-    
+
     // Close on escape key
     const escapeHandler = (e) => {
       if (e.key === 'Escape') {
@@ -1687,6 +1955,25 @@ class ElpisWebsite {
   }
 
   // Job Application Form functionality
+  initCustomCarousels() {
+    // Initialize Impact Stories Carousel (Gallery Page)
+    const impactCarousel = document.getElementById('impactCarousel');
+    if (impactCarousel) {
+      new CustomCarousel(impactCarousel, {
+        autoplay: true,
+        interval: 6000
+      });
+    }
+
+    // Initialize Payment Methods Carousel (Donate Page)
+    const paymentCarousel = document.getElementById('paymentCarousel');
+    if (paymentCarousel) {
+      new CustomCarousel(paymentCarousel, {
+        autoplay: false // Payment info should not auto-advance
+      });
+    }
+  }
+
   initJobApplicationForm() {
     const form = document.getElementById('job-application-form')
     if (!form) return

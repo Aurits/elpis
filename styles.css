@@ -2155,6 +2155,152 @@ input[type="radio"]:hover {
   }
 }
 
+/* Custom Carousel Styles */
+.custom-carousel {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  /* Changed from hidden to visible so buttons can be clicked */
+  border-radius: var(--border-radius-2xl);
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  border-radius: var(--border-radius-2xl);
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-in-out, visibility 0s linear 0.4s;
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease-in-out, visibility 0s linear 0s;
+  z-index: 2;
+}
+
+/* Ensure first slide is visible on page load before JS initializes */
+.carousel-container>.carousel-slide:first-child,
+.carousel-container>.carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--glass-white-strong);
+  border: 2px solid var(--border-glass);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background: rgba(236, 0, 140, 0.5);
+  border-color: var(--primary-pink);
+}
+
+.carousel-dot.active {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+  transform: scale(1.3);
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--glass-white-strong);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border-glass);
+  color: var(--charcoal);
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: var(--shadow-glass);
+}
+
+.carousel-button:hover {
+  background: var(--primary-pink);
+  color: var(--white);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: var(--shadow-glass-hover);
+}
+
+.carousel-button.prev {
+  left: -24px;
+}
+
+.carousel-button.next {
+  right: -24px;
+}
+
+@media (max-width: 1024px) {
+  .carousel-button.prev {
+    left: 10px;
+  }
+
+  .carousel-button.next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .carousel-button.prev {
+    left: 5px;
+  }
+
+  .carousel-button.next {
+    right: 5px;
+  }
+
+  .carousel-nav {
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
 /* Print styles */
 @media print {
 
@@ -2184,4 +2330,5 @@ input[type="radio"]:hover {
     box-shadow: none !important;
     border: 1px solid #ccc !important;
   }
+}
 }
