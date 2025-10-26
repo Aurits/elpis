@@ -742,7 +742,7 @@ p {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   background: var(--glass-white);
 }
 
@@ -756,8 +756,8 @@ p {
   position: absolute;
   bottom: var(--space-4);
   right: var(--space-4);
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   background: var(--white);
   border-radius: 50%;
   padding: var(--space-2);
@@ -771,26 +771,11 @@ p {
 }
 
 .counselor-info h2 {
-  font-size: var(--fs-2xl);
-  font-weight: 700;
   color: var(--charcoal);
-  margin-bottom: var(--space-2);
 }
 
 .counselor-info p {
-  font-size: var(--fs-lg);
   color: var(--primary-blue);
-}
-
-.credential-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-2);
-}
-
-.credential-item .icon {
-  font-size: var(--fs-xl);
 }
 
 .tags {
@@ -805,10 +790,7 @@ p {
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   font-size: var(--fs-sm);
-  font-weight: 500;
   border: 1px solid var(--border-glass);
-  backdrop-filter: var(--backdrop-blur);
-  -webkit-backdrop-filter: var(--backdrop-blur);
 }
 
 @media (max-width: 768px) {
@@ -816,15 +798,6 @@ p {
     aspect-ratio: 1/1;
     max-width: 300px;
     margin: 0 auto;
-  }
-
-  .rc-badge {
-    width: 60px;
-    height: 60px;
-  }
-
-  .tags {
-    justify-content: center;
   }
 }
 
