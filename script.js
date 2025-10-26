@@ -503,6 +503,7 @@ class ElpisWebsite {
     this.initGalleryModal()
     this.initGalleryLazyLoading()
     this.initModernGallery()
+    this.initCarousel()
   }
 
   initGalleryFilters() {
@@ -861,6 +862,346 @@ class ElpisWebsite {
       }
     }
     document.addEventListener('keydown', escapeHandler)
+  }
+
+  // Carousel Functionality
+  initCarousel() {
+    const carouselTrack = document.getElementById('impact-carousel-track')
+    const carouselPrevBtn = document.getElementById('impact-carousel-prev')
+    const carouselNextBtn = document.getElementById('impact-carousel-next')
+    const carouselDotsContainer = document.getElementById('impact-carousel-dots')
+
+    if (!carouselTrack) return
+
+    this.addCarouselStyles()
+
+    // Carousel state
+    this.currentSlide = 0
+    this.slides = carouselTrack.querySelectorAll('.carousel-slide')
+    this.totalSlides = this.slides.length
+
+    // Generate dots
+    this.generateCarouselDots(carouselDotsContainer)
+
+    // Event listeners
+    if (carouselPrevBtn) {
+      carouselPrevBtn.addEventListener('click', () => this.prevSlide())
+    }
+    if (carouselNextBtn) {
+      carouselNextBtn.addEventListener('click', () => this.nextSlide())
+    }
+
+    // Auto-play carousel
+    this.startCarouselAutoPlay()
+
+    // Initialize first slide
+    this.updateCarousel()
+
+    // Touch/swipe support for mobile
+    this.initCarouselTouchSupport(carouselTrack)
+  }
+
+  addCarouselStyles() {
+    const style = document.createElement('style')
+    style.textContent = `
+      .carousel-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .carousel-wrapper {
+        overflow: hidden;
+        border-radius: 16px;
+        position: relative;
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        flex-shrink: 0;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        font-size: 18px;
+      }
+
+      .carousel-btn:hover {
+        background: rgba(236, 0, 140, 0.8);
+        transform: translateY(-50%) scale(1.1);
+        border-color: rgba(236, 0, 140, 0.5);
+      }
+
+      .carousel-btn-prev {
+        left: 20px;
+      }
+
+      .carousel-btn-next {
+        right: 20px;
+      }
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .carousel-dot.active {
+        background: #ec008c;
+        transform: scale(1.2);
+      }
+
+      .carousel-dot:hover {
+        background: rgba(236, 0, 140, 0.6);
+        transform: scale(1.1);
+      }
+
+      .carousel-slide img {
+        max-height: 280px;
+        height: 280px;
+        max-width: 400px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      @media (max-width: 768px) {
+        .carousel-btn {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+
+        .carousel-btn-prev {
+          left: 10px;
+        }
+
+        .carousel-btn-next {
+          right: 10px;
+        }
+
+        .carousel-slide .grid-2 {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .carousel-slide .order-2 {
+          order: 1;
+        }
+
+        .carousel-slide .order-1 {
+          order: 2;
+        }
+
+        .carousel-slide img {
+          max-height: 200px;
+          height: 200px;
+          max-width: 300px;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .carousel-btn {
+          width: 35px;
+          height: 35px;
+          font-size: 14px;
+        }
+
+        .carousel-dots {
+          gap: 8px;
+          margin-top: 20px;
+        }
+
+        .carousel-dot {
+          width: 10px;
+          height: 10px;
+        }
+
+        .carousel-slide img {
+          max-height: 180px;
+          height: 180px;
+          max-width: 250px;
+          width: 100%;
+        }
+
+        .carousel-slide .glass-card {
+          padding: 1.5rem;
+        }
+
+        .carousel-slide .grid-2 {
+          gap: 1.5rem;
+        }
+      }
+    `
+    document.head.appendChild(style)
+  }
+
+  generateCarouselDots(container) {
+    if (!container) return
+
+    container.innerHTML = ''
+    for (let i = 0; i < this.totalSlides; i++) {
+      const dot = document.createElement('button')
+      dot.className = 'carousel-dot'
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`)
+      if (i === 0) dot.classList.add('active')
+      
+      dot.addEventListener('click', () => {
+        this.goToSlide(i)
+      })
+
+      container.appendChild(dot)
+    }
+  }
+
+  updateCarousel() {
+    const carouselTrack = document.getElementById('impact-carousel-track')
+    const dots = document.querySelectorAll('.carousel-dot')
+
+    if (carouselTrack) {
+      const translateX = -this.currentSlide * 100
+      carouselTrack.style.transform = `translateX(${translateX}%)`
+    }
+
+    // Update dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === this.currentSlide)
+    })
+  }
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides
+    this.updateCarousel()
+    this.resetAutoPlay()
+  }
+
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides
+    this.updateCarousel()
+    this.resetAutoPlay()
+  }
+
+  goToSlide(index) {
+    this.currentSlide = index
+    this.updateCarousel()
+    this.resetAutoPlay()
+  }
+
+  startCarouselAutoPlay() {
+    this.carouselInterval = setInterval(() => {
+      this.nextSlide()
+    }, 5000) // Auto-advance every 5 seconds
+  }
+
+  resetAutoPlay() {
+    if (this.carouselInterval) {
+      clearInterval(this.carouselInterval)
+      this.startCarouselAutoPlay()
+    }
+  }
+
+  initCarouselTouchSupport(track) {
+    let startX = 0
+    let isDragging = false
+
+    track.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX
+      isDragging = true
+    })
+
+    track.addEventListener('touchmove', (e) => {
+      if (!isDragging) return
+      e.preventDefault()
+    })
+
+    track.addEventListener('touchend', (e) => {
+      if (!isDragging) return
+      isDragging = false
+
+      const endX = e.changedTouches[0].clientX
+      const diffX = startX - endX
+
+      // Minimum swipe distance
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          this.nextSlide()
+        } else {
+          this.prevSlide()
+        }
+      }
+    })
+
+    // Mouse support for desktop
+    let mouseStartX = 0
+    let isMouseDragging = false
+
+    track.addEventListener('mousedown', (e) => {
+      mouseStartX = e.clientX
+      isMouseDragging = true
+      track.style.cursor = 'grabbing'
+    })
+
+    track.addEventListener('mousemove', (e) => {
+      if (!isMouseDragging) return
+      e.preventDefault()
+    })
+
+    track.addEventListener('mouseup', (e) => {
+      if (!isMouseDragging) return
+      isMouseDragging = false
+      track.style.cursor = 'grab'
+
+      const endX = e.clientX
+      const diffX = mouseStartX - endX
+
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          this.nextSlide()
+        } else {
+          this.prevSlide()
+        }
+      }
+    })
+
+    track.addEventListener('mouseleave', () => {
+      isMouseDragging = false
+      track.style.cursor = 'grab'
+    })
+
+    track.style.cursor = 'grab'
   }
 
   // Animations
