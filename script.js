@@ -502,6 +502,7 @@ class ElpisWebsite {
     this.initGalleryFilters()
     this.initGalleryModal()
     this.initGalleryLazyLoading()
+    this.initModernGallery()
   }
 
   initGalleryFilters() {
@@ -590,6 +591,276 @@ class ElpisWebsite {
 
       images.forEach(img => imageObserver.observe(img))
     }
+  }
+
+  // Modern Gallery Functionality
+  initModernGallery() {
+    // Gallery image sources array - can accommodate 100+ images
+    this.galleryImages = [
+      'images/image (1).jpg',
+      'images/image (7).jpg', 
+      'images/image (12).jpg',
+      'images/image (15).jpg',
+      'images/image (19).jpg',
+      'images/image (23).jpg',
+      'images/image (28).jpg',
+      'images/image (31).jpg',
+      'images/image (35).jpeg',
+      'images/image (38).jpeg',
+      'images/image (41).jpeg',
+      'images/image (45).jpeg',
+      'images/image (50).jpeg',
+      'images/image (56).jpeg',
+      'images/image (64).jpeg',
+      'images/image (72).jpeg',
+      'images/image (2).jpg',
+      'images/image (3).jpg',
+      'images/image (4).jpg',
+      'images/image (5).jpg',
+      'images/image (6).jpg',
+      'images/image (8).jpg',
+      'images/image (9).jpg',
+      'images/image (10).jpg',
+      'images/image (11).jpg',
+      'images/image (13).jpg',
+      'images/image (14).jpg',
+      'images/image (16).jpg',
+      'images/image (17).jpg',
+      'images/image (18).jpg',
+      'images/image (20).jpg',
+      'images/image (21).jpg',
+      'images/image (22).jpg',
+      'images/image (24).jpg',
+      'images/image (25).jpg',
+      'images/image (26).jpg',
+      'images/image (27).jpg',
+      'images/image (29).jpg',
+      'images/image (30).jpg',
+      'images/image (32).jpg',
+      'images/image (33).jpg',
+      'images/image (34).jpeg',
+      'images/image (36).jpeg',
+      'images/image (37).jpeg',
+      'images/image (39).jpeg',
+      'images/image (40).jpeg',
+      'images/image (42).jpeg',
+      'images/image (43).jpeg',
+      'images/image (44).jpeg',
+      'images/image (46).jpeg',
+      'images/image (47).jpeg',
+      'images/image (48).jpeg',
+      'images/image (49).jpeg',
+      'images/image (51).jpeg',
+      'images/image (52).jpeg',
+      'images/image (53).jpeg',
+      'images/image (54).jpeg',
+      'images/image (55).jpeg',
+      'images/image (57).jpeg',
+      'images/image (58).jpeg',
+      'images/image (59).jpeg',
+      'images/image (60).jpeg',
+      'images/image (61).jpeg',
+      'images/image (62).jpeg',
+      'images/image (63).jpeg',
+      'images/image (65).jpeg',
+      'images/image (66).jpeg',
+      'images/image (67).jpeg',
+      'images/image (68).jpeg',
+      'images/image (69).jpeg',
+      'images/image (70).jpeg',
+      'images/image (71).jpeg',
+      'images/image (73).jpeg',
+      'images/image (74).jpeg',
+      'images/image (75).jpeg',
+      'images/bottom-view-women-protesting-outdoors.jpg',
+      'images/dark-businesswoman-shaking-hands-with-male-colleague.jpg',
+      'images/student.jpg'
+      // Add more images here as needed - can easily scale to 100+ images
+    ]
+
+    this.currentImageIndex = 0
+    this.imagesPerLoad = 15 // Load 15 images at a time
+    
+    // Initialize gallery if on gallery page
+    const galleryGrid = document.getElementById('gallery-grid')
+    if (galleryGrid) {
+      this.addGalleryStyles()
+      this.loadInitialImages()
+      this.initLoadMoreButton()
+      this.initGalleryImageModal()
+    }
+  }
+
+  addGalleryStyles() {
+    // Add modern gallery CSS styles
+    const style = document.createElement('style')
+    style.textContent = `
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 2rem;
+      }
+      
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      
+      .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(236, 0, 140, 0.5);
+      }
+      
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      
+      .gallery-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(236, 0, 140, 0.1), rgba(0, 174, 239, 0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      
+      .gallery-item:hover::before {
+        opacity: 1;
+      }
+      
+      @media (max-width: 768px) {
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 15px;
+        }
+        
+        .gallery-item img {
+          height: 200px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+        
+        .gallery-item img {
+          height: 150px;
+        }
+      }
+    `
+    document.head.appendChild(style)
+  }
+
+  loadInitialImages() {
+    this.loadMoreImages()
+  }
+
+  loadMoreImages() {
+    const galleryGrid = document.getElementById('gallery-grid')
+    const endIndex = Math.min(this.currentImageIndex + this.imagesPerLoad, this.galleryImages.length)
+    
+    for (let i = this.currentImageIndex; i < endIndex; i++) {
+      const imageItem = this.createGalleryImageItem(this.galleryImages[i], i)
+      galleryGrid.appendChild(imageItem)
+    }
+    
+    this.currentImageIndex = endIndex
+    this.updateLoadMoreButton()
+  }
+
+  createGalleryImageItem(imageSrc, index) {
+    const item = document.createElement('div')
+    item.className = 'gallery-item'
+    item.innerHTML = `
+      <img src="${imageSrc}" alt="Gallery image ${index + 1}" loading="lazy" />
+    `
+    
+    // Add click handler for modal
+    item.addEventListener('click', () => {
+      this.showGalleryImageModal(imageSrc, `Gallery image ${index + 1}`)
+    })
+    
+    return item
+  }
+
+  initLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('load-more-btn')
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        this.loadMoreImages()
+      })
+    }
+  }
+
+  updateLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('load-more-btn')
+    if (loadMoreBtn) {
+      if (this.currentImageIndex < this.galleryImages.length) {
+        loadMoreBtn.style.display = 'inline-block'
+        loadMoreBtn.textContent = `Load More Images (${this.galleryImages.length - this.currentImageIndex} remaining)`
+      } else {
+        loadMoreBtn.style.display = 'none'
+      }
+    }
+  }
+
+  initGalleryImageModal() {
+    // Modal functionality is handled in createGalleryImageItem
+  }
+
+  showGalleryImageModal(src, caption) {
+    const modal = this.createModal(`
+      <div class="modal-content" style="max-width: 90vw; max-height: 90vh;">
+        <button class="modal-close" onclick="this.closest('.modal').remove()" 
+                style="position: absolute; top: 20px; right: 20px; z-index: 1001; 
+                       background: rgba(0,0,0,0.7); color: white; border: none; 
+                       width: 40px; height: 40px; border-radius: 50%; cursor: pointer; 
+                       font-size: 24px; display: flex; align-items: center; justify-content: center;">&times;</button>
+        <img src="${src}" alt="${caption}" style="width: 100%; height: auto; max-height: 80vh; object-fit: contain;" />
+        <div style="padding: 20px; text-align: center; background: rgba(255,255,255,0.9);">
+          <p style="margin: 0; color: #333;">${caption}</p>
+        </div>
+      </div>
+    `)
+    
+    document.body.appendChild(modal)
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove()
+      }
+    })
+    
+    // Close on escape key
+    const escapeHandler = (e) => {
+      if (e.key === 'Escape') {
+        modal.remove()
+        document.removeEventListener('keydown', escapeHandler)
+      }
+    }
+    document.addEventListener('keydown', escapeHandler)
   }
 
   // Animations
