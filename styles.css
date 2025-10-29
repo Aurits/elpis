@@ -1009,10 +1009,26 @@ input[type="radio"]:hover {
 }
 
 .logo {
-  width: 64px;
-  height: 64px;
+  width: 120px;
+  height: auto;
+  max-height: 80px;
   object-fit: contain;
   border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 100px;
+    max-height: 65px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 80px;
+    max-height: 50px;
+  }
 }
 
 .nav-menu {
