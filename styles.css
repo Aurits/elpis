@@ -2053,6 +2053,91 @@ input[type="radio"]:hover {
   }
 }
 
+/* Careers Notice Card */
+.careers-notice-card {
+  background: linear-gradient(135deg, rgba(236, 0, 140, 0.05), rgba(0, 174, 239, 0.05));
+  border: 2px solid rgba(236, 0, 140, 0.2);
+  border-radius: var(--border-radius-2xl);
+  max-width: 900px;
+  margin: 0 auto var(--space-8);
+}
+
+.careers-notice-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.notice-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary-pink), var(--primary-blue));
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.careers-notice-header h3 {
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--primary-pink);
+  margin: 0;
+}
+
+.careers-notice-content p {
+  font-size: var(--fs-base);
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+  color: var(--charcoal);
+}
+
+.careers-notice-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-6) 0;
+}
+
+.careers-notice-list li {
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--space-3);
+  border-left: 4px solid var(--primary-blue);
+}
+
+.careers-notice-list li strong {
+  color: var(--primary-pink);
+  font-weight: 700;
+}
+
+.careers-notice-footer {
+  font-size: var(--fs-sm);
+  color: var(--charcoal);
+  opacity: 0.8;
+  margin-bottom: 0 !important;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .careers-notice-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .careers-notice-header h3 {
+    font-size: var(--fs-lg);
+  }
+  
+  .notice-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
 /* Counselor Banner */
 .counselor-banner-container {
   display: flex;

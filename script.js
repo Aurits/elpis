@@ -1573,9 +1573,6 @@ class ElpisWebsite {
     if (partnerJobs.length > 0) {
       html += `
         <div class="mb-16 mt-16">
-          <h3 class="text-2xl font-bold mb-8 text-center">
-            🌐 Positions Open to All Candidates
-          </h3>
           <div class="grid grid-1 gap-6" id="partner-jobs">
       `
 
@@ -1630,13 +1627,10 @@ class ElpisWebsite {
     return `
       <div class="glass-card job-card" data-job-id="${job.id}" data-type="${job.type}" data-location="${job.location}" data-department="${job.department}">
         <div class="p-6">
-          <div class="flex justify-between items-start mb-4">
+          <div class="mb-4">
             <h4 class="${typeColor} font-semibold text-lg mb-2">
               ${job.title}
             </h4>
-            <span class="px-3 py-1 rounded-full text-xs font-semibold ${typeBg} text-white">
-              ${job.type === 'partner-only' ? 'Partner Only' : 'Open to All'}
-            </span>
           </div>
           
           <div class="mb-4">
