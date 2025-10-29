@@ -1,0 +1,15 @@
+<svg width="200" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="100" fill="white"/>
+  
+  <!-- Icon: Shield/Protection -->
+  <g transform="translate(35, 22)">
+    <path d="M 30 5 L 15 10 L 15 25 C 15 35 22 42 30 45 C 38 42 45 35 45 25 L 45 10 Z" fill="#00AEEF"/>
+    <path d="M 24 25 L 28 29 L 36 19" stroke="white" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="100" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#00AEEF">SECURE</text>
+  <text x="100" y="60" font-family="Arial, sans-serif" font-size="12" fill="#666666">SOLUTIONS</text>
+</svg>
+
