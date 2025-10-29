@@ -2209,10 +2209,212 @@ style.textContent = `
 
 document.head.appendChild(style)
 
+// Multi-Step Form Handler
+class MultiStepForm {
+  constructor(formId) {
+    this.form = document.getElementById(formId);
+    if (!this.form) return;
+    
+    this.currentStep = 1;
+    this.totalSteps = 7;
+    
+    this.prevBtn = document.getElementById('prevBtn');
+    this.nextBtn = document.getElementById('nextBtn');
+    this.submitBtn = document.getElementById('submitBtn');
+    
+    this.init();
+  }
+  
+  init() {
+    // Set up button event listeners
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', () => this.previousStep());
+    }
+    
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', () => this.nextStep());
+    }
+    
+    // Allow clicking on progress steps
+    const progressSteps = document.querySelectorAll('.progress-step');
+    progressSteps.forEach((step, index) => {
+      step.addEventListener('click', () => {
+        const stepNumber = parseInt(step.getAttribute('data-step'));
+        if (stepNumber <= this.currentStep || step.classList.contains('completed')) {
+          this.goToStep(stepNumber);
+        }
+      });
+    });
+    
+    // Initialize first step
+    this.showStep(1);
+  }
+  
+  showStep(step) {
+    // Hide all steps
+    const steps = document.querySelectorAll('.form-step');
+    steps.forEach(s => s.classList.remove('active'));
+    
+    // Show current step
+    const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+    if (currentStepElement) {
+      currentStepElement.classList.add('active');
+    }
+    
+    // Update progress indicators
+    const progressSteps = document.querySelectorAll('.progress-step');
+    progressSteps.forEach((s, index) => {
+      const stepNum = index + 1;
+      if (stepNum < step) {
+        s.classList.add('completed');
+        s.classList.remove('active');
+      } else if (stepNum === step) {
+        s.classList.add('active');
+        s.classList.remove('completed');
+      } else {
+        s.classList.remove('active', 'completed');
+      }
+    });
+    
+    // Update button visibility
+    if (this.prevBtn) {
+      this.prevBtn.style.display = step === 1 ? 'none' : 'flex';
+    }
+    
+    if (this.nextBtn && this.submitBtn) {
+      if (step === this.totalSteps) {
+        this.nextBtn.style.display = 'none';
+        this.submitBtn.style.display = 'flex';
+      } else {
+        this.nextBtn.style.display = 'flex';
+        this.submitBtn.style.display = 'none';
+      }
+    }
+    
+    // Scroll to top of form
+    const formSection = document.getElementById('application-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  nextStep() {
+    // Validate current step before moving forward
+    if (this.validateStep(this.currentStep)) {
+      if (this.currentStep < this.totalSteps) {
+        this.currentStep++;
+        this.showStep(this.currentStep);
+      }
+    }
+  }
+  
+  previousStep() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+      this.showStep(this.currentStep);
+    }
+  }
+  
+  goToStep(stepNumber) {
+    if (stepNumber >= 1 && stepNumber <= this.totalSteps) {
+      this.currentStep = stepNumber;
+      this.showStep(this.currentStep);
+    }
+  }
+  
+  validateStep(step) {
+    const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+    if (!currentStepElement) return true;
+    
+    // Get all required inputs in current step
+    const requiredInputs = currentStepElement.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredInputs.forEach(input => {
+      // Clear previous errors
+      const errorElement = document.getElementById(`${input.id}-error`);
+      if (errorElement) {
+        errorElement.textContent = '';
+      }
+      input.classList.remove('error');
+      
+      // Check if empty
+      if (!input.value.trim() && input.type !== 'radio' && input.type !== 'checkbox') {
+        isValid = false;
+        input.classList.add('error');
+        if (errorElement) {
+          errorElement.textContent = 'This field is required';
+        }
+      }
+      
+      // Check radio buttons
+      if (input.type === 'radio') {
+        const radioGroup = currentStepElement.querySelectorAll(`input[name="${input.name}"]`);
+        const isChecked = Array.from(radioGroup).some(radio => radio.checked);
+        if (!isChecked) {
+          isValid = false;
+          const errorElement = document.getElementById(`${input.name}-error`);
+          if (errorElement) {
+            errorElement.textContent = 'Please select an option';
+          }
+        }
+      }
+      
+      // Check checkboxes
+      if (input.type === 'checkbox' && !input.checked) {
+        isValid = false;
+        input.classList.add('error');
+        if (errorElement) {
+          errorElement.textContent = 'This field is required';
+        }
+      }
+      
+      // Validate email
+      if (input.type === 'email' && input.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
+          isValid = false;
+          input.classList.add('error');
+          if (errorElement) {
+            errorElement.textContent = 'Please enter a valid email address';
+          }
+        }
+      }
+      
+      // Validate file uploads
+      if (input.type === 'file' && input.hasAttribute('required')) {
+        if (!input.files || input.files.length === 0) {
+          isValid = false;
+          input.classList.add('error');
+          if (errorElement) {
+            errorElement.textContent = 'Please upload a file';
+          }
+        }
+      }
+    });
+    
+    if (!isValid) {
+      // Show error message
+      const firstError = currentStepElement.querySelector('.error');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus();
+      }
+    }
+    
+    return isValid;
+  }
+}
 
 // Initialize the website when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   window.elpisWebsite = new ElpisWebsite()
+  
+  // Initialize multi-step form if on apply page
+  const jobForm = document.getElementById('job-application-form');
+  if (jobForm) {
+    window.multiStepForm = new MultiStepForm('job-application-form');
+  }
 })
 
 // Export for module systems
