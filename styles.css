@@ -2300,7 +2300,105 @@ input[type="radio"]:hover {
   border-radius: var(--border-radius-full);
 }
 
-/* Marquee Container */
+/* Partners Section */
+.partners-section {
+  background: rgba(255, 255, 255, 0.03);
+  padding: var(--space-16) 0;
+}
+
+.partners-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: var(--space-8) 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.partners-marquee-content {
+  display: flex;
+  gap: var(--space-8);
+  animation: partnersMarquee 30s linear infinite;
+  width: fit-content;
+}
+
+.partners-marquee-content:hover {
+  animation-play-state: paused;
+}
+
+@keyframes partnersMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-logo-card {
+  flex: 0 0 auto;
+  width: 220px;
+  height: 120px;
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.partner-logo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.partner-logo-card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.partner-logo-card:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .partners-section {
+    padding: var(--space-12) 0;
+  }
+  
+  .partners-marquee-content {
+    animation: partnersMarquee 20s linear infinite;
+    gap: var(--space-6);
+  }
+  
+  .partner-logo-card {
+    width: 180px;
+    height: 100px;
+    padding: var(--space-3);
+  }
+}
+
+/* Marquee Container (for apply.html info cards) */
 .marquee-container {
   overflow: hidden;
   position: relative;
