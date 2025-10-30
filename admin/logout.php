@@ -1,16 +1,11 @@
 <?php
-// Logout functionality
-// In a real application, this would clear session data
+session_start();
+session_unset();
+session_destroy();
 
-// For now, just redirect to a logout confirmation or login page
-// You can implement proper session destruction here
-
-// Example session destruction (uncomment when sessions are implemented):
-// session_start();
-// session_unset();
-// session_destroy();
-
-// Redirect to login page or show logout message
+// Redirect to login page
+header('Location: index.php');
+exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
