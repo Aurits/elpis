@@ -13,14 +13,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     
-    // Dummy credentials
-    if ($email === 'admin@example.com' && $password === 'admin123') {
-        $_SESSION['admin_logged_in'] = true;
-        $_SESSION['admin_email'] = $email;
-        header('Location: dashboard.php');
-        exit;
-    } else {
+    // Database authentication
+    require_once __DIR__ . '/config/database.php';
+    
+    try {
+        $sql = "SELECT * FROM admin_users WHERE email = ? AND is_active = TRUE";
+        $result = Database::query($sql, [$email]);
+        
+        if (!empty($result)) {
+            $user = $result[0];
+            
+            // Verify password
+            if (password_verify($password, $user['password_hash'])) {
+                $_SESSION['admin_logged_in'] = true;
+                $_SESSION['admin_email'] = $user['email'];
+                $_SESSION['admin_name'] = $user['full_name'];
+                $_SESSION['admin_role'] = $user['role'];
+                
+                // Update last login
+                $updateSql = "UPDATE admin_users SET last_login = NOW() WHERE id = ?";
+                Database::execute($updateSql, [$user['id']]);
+                
+                header('Location: dashboard.php');
+                exit;
+            }
+        }
+        
         $error = 'Invalid email or password';
+        
+    } catch (Exception $e) {
+        $error = 'Database connection error. Please check your configuration.';
+        error_log("Login error: " . $e->getMessage());
     }
 }
 ?>
