@@ -130,18 +130,28 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
                         <!-- Donations Tab Content -->
                         <div class="tab-content <?php echo $activeTab === 'donations' ? 'active' : ''; ?>" id="donations-tab">
+                            <!-- Period Selector -->
+                            <div class="table-filters" style="margin-bottom: 1rem;">
+                                <div class="filter-row" style="justify-content: flex-end;">
+                                    <label for="don-period" class="sr-only">Period</label>
+                                    <select class="select" id="don-period" style="max-width: 180px;">
+                                        <option value="year">This Year</option>
+                                        <option value="all">All Time</option>
+                                    </select>
+                                </div>
+                            </div>
                             <!-- Summary Cards -->
                             <div class="summary-cards">
                                 <div class="summary-card">
-                                    <p class="summary-label">Total Donations (This Month)</p>
+                                    <p class="summary-label">Total Donations (<span id="don-period-label">This Year</span>)</p>
                                     <p class="summary-value" id="don-total-month">—</p>
                                 </div>
                                 <div class="summary-card">
-                                    <p class="summary-label">Average Donation Amount</p>
+                                    <p class="summary-label">Average Donation (<span id="don-period-label-avg">This Year</span>)</p>
                                     <p class="summary-value" id="don-average">—</p>
                                 </div>
                                 <div class="summary-card">
-                                    <p class="summary-label">Most Popular Payment Method</p>
+                                    <p class="summary-label">Most Popular Method (<span id="don-period-label-pop">This Year</span>)</p>
                                     <p class="summary-value" id="don-popular-method">—</p>
                                 </div>
                             </div>

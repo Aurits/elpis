@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (document.getElementById('donations-tbody')) {
         fetchDonations().then(() => { updateDonationsSummary(); initializeDonationsTab(); });
+        const periodSelect = document.getElementById('don-period');
+        if (periodSelect) periodSelect.addEventListener('change', updateDonationsSummary);
     }
     if (document.getElementById('subscriptions-tbody')) {
         fetchSubscriptions().then(() => { populateSubscriptionFilters(); initializeSubscriptionsTab(); });
@@ -188,17 +190,30 @@ function updateDonationsSummary() {
     const totalMonthEl = document.getElementById('don-total-month');
     const avgEl = document.getElementById('don-average');
     const popularEl = document.getElementById('don-popular-method');
+    const periodSelect = document.getElementById('don-period');
+    const period = periodSelect ? periodSelect.value : 'year';
+    const labelEls = [
+        document.getElementById('don-period-label'),
+        document.getElementById('don-period-label-avg'),
+        document.getElementById('don-period-label-pop')
+    ];
     if (!Array.isArray(window.donationsData)) return;
     const now = new Date();
-    const month = now.getMonth();
-    const year = now.getFullYear();
-    const thisMonth = window.donationsData.filter(d => { const dt = new Date(d.date); return dt.getMonth() === month && dt.getFullYear() === year && d.status === 'Success'; });
-    const totalMonth = thisMonth.reduce((s, d) => s + Number(d.amount || 0), 0);
-    const success = window.donationsData.filter(d => d.status === 'Success');
-    const avg = success.length ? success.reduce((s, d) => s + Number(d.amount || 0), 0) / success.length : 0;
-    const methodCount = {}; window.donationsData.forEach(d => { methodCount[d.paymentMethod] = (methodCount[d.paymentMethod] || 0) + 1; });
+    let windowRows = window.donationsData;
+    if (period === 'year') {
+        const year = now.getFullYear();
+        windowRows = windowRows.filter(d => (new Date(d.date)).getFullYear() === year && ['Success','Pending'].includes(d.status));
+    } else {
+        windowRows = windowRows.filter(d => ['Success','Pending'].includes(d.status));
+    }
+    const label = (period === 'year') ? 'This Year' : 'All Time';
+    labelEls.forEach(el => { if (el) el.textContent = label; });
+    const total30 = windowRows.reduce((s, d) => s + Number(d.amount || 0), 0);
+    const avg = windowRows.length ? windowRows.reduce((s, d) => s + Number(d.amount || 0), 0) / windowRows.length : 0;
+    const methodCount = {};
+    windowRows.forEach(d => { methodCount[d.paymentMethod] = (methodCount[d.paymentMethod] || 0) + 1; });
     const popular = Object.entries(methodCount).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
-    if (totalMonthEl) totalMonthEl.textContent = 'UGX ' + Number(totalMonth).toLocaleString();
+    if (totalMonthEl) totalMonthEl.textContent = 'UGX ' + Number(total30).toLocaleString();
     if (avgEl) avgEl.textContent = 'UGX ' + Math.round(avg).toLocaleString();
     if (popularEl) popularEl.textContent = popular;
 }
@@ -486,27 +501,54 @@ function viewApplication(app) {
 
 function handleApplicationAction(action) {
     if (!currentApplication) return;
-
-    const actionText = action === 'approve' ? 'approved' : 'rejected';
-    showToast(
-        `Application ${capitalizeFirst(actionText)}`,
-        `${currentApplication.applicantName}'s application has been ${actionText}.`
-    );
-
-    closeModal('applicationModal');
-    filterApplications();
+    const status = action === 'approve' ? 'approved' : 'rejected';
+    updateApplicationStatus(currentApplication.id, status, () => {
+        showToast(
+            'Application Updated',
+            `${currentApplication.applicantName}'s application has been ${status}.`
+        );
+        closeModal('applicationModal');
+        filterApplications();
+    });
 }
 
 function quickApprove(id) {
-    updateApplicationStatus(id, 'approved');
+    updateApplicationStatus(id, 'approved', () => {
+        showToast('Application Updated', `Application ${id} approved.`);
+        filterApplications();
+    });
 }
 
 function quickReject(id) {
-    updateApplicationStatus(id, 'rejected');
+    updateApplicationStatus(id, 'rejected', () => {
+        showToast('Application Updated', `Application ${id} rejected.`);
+        filterApplications();
+    });
 }
 
 function exportApplicationsToCSV() {
     window.location.href = 'api/applications.php?action=export';
+}
+
+// API action for applications
+function updateApplicationStatus(id, status, onDone) {
+    fetch('api/applications.php?action=update_status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({ id, status })
+    }).then(r => r.json()).then(resp => {
+        if (resp && resp.success) {
+            const arr = window.applicationsData || [];
+            const idx = arr.findIndex(a => a.id === id);
+            if (idx >= 0) arr[idx].status = status;
+            if (typeof onDone === 'function') onDone();
+        } else {
+            showToast('Update Failed', (resp && resp.message) || 'Could not update status');
+        }
+    }).catch(() => {
+        showToast('Update Failed', 'Network error while updating.');
+    });
 }
 
 // ===== Donations Tab =====
