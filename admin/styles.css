@@ -176,6 +176,13 @@ body.dark-theme .dark-theme-logo {
     display: block;
 }
 
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+    .sidebar-logo-image {
+        height: 40px;
+    }
+}
+
 .sidebar-logo-icon {
     width: 32px;
     height: 32px;
