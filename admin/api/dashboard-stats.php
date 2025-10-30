@@ -37,6 +37,10 @@ try {
         case 'applications_chart':
             getApplicationsChartData();
             break;
+        
+        case 'distribution':
+            getDistributionData();
+            break;
             
         default:
             http_response_code(400);
@@ -91,54 +95,45 @@ function getRecentActivity() {
 }
 
 /**
- * Get donations chart data (last 6 months)
+ * Get donations chart data (last 12 months)
  */
 function getDonationsChartData() {
-    $sql = "SELECT 
-                DATE_FORMAT(date, '%b') as month,
-                DATE_FORMAT(date, '%Y-%m') as year_month,
-                COALESCE(SUM(amount), 0) as total_amount,
-                COUNT(*) as count
-            FROM donations
-            WHERE status = 'Success'
-                AND date >= DATE_SUB(CURDATE(), INTERVAL 6 MONTH)
-            GROUP BY year_month, month
-            ORDER BY year_month";
-    
-    $data = Database::query($sql);
-    
-    // Ensure we have 6 months of data (fill missing months with 0)
-    $months = [];
-    for ($i = 5; $i >= 0; $i--) {
-        $monthDate = date('Y-m', strtotime("-{$i} months"));
-        $monthName = date('M', strtotime("-{$i} months"));
-        
-        $found = false;
-        foreach ($data as $row) {
-            if ($row['year_month'] === $monthDate) {
-                $months[] = [
-                    'month' => $monthName,
-                    'amount' => floatval($row['total_amount']),
-                    'count' => intval($row['count'])
+    try {
+        $sql = "SELECT 
+                    DATE_FORMAT(`date`, '%Y-%m') AS ym,
+                    DATE_FORMAT(`date`, '%b') AS month_name,
+                    COALESCE(SUM(amount), 0) AS total_amount,
+                    COUNT(*) AS total_count
+                FROM donations
+                WHERE status = 'Success'
+                  AND `date` >= DATE_SUB(CURDATE(), INTERVAL 12 MONTH)
+                GROUP BY ym
+                ORDER BY ym";
+
+        $rows = Database::query($sql);
+
+        $out = [];
+        for ($i = 11; $i >= 0; $i--) {
+            $ym = date('Y-m', strtotime("-{$i} months"));
+            $label = date('M', strtotime("-{$i} months"));
+            $match = array_values(array_filter($rows, function ($r) use ($ym) { return ($r['ym'] ?? '') === $ym; }));
+            if (!empty($match)) {
+                $row = $match[0];
+                $out[] = [
+                    'month' => $label,
+                    'amount' => (float)($row['total_amount'] ?? 0),
+                    'count'  => (int)($row['total_count'] ?? 0),
                 ];
-                $found = true;
-                break;
+            } else {
+                $out[] = ['month' => $label, 'amount' => 0, 'count' => 0];
             }
         }
-        
-        if (!$found) {
-            $months[] = [
-                'month' => $monthName,
-                'amount' => 0,
-                'count' => 0
-            ];
-        }
+
+        echo json_encode(['success' => true, 'data' => $out]);
+    } catch (Throwable $e) {
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'donations_chart failed', 'error' => $e->getMessage()]);
     }
-    
-    echo json_encode([
-        'success' => true,
-        'data' => $months
-    ]);
 }
 
 /**
@@ -160,6 +155,25 @@ function getApplicationsChartData() {
     echo json_encode([
         'success' => true,
         'data' => $data
+    ]);
+}
+
+/**
+ * Get distribution data for pie chart (by region using subscriptions)
+ */
+function getDistributionData() {
+    // Use subscriptions regions for distribution
+    $sql = "SELECT region as name, COUNT(*) as value
+            FROM subscriptions
+            WHERE region IS NOT NULL AND region <> ''
+            GROUP BY region
+            ORDER BY value DESC";
+    
+    $rows = Database::query($sql);
+    
+    echo json_encode([
+        'success' => true,
+        'data' => $rows
     ]);
 }
 ?>

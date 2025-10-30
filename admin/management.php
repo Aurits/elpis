@@ -20,9 +20,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 </head>
 <body>
     <?php
-    // Include sample data
-    require_once 'sample-data.php';
-    
     // Get active tab from URL parameter
     $activeTab = isset($_GET['tab']) ? $_GET['tab'] : 'applications';
     
@@ -76,20 +73,14 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                                     </select>
                                     <select class="select" id="app-department-filter">
                                         <option value="all">All Departments</option>
-                                        <?php foreach (array_unique(array_column($applications, 'department')) as $dept): ?>
-                                            <option value="<?php echo htmlspecialchars($dept); ?>"><?php echo htmlspecialchars($dept); ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                     <select class="select" id="app-region-filter">
                                         <option value="all">All Regions</option>
-                                        <?php foreach (array_unique(array_column($applications, 'region')) as $region): ?>
-                                            <option value="<?php echo htmlspecialchars($region); ?>"><?php echo htmlspecialchars($region); ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="filter-info">
                                     <p class="filter-info-text" id="app-filter-info">
-                                        Showing <span id="app-showing-count">0</span> of <?php echo count($applications); ?> applications
+                                        Showing <span id="app-showing-count">0</span> applications
                                     </p>
                                     <div class="filter-actions">
                                         <button class="btn btn-outline btn-sm" onclick="exportApplicationsToCSV()">
@@ -141,37 +132,17 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                         <div class="tab-content <?php echo $activeTab === 'donations' ? 'active' : ''; ?>" id="donations-tab">
                             <!-- Summary Cards -->
                             <div class="summary-cards">
-                                <?php
-                                $thisMonthDonations = array_filter($donations, function($d) {
-                                    $donationMonth = date('n', strtotime($d['date']));
-                                    $donationYear = date('Y', strtotime($d['date']));
-                                    return $donationMonth == date('n') && $donationYear == date('Y');
-                                });
-                                $totalThisMonth = array_sum(array_column($thisMonthDonations, 'amount'));
-                                $averageDonation = array_sum(array_column($donations, 'amount')) / count($donations);
-                                
-                                $paymentMethodCounts = [];
-                                foreach ($donations as $d) {
-                                    $method = $d['paymentMethod'];
-                                    if (!isset($paymentMethodCounts[$method])) {
-                                        $paymentMethodCounts[$method] = 0;
-                                    }
-                                    $paymentMethodCounts[$method]++;
-                                }
-                                arsort($paymentMethodCounts);
-                                $mostPopularMethod = key($paymentMethodCounts);
-                                ?>
                                 <div class="summary-card">
                                     <p class="summary-label">Total Donations (This Month)</p>
-                                    <p class="summary-value">UGX <?php echo number_format($totalThisMonth); ?></p>
+                                    <p class="summary-value" id="don-total-month">—</p>
                                 </div>
                                 <div class="summary-card">
                                     <p class="summary-label">Average Donation Amount</p>
-                                    <p class="summary-value">UGX <?php echo number_format(round($averageDonation)); ?></p>
+                                    <p class="summary-value" id="don-average">—</p>
                                 </div>
                                 <div class="summary-card">
                                     <p class="summary-label">Most Popular Payment Method</p>
-                                    <p class="summary-value"><?php echo htmlspecialchars($mostPopularMethod); ?></p>
+                                    <p class="summary-value" id="don-popular-method">—</p>
                                 </div>
                             </div>
 
@@ -200,7 +171,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                                 </div>
                                 <div class="filter-info">
                                     <p class="filter-info-text" id="don-filter-info">
-                                        Showing <span id="don-showing-count">0</span> of <?php echo count($donations); ?> donations
+                                        Showing <span id="don-showing-count">0</span> donations
                                     </p>
                                     <div class="filter-actions">
                                         <button class="btn btn-outline btn-sm" onclick="exportDonationsToExcel()">
@@ -267,14 +238,11 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
                                     </select>
                                     <select class="select" id="sub-region-filter">
                                         <option value="all">All Regions</option>
-                                        <?php foreach (array_unique(array_column($subscriptions, 'region')) as $region): ?>
-                                            <option value="<?php echo htmlspecialchars($region); ?>"><?php echo htmlspecialchars($region); ?></option>
-                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="filter-info">
                                     <p class="filter-info-text" id="sub-filter-info">
-                                        Showing <span id="sub-showing-count">0</span> of <?php echo count($subscriptions); ?> subscriptions
+                                        Showing <span id="sub-showing-count">0</span> subscriptions
                                         <span id="sub-selected-info" class="hidden"></span>
                                     </p>
                                     <div class="filter-actions" id="sub-bulk-actions" style="display: none;">
@@ -374,13 +342,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     <div class="toast-container" id="toastContainer"></div>
 
     <!-- Main Script -->
-    <script>
-        // Pass PHP data to JavaScript
-        const applicationsData = <?php echo json_encode($applications); ?>;
-        const donationsData = <?php echo json_encode($donations); ?>;
-        const subscriptionsData = <?php echo json_encode($subscriptions); ?>;
-        const activeTab = '<?php echo $activeTab; ?>';
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

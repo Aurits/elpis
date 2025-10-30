@@ -2,40 +2,244 @@
 // Main functionality for all interactive features
 
 // ===== Global State =====
-let currentAppPage = 1;
-let currentDonPage = 1;
-let currentSubPage = 1;
-const itemsPerPage = 10;
-let selectedSubscriptions = new Set();
-let currentApplication = null;
+window.currentAppPage = window.currentAppPage || 1;
+window.currentDonPage = window.currentDonPage || 1;
+window.currentSubPage = window.currentSubPage || 1;
+window.itemsPerPage = window.itemsPerPage || 10;
+window.selectedSubscriptions = window.selectedSubscriptions || new Set();
+window.currentApplication = window.currentApplication || null;
 
 // ===== Initialize on DOM Load =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeTheme();
     initializeSidebar();
     initializeHeader();
-    
-    // Initialize management page features if data exists
-    if (typeof applicationsData !== 'undefined') {
-        initializeApplicationsTab();
+
+    // Dashboard → load live metrics and charts
+    if (document.getElementById('donationsChart') || document.getElementById('applicationsChart')) {
+        loadDashboardData();
     }
-    if (typeof donationsData !== 'undefined') {
-        initializeDonationsTab();
+
+    // Management pages → load live data first, then init tabs
+    if (document.getElementById('applications-tbody')) {
+        fetchApplications().then(() => { populateApplicationFilters(); initializeApplicationsTab(); });
     }
-    if (typeof subscriptionsData !== 'undefined') {
-        initializeSubscriptionsTab();
+    if (document.getElementById('donations-tbody')) {
+        fetchDonations().then(() => { updateDonationsSummary(); initializeDonationsTab(); });
+    }
+    if (document.getElementById('subscriptions-tbody')) {
+        fetchSubscriptions().then(() => { populateSubscriptionFilters(); initializeSubscriptionsTab(); });
     }
 });
+
+// ===== API Loaders =====
+async function loadDashboardData() {
+    try {
+        // Overview metrics
+        const overviewRes = await fetch('api/dashboard-stats.php?action=overview', { credentials: 'same-origin' });
+        const overview = await overviewRes.json();
+        if (overview?.success && overview.data) {
+            // Update metric cards if present
+            const metricNodes = document.querySelectorAll('.metrics-grid .metric-card .metric-info .metric-title');
+            const valueNodes = document.querySelectorAll('.metrics-grid .metric-card .metric-info .metric-value');
+            if (metricNodes.length >= 4 && valueNodes.length >= 4) {
+                // Match by label text
+                for (let i = 0; i < metricNodes.length; i++) {
+                    const label = metricNodes[i].textContent.trim();
+                    if (label === 'Total Applications') valueNodes[i].textContent = overview.data.total_applications;
+                    if (label === 'Pending Applications') valueNodes[i].textContent = overview.data.pending_applications;
+                    if (label === 'Total Donations') valueNodes[i].textContent = 'UGX ' + (Math.round((overview.data.total_donations || 0) / 100000) / 10).toFixed(1) + 'M';
+                    if (label === 'Active Subscriptions') valueNodes[i].textContent = overview.data.active_subscriptions;
+                }
+            }
+        }
+
+        // Donations chart
+        const donChartRes = await fetch('api/dashboard-stats.php?action=donations_chart', { credentials: 'same-origin' });
+        const donChart = await donChartRes.json();
+        if (donChart?.success) {
+            window.donationsChartData = donChart.data.map(d => ({ month: d.month, amount: d.amount }));
+        }
+
+        // Applications chart
+        const appChartRes = await fetch('api/dashboard-stats.php?action=applications_chart', { credentials: 'same-origin' });
+        const appChart = await appChartRes.json();
+        if (appChart?.success) {
+            window.applicationsChartData = appChart.data.map(d => ({ department: d.department, count: d.count }));
+        }
+
+        // Distribution chart (by region via subscriptions)
+        const distRes = await fetch('api/dashboard-stats.php?action=distribution', { credentials: 'same-origin' });
+        const dist = await distRes.json();
+        if (dist?.success) {
+            window.donationsDistributionData = dist.data;
+        }
+
+        // Activity feed
+        const activityRes = await fetch('api/dashboard-stats.php?action=activity', { credentials: 'same-origin' });
+        const activity = await activityRes.json();
+        if (activity?.success) {
+            renderActivityFeed(activity.data || []);
+        }
+
+        // Initialize charts with available data (destroy previous instances if any)
+        if (!window._charts) window._charts = {};
+        initializeDashboardCharts();
+    } catch (e) {
+        console.error('Dashboard load error:', e);
+    }
+}
+
+function renderActivityFeed(items) {
+    const feed = document.querySelector('.activity-feed');
+    if (!feed) return;
+    if (!Array.isArray(items) || items.length === 0) {
+        feed.innerHTML = '<div class="empty-state">No recent activity.</div>';
+        return;
+    }
+    feed.innerHTML = '';
+    items.forEach(a => {
+        const item = document.createElement('div');
+        item.className = 'activity-item';
+        const icon = a.type === 'application' ?
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>' :
+            (a.type === 'donation' ?
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>' :
+                '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>');
+        const statusIcon = a.status === 'success' ?
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>' :
+            (a.status === 'error' ? '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>');
+        item.innerHTML = `
+            <div class="activity-icon">${icon}</div>
+            <div class="activity-content">
+                <p class="activity-message">${escapeHtml(a.message)}</p>
+                <p class="activity-timestamp">${escapeHtml(a.timestamp)}</p>
+            </div>
+            <div class="activity-status ${a.status}">${statusIcon}</div>
+        `;
+        feed.appendChild(item);
+    });
+}
+
+async function fetchApplications() {
+    try {
+        const res = await fetch('api/applications.php?action=list&page=1&per_page=500', { credentials: 'same-origin' });
+        const json = await res.json();
+        const rows = (json?.success ? (json.data || []) : []).map(r => ({
+            id: r.id,
+            applicantName: r.applicant_name,
+            email: r.email,
+            phone: r.phone,
+            position: r.position,
+            department: r.department,
+            region: r.region,
+            dateSubmitted: r.date_submitted,
+            status: r.status,
+            reviewedBy: r.reviewed_by,
+            reviewedAt: r.reviewed_at,
+            // Optional detail fields if present
+            coverLetter: r.cover_letter || '',
+            qualifications: r.qualifications || '',
+            cv: r.cv_file_path || ''
+        }));
+        window.applicationsData = rows;
+    } catch (e) {
+        console.error('Applications load error:', e);
+        window.applicationsData = [];
+    }
+}
+function populateApplicationFilters() {
+    const departments = Array.from(new Set((window.applicationsData || []).map(a => a.department))).sort();
+    const regions = Array.from(new Set((window.applicationsData || []).map(a => a.region))).sort();
+    const deptSelect = document.getElementById('app-department-filter');
+    const regionSelect = document.getElementById('app-region-filter');
+    if (deptSelect && deptSelect.options.length <= 1) {
+        departments.forEach(d => { const opt = document.createElement('option'); opt.value = d; opt.textContent = d; deptSelect.appendChild(opt); });
+    }
+    if (regionSelect && regionSelect.options.length <= 1) {
+        regions.forEach(r => { const opt = document.createElement('option'); opt.value = r; opt.textContent = r; regionSelect.appendChild(opt); });
+    }
+}
+
+async function fetchDonations() {
+    try {
+        const res = await fetch('api/donations.php?action=list&page=1&per_page=500', { credentials: 'same-origin' });
+        const json = await res.json();
+        const rows = (json?.success ? (json.data || []) : []).map(r => ({
+            id: r.id,
+            donorName: r.donor_name,
+            email: r.email,
+            phone: r.phone,
+            amount: r.amount,
+            paymentMethod: r.payment_method,
+            transactionId: r.transaction_id,
+            partnerId: r.partner_id,
+            date: r.date,
+            status: r.status,
+            confirmationSent: r.confirmation_sent
+        }));
+        window.donationsData = rows;
+    } catch (e) {
+        console.error('Donations load error:', e);
+        window.donationsData = [];
+    }
+}
+function updateDonationsSummary() {
+    const totalMonthEl = document.getElementById('don-total-month');
+    const avgEl = document.getElementById('don-average');
+    const popularEl = document.getElementById('don-popular-method');
+    if (!Array.isArray(window.donationsData)) return;
+    const now = new Date();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+    const thisMonth = window.donationsData.filter(d => { const dt = new Date(d.date); return dt.getMonth() === month && dt.getFullYear() === year && d.status === 'Success'; });
+    const totalMonth = thisMonth.reduce((s, d) => s + Number(d.amount || 0), 0);
+    const success = window.donationsData.filter(d => d.status === 'Success');
+    const avg = success.length ? success.reduce((s, d) => s + Number(d.amount || 0), 0) / success.length : 0;
+    const methodCount = {}; window.donationsData.forEach(d => { methodCount[d.paymentMethod] = (methodCount[d.paymentMethod] || 0) + 1; });
+    const popular = Object.entries(methodCount).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
+    if (totalMonthEl) totalMonthEl.textContent = 'UGX ' + Number(totalMonth).toLocaleString();
+    if (avgEl) avgEl.textContent = 'UGX ' + Math.round(avg).toLocaleString();
+    if (popularEl) popularEl.textContent = popular;
+}
+
+async function fetchSubscriptions() {
+    try {
+        const res = await fetch('api/subscriptions.php?action=list&page=1&per_page=500', { credentials: 'same-origin' });
+        const json = await res.json();
+        const rows = (json?.success ? (json.data || []) : []).map(r => ({
+            id: r.id,
+            subscriberName: r.subscriber_name,
+            email: r.email,
+            phone: r.phone,
+            region: r.region,
+            subscriptionDate: r.subscription_date,
+            status: r.status,
+            lastEmailSent: r.last_email_sent
+        }));
+        window.subscriptionsData = rows;
+    } catch (e) {
+        console.error('Subscriptions load error:', e);
+        window.subscriptionsData = [];
+    }
+}
+function populateSubscriptionFilters() {
+    const regions = Array.from(new Set((window.subscriptionsData || []).map(s => s.region))).sort();
+    const regionSelect = document.getElementById('sub-region-filter');
+    if (regionSelect && regionSelect.options.length <= 1) {
+        regions.forEach(r => { const opt = document.createElement('option'); opt.value = r; opt.textContent = r; regionSelect.appendChild(opt); });
+    }
+}
 
 // ===== Theme Functions =====
 function initializeTheme() {
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const sunIcon = document.getElementById('sunIcon');
     const moonIcon = document.getElementById('moonIcon');
-    
+
     // Check for saved theme preference or default to light
     const savedTheme = localStorage.getItem('theme') || 'light';
-    
+
     // Apply saved theme
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');
@@ -46,12 +250,12 @@ function initializeTheme() {
         if (sunIcon) sunIcon.classList.remove('active');
         if (moonIcon) moonIcon.classList.add('active');
     }
-    
+
     // Theme toggle functionality
     if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', function() {
+        themeToggleBtn.addEventListener('click', function () {
             const isDark = document.body.classList.contains('dark-theme');
-            
+
             if (isDark) {
                 // Switch to light
                 document.body.classList.remove('dark-theme');
@@ -76,16 +280,16 @@ function initializeSidebar() {
     const overlay = document.getElementById('overlay');
     const menuIcon = document.getElementById('menuIcon');
     const closeIcon = document.getElementById('closeIcon');
-    
+
     if (mobileMenuBtn && sidebar && overlay) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function () {
             sidebar.classList.toggle('open');
             overlay.classList.toggle('active');
             menuIcon.classList.toggle('hidden');
             closeIcon.classList.toggle('hidden');
         });
-        
-        overlay.addEventListener('click', function() {
+
+        overlay.addEventListener('click', function () {
             sidebar.classList.remove('open');
             overlay.classList.remove('active');
             menuIcon.classList.remove('hidden');
@@ -97,9 +301,9 @@ function initializeSidebar() {
 // ===== Header Functions =====
 function initializeHeader() {
     const notificationsBtn = document.getElementById('notificationsBtn');
-    
+
     if (notificationsBtn) {
-        notificationsBtn.addEventListener('click', function() {
+        notificationsBtn.addEventListener('click', function () {
             showToast('Notifications', 'You have 3 new notifications');
         });
     }
@@ -111,13 +315,13 @@ function switchTab(tabName) {
     const url = new URL(window.location);
     url.searchParams.set('tab', tabName);
     window.history.pushState({}, '', url);
-    
+
     // Update tab triggers
     document.querySelectorAll('.tab-trigger').forEach(trigger => {
         trigger.classList.remove('active');
     });
     document.querySelector(`.tab-trigger[onclick="switchTab('${tabName}')"]`)?.classList.add('active');
-    
+
     // Update tab content
     document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
@@ -131,7 +335,7 @@ function initializeApplicationsTab() {
     const statusFilter = document.getElementById('app-status-filter');
     const departmentFilter = document.getElementById('app-department-filter');
     const regionFilter = document.getElementById('app-region-filter');
-    
+
     if (searchInput) {
         searchInput.addEventListener('input', filterApplications);
     }
@@ -144,7 +348,7 @@ function initializeApplicationsTab() {
     if (regionFilter) {
         regionFilter.addEventListener('change', filterApplications);
     }
-    
+
     filterApplications();
 }
 
@@ -153,18 +357,18 @@ function filterApplications() {
     const statusFilter = document.getElementById('app-status-filter')?.value || 'all';
     const departmentFilter = document.getElementById('app-department-filter')?.value || 'all';
     const regionFilter = document.getElementById('app-region-filter')?.value || 'all';
-    
-    const filtered = applicationsData.filter(app => {
+
+    const filtered = (window.applicationsData || []).filter(app => {
         const matchesSearch = app.applicantName.toLowerCase().includes(searchQuery) ||
-                            app.email.toLowerCase().includes(searchQuery) ||
-                            app.position.toLowerCase().includes(searchQuery);
+            app.email.toLowerCase().includes(searchQuery) ||
+            app.position.toLowerCase().includes(searchQuery);
         const matchesStatus = statusFilter === 'all' || app.status === statusFilter;
         const matchesDepartment = departmentFilter === 'all' || app.department === departmentFilter;
         const matchesRegion = regionFilter === 'all' || app.region === regionFilter;
-        
+
         return matchesSearch && matchesStatus && matchesDepartment && matchesRegion;
     });
-    
+
     currentAppPage = 1;
     renderApplicationsTable(filtered);
     updateApplicationsPagination(filtered);
@@ -173,13 +377,13 @@ function filterApplications() {
 function renderApplicationsTable(data) {
     const tbody = document.getElementById('applications-tbody');
     if (!tbody) return;
-    
+
     const start = (currentAppPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const pageData = data.slice(start, end);
-    
+
     tbody.innerHTML = '';
-    
+
     pageData.forEach(app => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -214,7 +418,7 @@ function renderApplicationsTable(data) {
         `;
         tbody.appendChild(row);
     });
-    
+
     document.getElementById('app-showing-count').textContent = data.length;
 }
 
@@ -234,7 +438,7 @@ function viewApplication(app) {
     currentApplication = app;
     document.getElementById('modalAppName').textContent = app.applicantName;
     document.getElementById('modalAppPosition').textContent = `${app.position} - ${app.department}`;
-    
+
     const content = document.getElementById('modalAppContent');
     content.innerHTML = `
         <div class="expanded-details">
@@ -276,39 +480,33 @@ function viewApplication(app) {
             </div>
         </div>
     `;
-    
+
     openModal('applicationModal');
 }
 
 function handleApplicationAction(action) {
     if (!currentApplication) return;
-    
+
     const actionText = action === 'approve' ? 'approved' : 'rejected';
     showToast(
         `Application ${capitalizeFirst(actionText)}`,
         `${currentApplication.applicantName}'s application has been ${actionText}.`
     );
-    
+
     closeModal('applicationModal');
     filterApplications();
 }
 
 function quickApprove(id) {
-    const app = applicationsData.find(a => a.id === id);
-    if (app) {
-        showToast('Application Approved', `${app.applicantName}'s application has been approved.`);
-    }
+    updateApplicationStatus(id, 'approved');
 }
 
 function quickReject(id) {
-    const app = applicationsData.find(a => a.id === id);
-    if (app) {
-        showToast('Application Rejected', `${app.applicantName}'s application has been rejected.`);
-    }
+    updateApplicationStatus(id, 'rejected');
 }
 
 function exportApplicationsToCSV() {
-    showToast('Export Started', 'Your CSV file is being prepared for download.');
+    window.location.href = 'api/applications.php?action=export';
 }
 
 // ===== Donations Tab =====
@@ -316,7 +514,7 @@ function initializeDonationsTab() {
     const searchInput = document.getElementById('don-search');
     const paymentFilter = document.getElementById('don-payment-filter');
     const statusFilter = document.getElementById('don-status-filter');
-    
+
     if (searchInput) {
         searchInput.addEventListener('input', filterDonations);
     }
@@ -326,7 +524,7 @@ function initializeDonationsTab() {
     if (statusFilter) {
         statusFilter.addEventListener('change', filterDonations);
     }
-    
+
     filterDonations();
 }
 
@@ -334,17 +532,17 @@ function filterDonations() {
     const searchQuery = document.getElementById('don-search')?.value.toLowerCase() || '';
     const paymentFilter = document.getElementById('don-payment-filter')?.value || 'all';
     const statusFilter = document.getElementById('don-status-filter')?.value || 'all';
-    
-    const filtered = donationsData.filter(don => {
+
+    const filtered = (window.donationsData || []).filter(don => {
         const matchesSearch = don.donorName.toLowerCase().includes(searchQuery) ||
-                            don.email.toLowerCase().includes(searchQuery) ||
-                            don.transactionId.toLowerCase().includes(searchQuery);
+            don.email.toLowerCase().includes(searchQuery) ||
+            don.transactionId.toLowerCase().includes(searchQuery);
         const matchesPayment = paymentFilter === 'all' || don.paymentMethod === paymentFilter;
         const matchesStatus = statusFilter === 'all' || don.status === statusFilter;
-        
+
         return matchesSearch && matchesPayment && matchesStatus;
     });
-    
+
     currentDonPage = 1;
     renderDonationsTable(filtered);
     updateDonationsPagination(filtered);
@@ -353,13 +551,13 @@ function filterDonations() {
 function renderDonationsTable(data) {
     const tbody = document.getElementById('donations-tbody');
     if (!tbody) return;
-    
+
     const start = (currentDonPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const pageData = data.slice(start, end);
-    
+
     tbody.innerHTML = '';
-    
+
     pageData.forEach(don => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -389,7 +587,7 @@ function renderDonationsTable(data) {
         `;
         tbody.appendChild(row);
     });
-    
+
     document.getElementById('don-showing-count').textContent = data.length;
 }
 
@@ -422,7 +620,7 @@ function initializeSubscriptionsTab() {
     const searchInput = document.getElementById('sub-search');
     const statusFilter = document.getElementById('sub-status-filter');
     const regionFilter = document.getElementById('sub-region-filter');
-    
+
     if (searchInput) {
         searchInput.addEventListener('input', filterSubscriptions);
     }
@@ -432,7 +630,7 @@ function initializeSubscriptionsTab() {
     if (regionFilter) {
         regionFilter.addEventListener('change', filterSubscriptions);
     }
-    
+
     filterSubscriptions();
 }
 
@@ -440,17 +638,17 @@ function filterSubscriptions() {
     const searchQuery = document.getElementById('sub-search')?.value.toLowerCase() || '';
     const statusFilter = document.getElementById('sub-status-filter')?.value || 'all';
     const regionFilter = document.getElementById('sub-region-filter')?.value || 'all';
-    
-    const filtered = subscriptionsData.filter(sub => {
+
+    const filtered = (window.subscriptionsData || []).filter(sub => {
         const matchesSearch = sub.subscriberName.toLowerCase().includes(searchQuery) ||
-                            sub.email.toLowerCase().includes(searchQuery) ||
-                            sub.phone.includes(searchQuery);
+            sub.email.toLowerCase().includes(searchQuery) ||
+            sub.phone.includes(searchQuery);
         const matchesStatus = statusFilter === 'all' || sub.status === statusFilter;
         const matchesRegion = regionFilter === 'all' || sub.region === regionFilter;
-        
+
         return matchesSearch && matchesStatus && matchesRegion;
     });
-    
+
     currentSubPage = 1;
     renderSubscriptionsTable(filtered);
     updateSubscriptionsPagination(filtered);
@@ -459,13 +657,13 @@ function filterSubscriptions() {
 function renderSubscriptionsTable(data) {
     const tbody = document.getElementById('subscriptions-tbody');
     if (!tbody) return;
-    
+
     const start = (currentSubPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const pageData = data.slice(start, end);
-    
+
     tbody.innerHTML = '';
-    
+
     pageData.forEach(sub => {
         const row = document.createElement('tr');
         const isChecked = selectedSubscriptions.has(sub.id);
@@ -509,7 +707,7 @@ function renderSubscriptionsTable(data) {
         `;
         tbody.appendChild(row);
     });
-    
+
     document.getElementById('sub-showing-count').textContent = data.length;
     updateBulkActionsVisibility();
 }
@@ -539,7 +737,7 @@ function toggleSelectAllSubscriptions() {
     const checkbox = document.getElementById('sub-select-all');
     const tbody = document.getElementById('subscriptions-tbody');
     const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
-    
+
     checkboxes.forEach(cb => {
         const id = cb.getAttribute('onchange').match(/'([^']+)'/)[1];
         if (checkbox.checked) {
@@ -550,14 +748,14 @@ function toggleSelectAllSubscriptions() {
             cb.checked = false;
         }
     });
-    
+
     updateBulkActionsVisibility();
 }
 
 function updateBulkActionsVisibility() {
     const bulkActions = document.getElementById('sub-bulk-actions');
     const selectedInfo = document.getElementById('sub-selected-info');
-    
+
     if (selectedSubscriptions.size > 0) {
         bulkActions.style.display = 'flex';
         selectedInfo.textContent = ` (${selectedSubscriptions.size} selected)`;
@@ -569,7 +767,7 @@ function updateBulkActionsVisibility() {
 }
 
 function toggleSubscriptionStatus(id) {
-    const sub = subscriptionsData.find(s => s.id === id);
+    const sub = (window.subscriptionsData || []).find(s => s.id === id);
     if (sub) {
         const newStatus = sub.status === 'Active' ? 'Inactive' : 'Active';
         showToast('Status Updated', `${sub.subscriberName} is now ${newStatus}.`);
@@ -615,16 +813,16 @@ function closeModal(modalId) {
 function showToast(title, description) {
     const container = document.getElementById('toastContainer');
     if (!container) return;
-    
+
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.innerHTML = `
         <div class="toast-title">${escapeHtml(title)}</div>
         <div class="toast-description">${escapeHtml(description)}</div>
     `;
-    
+
     container.appendChild(toast);
-    
+
     setTimeout(() => {
         toast.style.animation = 'slideIn 0.3s ease-out reverse';
         setTimeout(() => {
@@ -635,31 +833,26 @@ function showToast(title, description) {
 
 // ===== Dashboard Charts =====
 function initializeDashboardCharts() {
-    if (typeof Chart === 'undefined' || 
-        typeof donationsChartData === 'undefined' ||
-        typeof applicationsChartData === 'undefined' ||
-        typeof donationsDistributionData === 'undefined') {
-        return;
-    }
-    
-    // Get theme colors
+    if (typeof Chart === 'undefined') return;
+
     const isDark = document.body.classList.contains('dark-theme');
     const gridColor = isDark ? '#2A2A2A' : '#E5E7EB';
     const tickColor = isDark ? '#A0A0A0' : '#6B7280';
     const tooltipBg = isDark ? '#1A1A1A' : '#FFFFFF';
     const tooltipBorder = isDark ? '#2A2A2A' : '#E5E7EB';
     const tooltipText = isDark ? '#FFFFFF' : '#111827';
-    
+
     // Donations Line Chart
     const donationsCtx = document.getElementById('donationsChart');
-    if (donationsCtx) {
-        new Chart(donationsCtx, {
+    if (donationsCtx && Array.isArray(window.donationsChartData)) {
+        if (window._charts.donations) { window._charts.donations.destroy(); }
+        window._charts.donations = new Chart(donationsCtx, {
             type: 'line',
             data: {
-                labels: donationsChartData.map(d => d.month),
+                labels: window.donationsChartData.map(d => d.month),
                 datasets: [{
                     label: 'Donations (UGX)',
-                    data: donationsChartData.map(d => d.amount),
+                    data: window.donationsChartData.map(d => d.amount),
                     borderColor: '#EC008C',
                     backgroundColor: 'rgba(236, 0, 140, 0.1)',
                     tension: 0.4,
@@ -673,59 +866,35 @@ function initializeDashboardCharts() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
                         backgroundColor: tooltipBg,
                         titleColor: tooltipText,
                         bodyColor: tooltipText,
                         borderColor: tooltipBorder,
                         borderWidth: 1,
-                        callbacks: {
-                            label: function(context) {
-                                return 'UGX ' + context.parsed.y.toLocaleString();
-                            }
-                        }
+                        callbacks: { label: ctx => 'UGX ' + ctx.parsed.y.toLocaleString() }
                     }
                 },
                 scales: {
-                    y: {
-                        ticks: {
-                            color: tickColor,
-                            callback: function(value) {
-                                return (value / 1000000).toFixed(1) + 'M';
-                            }
-                        },
-                        grid: {
-                            color: gridColor,
-                            drawBorder: false
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: tickColor
-                        },
-                        grid: {
-                            color: gridColor,
-                            drawBorder: false
-                        }
-                    }
+                    y: { ticks: { color: tickColor }, grid: { color: gridColor, drawBorder: false } },
+                    x: { ticks: { color: tickColor }, grid: { color: gridColor, drawBorder: false } }
                 }
             }
         });
     }
-    
+
     // Applications Bar Chart
     const applicationsCtx = document.getElementById('applicationsChart');
-    if (applicationsCtx) {
-        new Chart(applicationsCtx, {
+    if (applicationsCtx && Array.isArray(window.applicationsChartData)) {
+        if (window._charts.applications) { window._charts.applications.destroy(); }
+        window._charts.applications = new Chart(applicationsCtx, {
             type: 'bar',
             data: {
-                labels: applicationsChartData.map(d => d.department),
+                labels: window.applicationsChartData.map(d => d.department),
                 datasets: [{
                     label: 'Applications',
-                    data: applicationsChartData.map(d => d.count),
+                    data: window.applicationsChartData.map(d => d.count),
                     backgroundColor: '#00AEEF',
                     borderRadius: 8,
                     borderSkipped: false
@@ -734,60 +903,26 @@ function initializeDashboardCharts() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: tooltipBg,
-                        titleColor: tooltipText,
-                        bodyColor: tooltipText,
-                        borderColor: tooltipBorder,
-                        borderWidth: 1
-                    }
-                },
+                plugins: { legend: { display: false }, tooltip: { backgroundColor: tooltipBg, titleColor: tooltipText, bodyColor: tooltipText, borderColor: tooltipBorder, borderWidth: 1 } },
                 scales: {
-                    y: {
-                        ticks: {
-                            color: tickColor,
-                            stepSize: 2
-                        },
-                        grid: {
-                            color: gridColor,
-                            drawBorder: false
-                        }
-                    },
-                    x: {
-                        ticks: {
-                            color: tickColor,
-                            maxRotation: 45,
-                            minRotation: 45
-                        },
-                        grid: {
-                            display: false
-                        }
-                    }
+                    y: { ticks: { color: tickColor }, grid: { color: gridColor, drawBorder: false } },
+                    x: { ticks: { color: tickColor }, grid: { display: false } }
                 }
             }
         });
     }
-    
-    // Donations Distribution Pie Chart
+
+    // Donations Distribution Pie Chart (optional if data available)
     const distributionCtx = document.getElementById('distributionChart');
-    if (distributionCtx) {
-        new Chart(distributionCtx, {
+    if (distributionCtx && Array.isArray(window.donationsDistributionData)) {
+        if (window._charts.distribution) { window._charts.distribution.destroy(); }
+        window._charts.distribution = new Chart(distributionCtx, {
             type: 'pie',
             data: {
-                labels: donationsDistributionData.map(d => d.name),
+                labels: window.donationsDistributionData.map(d => d.name),
                 datasets: [{
-                    data: donationsDistributionData.map(d => d.value),
-                    backgroundColor: [
-                        '#EC008C',
-                        '#00AEEF',
-                        '#10B981',
-                        '#F59E0B',
-                        '#A0A0A0'
-                    ],
+                    data: window.donationsDistributionData.map(d => d.value),
+                    backgroundColor: ['#EC008C', '#00AEEF', '#10B981', '#F59E0B', '#A0A0A0'],
                     borderWidth: 0
                 }]
             },
@@ -795,16 +930,7 @@ function initializeDashboardCharts() {
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: tickColor,
-                            padding: 15,
-                            font: {
-                                size: 12
-                            }
-                        }
-                    },
+                    legend: { position: 'bottom', labels: { color: tickColor, padding: 15, font: { size: 12 } } },
                     tooltip: {
                         backgroundColor: tooltipBg,
                         titleColor: tooltipText,
@@ -812,11 +938,11 @@ function initializeDashboardCharts() {
                         borderColor: tooltipBorder,
                         borderWidth: 1,
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 const label = context.label || '';
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = ((value / total) * 100).toFixed(0);
+                                const percentage = total ? ((value / total) * 100).toFixed(0) : 0;
                                 return `${label}: ${percentage}%`;
                             }
                         }
