@@ -183,14 +183,14 @@ function renderApplicationsTable(data) {
     pageData.forEach(app => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="table-cell-medium">${escapeHtml(app.applicantName)}</td>
-            <td style="color: var(--color-muted-foreground);">${escapeHtml(app.email)}</td>
-            <td>${escapeHtml(app.position)}</td>
-            <td>${escapeHtml(app.department)}</td>
-            <td>${escapeHtml(app.region)}</td>
-            <td>${formatDate(app.dateSubmitted)}</td>
-            <td><span class="badge badge-${app.status}">${capitalizeFirst(app.status)}</span></td>
-            <td class="text-right">
+            <td data-label="Applicant Name" class="table-cell-medium">${escapeHtml(app.applicantName)}</td>
+            <td data-label="Email" style="color: var(--color-muted-foreground);">${escapeHtml(app.email)}</td>
+            <td data-label="Position">${escapeHtml(app.position)}</td>
+            <td data-label="Department">${escapeHtml(app.department)}</td>
+            <td data-label="Region">${escapeHtml(app.region)}</td>
+            <td data-label="Date">${formatDate(app.dateSubmitted)}</td>
+            <td data-label="Status"><span class="badge badge-${app.status}">${capitalizeFirst(app.status)}</span></td>
+            <td data-label="Actions" class="text-right">
                 <div class="table-actions">
                     <button class="btn btn-ghost btn-sm" onclick='viewApplication(${JSON.stringify(app)})'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -363,14 +363,14 @@ function renderDonationsTable(data) {
     pageData.forEach(don => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td class="table-cell-medium">${escapeHtml(don.donorName)}</td>
-            <td style="color: var(--color-muted-foreground);">${escapeHtml(don.email)}</td>
-            <td class="table-cell-medium">UGX ${formatNumber(don.amount)}</td>
-            <td>${escapeHtml(don.paymentMethod)}</td>
-            <td class="table-cell-mono">${escapeHtml(don.transactionId)}</td>
-            <td>${formatDate(don.date)}</td>
-            <td><span class="badge badge-${don.status.toLowerCase()}">${don.status}</span></td>
-            <td class="text-right">
+            <td data-label="Donor Name" class="table-cell-medium">${escapeHtml(don.donorName)}</td>
+            <td data-label="Email" style="color: var(--color-muted-foreground);">${escapeHtml(don.email)}</td>
+            <td data-label="Amount" class="table-cell-medium">UGX ${formatNumber(don.amount)}</td>
+            <td data-label="Payment Method">${escapeHtml(don.paymentMethod)}</td>
+            <td data-label="Transaction ID" class="table-cell-mono">${escapeHtml(don.transactionId)}</td>
+            <td data-label="Date">${formatDate(don.date)}</td>
+            <td data-label="Status"><span class="badge badge-${don.status.toLowerCase()}">${don.status}</span></td>
+            <td data-label="Actions" class="text-right">
                 <div class="table-actions">
                     <button class="btn btn-ghost btn-sm" onclick='viewReceipt("${don.id}")' title="View Receipt">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -470,16 +470,16 @@ function renderSubscriptionsTable(data) {
         const row = document.createElement('tr');
         const isChecked = selectedSubscriptions.has(sub.id);
         row.innerHTML = `
-            <td>
+            <td data-label="Select">
                 <input type="checkbox" class="checkbox" ${isChecked ? 'checked' : ''} 
                        onchange="toggleSubscriptionSelection('${sub.id}')">
             </td>
-            <td class="table-cell-medium">${escapeHtml(sub.subscriberName)}</td>
-            <td style="color: var(--color-muted-foreground);">${escapeHtml(sub.email)}</td>
-            <td class="table-cell-mono">${escapeHtml(sub.phone)}</td>
-            <td>${escapeHtml(sub.region)}</td>
-            <td>${formatDate(sub.subscriptionDate)}</td>
-            <td>
+            <td data-label="Name" class="table-cell-medium">${escapeHtml(sub.subscriberName)}</td>
+            <td data-label="Email" style="color: var(--color-muted-foreground);">${escapeHtml(sub.email)}</td>
+            <td data-label="Phone" class="table-cell-mono">${escapeHtml(sub.phone)}</td>
+            <td data-label="Region">${escapeHtml(sub.region)}</td>
+            <td data-label="Subscription Date">${formatDate(sub.subscriptionDate)}</td>
+            <td data-label="Status">
                 <div class="flex items-center gap-2">
                     <span class="badge badge-${sub.status.toLowerCase()}">${sub.status}</span>
                     <label class="switch">
@@ -489,8 +489,8 @@ function renderSubscriptionsTable(data) {
                     </label>
                 </div>
             </td>
-            <td>${formatDate(sub.lastEmailSent)}</td>
-            <td class="text-right">
+            <td data-label="Last Email">${formatDate(sub.lastEmailSent)}</td>
+            <td data-label="Actions" class="text-right">
                 <div class="table-actions">
                     <button class="btn btn-ghost btn-sm" onclick='viewHistory("${sub.id}")' title="View History">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
