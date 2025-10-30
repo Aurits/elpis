@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     
     // Dummy credentials
-    if ($email === 'example@admin.com' && $password === 'admin1234') {
+    if ($email === 'admin@example.com' && $password === 'admin123') {
         $_SESSION['admin_logged_in'] = true;
         $_SESSION['admin_email'] = $email;
         header('Location: dashboard.php');
@@ -245,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             id="email" 
                             name="email" 
                             class="form-input" 
-                            placeholder="example@admin.com"
+                            placeholder="admin@example.com"
                             required
                             autocomplete="email"
                             value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
