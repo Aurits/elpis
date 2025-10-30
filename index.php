@@ -1,0 +1,781 @@
+<?php
+// Page configuration
+$current_page = 'index';
+
+// Include header
+include 'includes/header.php';
+?>
+
+<!-- Hero Section -->
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="container">
+          <div class="hero-content">
+            <h1 id="hero-title" class="hero-title">
+              We Are The Solution: Youth-Led Change Through Art & Advocacy
+            </h1>
+            <p class="hero-subtitle">
+              Born in 2022, we represent a new vision for youth empowerment in
+              Uganda. We pioneer innovative, arts-based solutions that speak to
+              youth in their own language, creating safe spaces for dialogue
+              about topics often shrouded in silence and stigma.
+            </p>
+            <div class="hero-buttons">
+              <a
+                href="donate.php"
+                class="btn btn-primary btn-lg"
+                aria-describedby="donate-description"
+              >
+                Donate Now
+              </a>
+              <a
+                href="about.php"
+                class="btn btn-secondary btn-lg"
+                aria-describedby="join-description"
+              >
+                Join Our Movement
+              </a>
+            </div>
+            <!-- Hidden descriptions for screen readers -->
+            <div id="donate-description" class="sr-only">
+              Support our mission with a donation to empower Ugandan youth
+            </div>
+            <div id="join-description" class="sr-only">
+              Learn more about our organization and how to get involved
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission Section -->
+      <section class="section" id="mission" aria-labelledby="mission-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="mission-title">Our Mission & Vision</h2>
+            <div class="grid grid-1 gap-8 max-w-4xl mx-auto">
+              <div class="glass-card text-center p-8">
+                <h3 class="text-primary mb-4">Mission Statement</h3>
+                <p class="text-lg">
+                  To empower Ugandan youth through innovative, arts-based
+                  solutions that address HIV/AIDS, mental health, and gender
+                  equality, fostering awareness, breaking barriers, and building
+                  resilient communities.
+                </p>
+              </div>
+              <div class="glass-card text-center p-8">
+                <h3 class="text-secondary mb-4">Vision Statement</h3>
+                <p class="text-lg">
+                  A Uganda where every young person thrives in good health, free
+                  from stigma, with equal access to opportunities for growth and
+                  self-expression.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact Stats Section -->
+      <section
+        class="stats section-sm"
+        id="impact"
+        aria-labelledby="impact-title"
+      >
+        <div class="container">
+          <h2 id="impact-title" class="sr-only">Our Impact Statistics</h2>
+          <div class="stats-grid">
+            <div class="stat-card" role="img" aria-labelledby="stat-youth">
+              <h3 class="stat-number" id="stat-youth-number">1,200+</h3>
+              <p class="stat-label" id="stat-youth">Youth Directly Engaged</p>
+              <div class="sr-only">
+                Over 1,200 young people have been directly engaged through our
+                transformative programs
+              </div>
+            </div>
+            <div
+              class="stat-card"
+              role="img"
+              aria-labelledby="stat-installations"
+            >
+              <h3 class="stat-number" id="stat-installations-number">8</h3>
+              <p class="stat-label" id="stat-installations">
+                Art Exhibitions
+              </p>
+              <div class="sr-only">
+                We have created 8 permanent public art exhibitions serving as
+                ongoing education tools
+              </div>
+            </div>
+            <div class="stat-card" role="img" aria-labelledby="stat-regions">
+              <h3 class="stat-number" id="stat-regions-number">6</h3>
+              <p class="stat-label" id="stat-regions">Regions Served</p>
+              <div class="sr-only">
+                We operate across 6 regions in Uganda: Kampala, Gulu, Kotido,
+                Luuka, Arua, and Mbarara
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Objectives Section -->
+      <section
+        class="section"
+        style="background: rgba(255, 255, 255, 0.05)"
+        id="objectives"
+        aria-labelledby="objectives-title"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2 id="objectives-title">Our 5 Core Objectives</h2>
+            <p>
+              Strategic goals driving our mission to empower Uganda's youth
+              through 2030
+            </p>
+          </div>
+          <div class="grid grid-1 gap-6 max-w-4xl mx-auto">
+            <div class="glass-card p-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                >
+                  1
+                </div>
+                <div>
+                  <h4 class="text-primary mb-3">
+                    Combat Stigma Through Creative Advocacy
+                  </h4>
+                  <p>
+                    Use art (music, film, poetry, and visual arts) to challenge
+                    misconceptions around HIV/AIDS and mental health,
+                    influencing policy and societal attitudes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                >
+                  2
+                </div>
+                <div>
+                  <h4 class="text-secondary mb-3">
+                    Expand Access to Youth-Friendly Health Education
+                  </h4>
+                  <p>
+                    Deliver interactive, arts-driven workshops and digital
+                    campaigns to educate 5,000+ youth annually on sexual
+                    reproductive health, mental wellness, and HIV prevention.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                >
+                  3
+                </div>
+                <div>
+                  <h4 class="text-primary mb-3">
+                    Strengthen Local Ownership & Funding
+                  </h4>
+                  <p>
+                    Grow the 10 Million Hearts, 1 Cause Campaign to mobilize
+                    Ugandans, especially youth to sustainably fund homegrown
+                    solutions, reducing reliance on foreign aid.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-primary-blue rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                >
+                  4
+                </div>
+                <div>
+                  <h4 class="text-secondary mb-3">
+                    Build Safe Spaces for Youth Expression & Healing
+                  </h4>
+                  <p>
+                    Establish community art hubs in all six operational regions
+                    (Kampala, Gulu, Kotido, Luuka, Arua, Mbarara) where young
+                    people access support, creativity, and peer networks.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card p-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-primary-pink rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
+                >
+                  5
+                </div>
+                <div>
+                  <h4 class="text-primary mb-3">
+                    Amplify Youth Voices in National Health Dialogues
+                  </h4>
+                  <p>
+                    Train and platform 500+ young advocates by 2030 to lead
+                    campaigns, influence policy, and shape inclusive health
+                    programs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Programs Overview Section -->
+      <section class="section" id="programs" aria-labelledby="programs-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="programs-title">Our Programs</h2>
+            <p>
+              Innovative approaches to youth empowerment through creative
+              expression and community engagement.
+            </p>
+          </div>
+          <div class="programs-grid">
+            <article class="program-card">
+              <div class="image-container mb-6">
+                <img
+                  src="images/youth-art-advocacy.jpg" 
+                  alt="Youth creating art for advocacy"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Advocacy Through Artistry</h3>
+              <p>
+                We don't just talk about change, we create it through powerful
+                artistic expression. Training youth advocates who use creative
+                mediums to influence policy, producing award-winning short films
+                that challenge misconceptions, organizing nationwide exhibitions
+                that turn personal stories into public dialogue, and hosting
+                viral X-Space discussions engaging thousands digitally.
+              </p>
+              <a
+                href="programs.html#creative-advocacy"
+                class="btn btn-outline btn-sm mt-6"
+                >Learn More</a
+              >
+            </article>
+
+            <article class="program-card">
+              <div class="image-container mb-6">
+                <img
+                  src="images/community-outreach.jpg"
+                  alt="Community engagement activities"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Community Outreach That Connects</h3>
+              <p>
+                Our grassroots programs reach youth across six key regions with
+                tailored interventions: Urban youth engagement through digital
+                and performing arts in Kampala, post-conflict mental health
+                healing via creative therapies in Gulu, culturally-sensitive
+                programs for pastoral communities in Kotido, rural SRHR
+                education through community murals and theater in Luuka, border
+                community health initiatives in Arua, and university-focused
+                creative health education in Mbarara.
+              </p>
+              <a
+                href="programs.html#community-outreach"
+                class="btn btn-outline btn-sm mt-6"
+                >Learn More</a
+              >
+            </article>
+
+            <article class="program-card">
+              <div class="image-container mb-6">
+                <img
+                  src="images/partnership-collaboration.jpg"
+                  alt="Partnership collaboration meeting"
+                  loading="lazy"
+                />
+              </div>
+              <h3>Strategic Partnerships for Sustainability</h3>
+              <p>
+                We're building an ecosystem of support through The 10 Million
+                Hearts Campaign - Uganda's first youth-led philanthropic
+                movement, collaborations with schools integrating arts-based
+                health education, corporate partnerships funding community art
+                installations, and government alliances scaling our proven
+                models nationally.
+              </p>
+              <a
+                href="programs.html#strategic-partnerships"
+                class="btn btn-outline btn-sm mt-6"
+                >Learn More</a
+              >
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership Spotlight -->
+      <section
+        class="section leadership-section"
+        id="leadership"
+        aria-labelledby="leadership-title"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2 id="leadership-title">Leadership Message</h2>
+            <p>Meet the visionary leaders driving change across Uganda</p>
+          </div>
+          
+          <div class="leadership-grid">
+            <!-- Leader 1 - Brian Moses -->
+            <article class="leadership-card leadership-card-1">
+              <div class="leadership-image-wrapper">
+                <div class="leadership-image">
+                  <img
+                    src="images/brian-moses-cofounder.jpg"
+                    alt="Nkuutu Brian Moses, Executive Director"
+                    loading="lazy"
+                  />
+                  <div class="leadership-badge">
+                    <span class="badge-role">Executive Director</span>
+                  </div>
+                </div>
+              </div>
+              <div class="leadership-content">
+                <div class="leadership-header">
+                  <h3 class="leadership-name">Nkuutu Brian Moses</h3>
+                  <div class="leadership-divider"></div>
+                </div>
+                <blockquote class="leadership-quote">
+                  "At Elpis Initiative Uganda, we recognize that the fight
+                  against HIV and mental health stigma cannot be won with
+                  silence or complacency. It requires
+                  <strong>bold action, innovation, and ownership</strong> from
+                  us the youth."
+                </blockquote>
+              </div>
+            </article>
+
+            <!-- Leader 2 - Feni Desmond -->
+            <article class="leadership-card leadership-card-2">
+              <div class="leadership-image-wrapper">
+                <div class="leadership-image">
+                  <img
+                    src="images/feni-desmond-executive-director.jpg"
+                    alt="Feni Desmond, Co-Founder"
+                    loading="lazy"
+                  />
+                  <div class="leadership-badge">
+                    <span class="badge-role">Co-Founder</span>
+                  </div>
+                </div>
+              </div>
+              <div class="leadership-content">
+                <div class="leadership-header">
+                  <h3 class="leadership-name">Feni Desmond</h3>
+                  <div class="leadership-divider"></div>
+                </div>
+                <blockquote class="leadership-quote">
+                  "The power to shape Uganda's future lies in our hands, our voices, and our actions.
+                  Let's build a nation where no young person suffers
+                  in silence, where health is a right, not a privilege."
+                </blockquote>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Art Exhibition Group Photo Section -->
+      <section
+        class="section"
+        style="background: rgba(255, 255, 255, 0.05)"
+        id="art-exhibition"
+        aria-labelledby="art-exhibition-title"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2 id="art-exhibition-title">Art Exhibition Showcase</h2>
+            <p>Our team and community coming together to create change through art</p>
+          </div>
+
+          <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-8">
+              <!-- Main Group Photo -->
+              <div class="image-container mb-6">
+                <img
+                  src="images/art-exhibition-team.jpeg"
+                  alt="Group photo from our art exhibition - team members, volunteers, and community participants"
+                  loading="lazy"
+                  class="w-full h-auto rounded-lg"
+                  style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);"
+                />
+              </div>
+
+              <!-- Caption/Description -->
+              <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">United Through Art & Purpose</h3>
+                <p class="text-lg mb-4">
+                  This powerful moment captures the collective spirit of our art exhibition,
+                  where youth, volunteers, and community members unite to break stigma and
+                  create lasting change through creative expression.
+                </p>
+                <div class="flex gap-4 justify-center mt-6">
+                  <a href="gallery.php" class="btn btn-primary">
+                    View Full Gallery
+                  </a>
+                  <a href="about.php" class="btn btn-secondary">
+                    Learn More About Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Impact Showcase -->
+      <section
+        class="section"
+        id="impact-showcase"
+        aria-labelledby="impact-showcase-title"
+      >
+        <div class="container">
+          <div class="section-header">
+            <h2 id="impact-showcase-title">Our Impact in Action</h2>
+            <p>See how we're transforming lives across Uganda's six regions</p>
+          </div>
+          <div class="grid grid-3 gap-8">
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/hiv-aids-awareness.jpg"
+                  alt="HIV/AIDS awareness campaign"
+                  loading="lazy"
+                />
+              </div>
+              <h4 class="text-primary mb-4">HIV/AIDS Awareness</h4>
+              <p>
+                Breaking stigma through powerful storytelling and community
+                dialogue across all six regions.
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/mental-health-support.jpg"
+                  alt="Mental health support sessions"
+                  loading="lazy"
+                />
+              </div>
+              <h4 class="text-secondary mb-4">Mental Health Support</h4>
+              <p>
+                Providing safe spaces and creative therapies for youth dealing
+                with mental health challenges.
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/gender-equality-workshops.jpg"
+                  alt="Gender equality workshops"
+                  loading="lazy"
+                />
+              </div>
+              <h4 class="text-primary mb-4">Gender Equality</h4>
+              <p>
+                Empowering all genders through education, advocacy, and equal
+                opportunity initiatives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Campaign Highlight Section -->
+      <section
+        class="campaign-highlight"
+        id="campaign"
+        aria-labelledby="campaign-title"
+      >
+        <div class="container">
+          <div class="campaign-content">
+            <div class="campaign-hero-image-container mb-6">
+              <img
+                src="images/hearts.png"
+                alt="10 Million Hearts campaign"
+                class="campaign-hero-image"
+                loading="lazy"
+              />
+            </div>
+            <h2 id="campaign-title">10 Million Hearts, One Cause</h2>
+            <p>
+              Join Uganda's first youth-led philanthropic movement to mobilize
+              ordinary Ugandans in funding homegrown solutions. More than a
+              fundraising initiative, it's a growing movement that invites every
+              Ugandan to become part of the solution through small but
+              meaningful contributions.
+            </p>
+            <div class="flex gap-6 justify-center mt-8">
+              <a
+                href="donate.php"
+                class="btn btn-primary btn-lg"
+                style="
+                  background-color: var(--white);
+                  color: var(--primary-pink);
+                "
+              >
+                Join the Campaign
+              </a>
+              <a
+                href="about.php"
+                class="btn btn-secondary btn-lg"
+                style="border-color: var(--white); color: var(--white)"
+              >
+                Learn Our Story
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Regions We Serve -->
+      <section class="section" id="regions" aria-labelledby="regions-title">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="regions-title">Regions We Serve</h2>
+            <p>Making a difference across Uganda's diverse communities</p>
+          </div>
+          <div class="grid grid-3 gap-6">
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/kampala.jpg"
+                  alt="Kampala urban programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Kampala</h4>
+              <p class="text-sm">
+                Urban youth engagement through digital and performing arts
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/gulu.jpg"
+                  alt="Gulu post-conflict programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Gulu</h4>
+              <p class="text-sm">
+                Post-conflict mental health support via creative therapies
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/kotido.jpg"
+                  alt="Kotido pastoral community programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Kotido</h4>
+              <p class="text-sm">
+                Culturally-sensitive pastoral community programs
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/luuka.jpg"
+                  alt="Luuka rural education programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Luuka</h4>
+              <p class="text-sm">
+                Rural SRHR education through murals and theater
+              </p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/arua.jpg"
+                  alt="Arua border community programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Arua</h4>
+              <p class="text-sm">Border community health initiatives</p>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-4">
+                <img
+                  src="images/mbarara.jpg"
+                  alt="Mbarara university programs"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Mbarara</h4>
+              <p class="text-sm">
+                University-focused creative health education
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="section" id="get-involved" aria-labelledby="cta-title">
+        <div class="container text-center">
+          <div class="section-header">
+            <h2 id="cta-title">Get Involved Today</h2>
+            <p>
+              Whether you're looking to support our mission, join our team, or
+              access our services, there are many ways to be part of the Elpis
+              family.
+            </p>
+          </div>
+          <div class="grid grid-3 gap-8">
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/make-donation.jpg"
+                  alt="Make a donation"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Make a Donation</h4>
+              <p class="mb-6">
+                Support our programs with a contribution starting from UGX
+                20,000 and become an Elpis Partner.
+              </p>
+              <a href="donate.php" class="btn btn-primary">Donate Now</a>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/join-team.jpg"
+                  alt="Join our team"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Join Our Team</h4>
+              <p class="mb-6">
+                Explore 21 open positions across our six regions and help us
+                expand our impact.
+              </p>
+              <a href="careers.php" class="btn btn-secondary">View Careers</a>
+            </div>
+
+            <div class="glass-card text-center">
+              <div class="image-container mb-6">
+                <img
+                  src="images/get-assistance.jpg"
+                  alt="Get assistance"
+                  loading="lazy"
+                />
+              </div>
+              <h4>Need Assistance?</h4>
+              <p class="mb-6">
+                Access our emergency support services for health-related needs
+                across Uganda.
+              </p>
+              <a href="assist.php" class="btn btn-outline">Get Help</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partners Section -->
+      <section class="section partners-section" id="partners">
+        <div class="container">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Our Partners</h2>
+            <p class="text-lg max-w-2xl mx-auto">
+              Working together with organizations and institutions to create lasting impact
+            </p>
+          </div>
+
+          <div class="partners-marquee-container">
+            <div class="partners-marquee-content">
+              <!-- First set of partner logos -->
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-1.svg" alt="Partner Foundation" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-2.svg" alt="Global Initiative" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-3.svg" alt="Care Trust" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-4.svg" alt="Secure Solutions" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-5.svg" alt="Unity Network" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-6.svg" alt="Excel Group" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-7.svg" alt="Growth Partners" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-8.svg" alt="Innovate Labs" />
+              </div>
+
+              <!-- Duplicate set for seamless loop -->
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-1.svg" alt="Partner Foundation" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-2.svg" alt="Global Initiative" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-3.svg" alt="Care Trust" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-4.svg" alt="Secure Solutions" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-5.svg" alt="Unity Network" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-6.svg" alt="Excel Group" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-7.svg" alt="Growth Partners" />
+              </div>
+              <div class="partner-logo-card">
+                <img src="images/partner-logo-8.svg" alt="Innovate Labs" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+<?php
+// Include footer
+include 'includes/footer.php';
+?>

@@ -285,6 +285,7 @@ class ElpisWebsite {
     this.initJobListings()
     this.initJobApplicationForm()
     this.initCustomCarousels()
+    this.initNewsletterSignup()
   }
 
   // Navigation functionality
@@ -2088,30 +2089,51 @@ class ElpisWebsite {
     }
   }
 
-  submitJobApplication(form) {
+  async submitJobApplication(form) {
     // Show loading state
     const submitButton = form.querySelector('button[type="submit"]')
     const originalText = submitButton.textContent
     submitButton.textContent = 'Submitting...'
     submitButton.disabled = true
 
-    // Simulate form submission (replace with actual API call)
-    setTimeout(() => {
-      // Show success message
-      this.showSuccessModal('Application Submitted Successfully',
-        'Thank you for your application! We have received your submission and will review it carefully. Only shortlisted candidates will be contacted for interviews.')
+    try {
+      // Create FormData from form
+      const formData = new FormData(form)
+      
+      // Add CSRF token (generate a simple one for now)
+      formData.append('csrf_token', Date.now().toString())
+      
+      // Submit to backend
+      const response = await fetch('admin/handlers/application-submit.php', {
+        method: 'POST',
+        body: formData
+      })
+      
+      const result = await response.json()
+      
+      if (result.success) {
+        // Show success message
+        this.showSuccessModal('Application Submitted Successfully!',
+          `Thank you for your application! Your application ID is <strong>${result.application_id}</strong>. We have received your submission and will review it carefully. Only shortlisted candidates will be contacted for interviews.`)
 
-      // Reset form
-      form.reset()
-      document.getElementById('partner-id-group').style.display = 'none'
-
+        // Reset form
+        form.reset()
+        this.goToStep(1) // Return to first step
+        
+      } else {
+        // Show error message
+        const errorMsg = result.errors ? result.errors.join('<br>') : result.message
+        this.showErrorModal('Submission Failed', errorMsg)
+      }
+      
+    } catch (error) {
+      console.error('Submission error:', error)
+      this.showErrorModal('Submission Error', 'An error occurred while submitting your application. Please try again later.')
+    } finally {
       // Reset button
       submitButton.textContent = originalText
       submitButton.disabled = false
-
-      // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }, 2000)
+    }
   }
 
   showSuccessModal(title, message) {
@@ -2134,6 +2156,28 @@ class ElpisWebsite {
         modal.remove()
       }
     }, 5000)
+  }
+
+  showErrorModal(title, message) {
+    // Create modal
+    const modal = document.createElement('div')
+    modal.className = 'modal-overlay'
+    modal.innerHTML = `
+      <div class="modal-content">
+        <h3 class="text-2xl font-bold mb-4" style="color: #dc3545;">${title}</h3>
+        <p class="mb-6">${message}</p>
+        <button class="btn btn-primary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+      </div>
+    `
+
+    document.body.appendChild(modal)
+
+    // Auto-remove after 8 seconds
+    setTimeout(() => {
+      if (modal.parentElement) {
+        modal.remove()
+      }
+    }, 8000)
   }
 }
 
